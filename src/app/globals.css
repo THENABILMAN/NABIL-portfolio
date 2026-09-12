@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-void: #000000;
+  --color-bone-white: #ffffff;
+  --color-ash-gray: #888888;
+  --color-silver-mist: #b0b0b0;
+  --color-charcoal-border: #1f1f1f;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: var(--color-void);
+}
+
+body {
+  background-color: var(--color-void);
+  color: var(--color-bone-white);
+  overflow-x: hidden;
+}
+
+::selection {
+  background-color: #ffffff;
+  color: #000000;
+}
