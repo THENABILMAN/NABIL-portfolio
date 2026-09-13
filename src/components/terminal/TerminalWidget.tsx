@@ -261,8 +261,12 @@ export default function InteractiveCLITerminal() {
             : item
         )
       );
-      setConversation((prev) =>
-        [...prev, { role: "user", content: queryText }, { role: "assistant", content: result.answer }].slice(-8)
+            setConversation((prev) =>
+        [
+          ...prev,
+          { role: "user" as const, content: queryText },
+          { role: "assistant" as const, content: result.answer },
+        ].slice(-8)
       );
     } catch {
       const errorOutput = (
