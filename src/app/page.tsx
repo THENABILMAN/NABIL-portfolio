@@ -8,7 +8,7 @@ import ContactSection from "@/components/contact/ContactSection";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-[#000000] text-[#ffffff] flex flex-col selection:bg-white selection:text-black">
+    <main id="main-content" className="min-h-screen bg-[#000000] text-[#ffffff] flex flex-col selection:bg-white selection:text-black">
       {/* Glassmorphic Navigation Header */}
       <Navbar />
 

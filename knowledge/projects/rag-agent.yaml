@@ -1,0 +1,42 @@
+id: rag-agent
+name: RAG Documentation Agent
+type: project
+status: completed
+claim_status: BUILT
+confidence: medium
+one_line: Document Q&A agent using embeddings and retrieved context.
+problem: Technical docs are hard to query without retrieval.
+goal: Index markdown/docs and answer with citations.
+nabil_contribution: Built/worked on a LangChain documentation RAG agent (personal statement + portfolio).
+architecture: Recursive splitting, embeddings, vector store, optional web tool (Tavily).
+technologies:
+  - Python
+  - LangChain
+  - Pinecone
+  - Chroma
+  - Hugging Face embeddings
+  - Ollama
+  - mxbai-embed-large
+  - Tavily
+  - Streamlit
+  - FastAPI
+data_flow: Docs → chunks → embeddings → query → context → LLM
+decisions: Not documented beyond standard RAG pattern
+challenges: Not documented
+solutions: Not documented
+results: Not documented
+benchmarks: []
+limitations:
+  - Hybrid BM25 + dense search was claimed in UI copy; this portfolio implementation historically used dense Pinecone search plus later lexical merge. Do not claim BM25/RRF/BGE rerank unless evidence exists for that specific project.
+  - Sub-200ms vector retrieval is not a documented benchmark.
+  - No dedicated GitHub repository listed beyond the profile URL.
+future_improvements: Not documented
+github: null
+demo: null
+evidence:
+  - type: personal_statement
+    source: knowledge/source-notes.md
+    description: LangChain documentation RAG agent notes
+  - type: portfolio
+    source: src/data/resumeData.ts
+    description: RAG documentation agent project card

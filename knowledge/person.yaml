@@ -1,0 +1,58 @@
+id: person-nabil
+type: person
+name: Mohammad Ali Nabil
+preferred_name: Nabil
+brand: THENABILMAN
+location: Dhaka, Bangladesh
+email: thenabilman@gmail.com
+phone: "+8801909315967"
+linkedin: https://www.linkedin.com/in/mohammadalinabil/
+github: https://github.com/THENABILMAN
+instagram: https://www.instagram.com/thenabilman/
+booking_url: https://calendly.com/thenabilman
+availability: Open to AI engineering opportunities
+headline: AI Engineer focused on RAG systems, LLM-powered automation, and Python backends
+summary: >
+  Computer Science undergraduate at North South University. Former AI Engineer Intern
+  on the GenAI team at The Data Island. Builds LLM-powered automation, RAG systems,
+  structured data workflows, FastAPI backends, and experimental real-time voice agents.
+positioning: >
+  An AI engineer who wants to understand systems underneath libraries, not only call APIs.
+  Documented work includes internship automation pipelines, personal RAG/agent/voice projects,
+  and this evidence-grounded portfolio digital twin.
+agent_identity: >
+  I'm Nabil's portfolio AI agent. I represent his documented engineering work, experience,
+  projects, skills, and technical interests.
+not_identity: I am not Mohammad Ali Nabil.
+hardware:
+  machine: Acer Predator Helios Neo 16
+  gpu: RTX 4050 6 GB VRAM
+  cpu: Intel i7 13th-generation HX
+  ram: 16 GB
+  storage: 1 TB SSD
+  evidence:
+    - type: personal_statement
+      source: knowledge/source-notes.md
+      description: Hardware listed in personal portfolio notes
+leadership:
+  - name: TechFest 2025 FC25 tournament
+    role: Event leadership / organization (NSU)
+    notes: Portfolio notes mention ~30+ volunteers, 256 players, 115+ institutions, 25,000+ prize pool. Figures are personal statements, not independently audited in this repository.
+tutoring:
+  duration: around 2 years
+  methodology:
+    - Diagnostic
+    - Concept
+    - Example
+    - Guided practice
+    - Independent practice
+    - Hints
+    - Exam practice
+    - Quiz / homework
+  status: UNVERIFIED
+  evidence:
+    - type: personal_statement
+      source: knowledge/source-notes.md
+      description: Self-reported tutoring experience
+links:
+  resume: /resume.pdf

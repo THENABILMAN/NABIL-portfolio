@@ -1,0 +1,32 @@
+id: realtime-voice-agent
+name: Real-Time AI Voice Agent
+type: project
+status: completed
+claim_status: BUILT
+confidence: high
+one_line: Conversational voice loop with streaming STT, LLM, and TTS.
+problem: Text chat is slower and less natural than spoken turn-taking.
+goal: Full-duplex conversational voice over streaming audio.
+nabil_contribution: Described as implementing WebSocket audio, VAD, Whisper STT, LLM, and neural TTS.
+architecture: WebSockets + VAD → Whisper STT → LLM → neural TTS playback.
+technologies:
+  - Python
+  - Whisper STT
+  - Neural TTS
+  - WebSockets
+  - FastAPI
+  - Audio streaming
+data_flow: Audio frames → VAD segments → transcript → LLM → speech
+decisions: Streaming transport rather than file-upload STT
+challenges: Not documented
+solutions: Jitter buffering mentioned in portfolio copy
+results: No reproducible latency study in this repo. "Sub-second" is qualitative, not a verified benchmark.
+benchmarks: []
+limitations: Latency numbers are not evidenced. Treat as experimental/built system, not a measured SLA.
+future_improvements: Not documented
+github: https://github.com/THENABILMAN/THENABILMAN_AI_Voice_Agent
+demo: https://github.com/THENABILMAN/THENABILMAN_AI_Voice_Agent
+evidence:
+  - type: github
+    source: https://github.com/THENABILMAN/THENABILMAN_AI_Voice_Agent
+    description: Dedicated repository URL

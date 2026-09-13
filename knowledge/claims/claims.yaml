@@ -1,0 +1,78 @@
+- id: claim-data-island-intern
+  claim: Nabil was an AI Engineer Intern on the GenAI team at The Data Island (Nov 2025 – Jan 2026).
+  status: VERIFIED
+  confidence: high
+  entity_id: data-island
+  evidence: [resume, personal_statement]
+- id: claim-nsu-undergrad
+  claim: Nabil is a Computer Science & Engineering undergraduate at North South University.
+  status: VERIFIED
+  confidence: high
+  entity_id: nsu-cse
+  evidence: [resume, personal_statement]
+- id: claim-fitman-built
+  claim: Nabil built FITMAN as a full-stack fitness/nutrition app using FastAPI, React, and LangGraph.
+  status: BUILT
+  confidence: medium
+  entity_id: fitman
+  evidence: [portfolio, deployed_demo]
+- id: claim-fitman-production
+  claim: FITMAN is a production system with verified users and SLAs.
+  status: UNVERIFIED
+  confidence: none
+  entity_id: fitman
+  evidence: []
+- id: claim-fitman-300ms
+  claim: FITMAN Groq streaming responds in under 300ms.
+  status: UNVERIFIED
+  confidence: none
+  entity_id: fitman
+  evidence: []
+- id: claim-portfolio-rag
+  claim: This portfolio implements dense Pinecone retrieval plus lexical overlap over canonical knowledge.
+  status: BUILT
+  confidence: high
+  entity_id: portfolio-digital-twin
+  evidence: [project_repository]
+- id: claim-hybrid-bm25-rrf
+  claim: Nabil's RAG uses BM25, Reciprocal Rank Fusion, and BGE reranking in this portfolio.
+  status: UNVERIFIED
+  confidence: none
+  entity_id: portfolio-digital-twin
+  evidence: []
+- id: claim-lora-expert
+  claim: Nabil specializes in LoRA/QLoRA/PEFT fine-tuning and DPO alignment.
+  status: LEARNING
+  confidence: low
+  entity_id: lora
+  evidence: []
+- id: claim-deepspeed
+  claim: Nabil has advanced DeepSpeed/FSDP distributed training experience.
+  status: UNVERIFIED
+  confidence: none
+  entity_id: deepspeed
+  evidence: []
+- id: claim-resume-analyzer-github
+  claim: Nabil has a dedicated GitHub repository for the AI Resume Analyzer.
+  status: VERIFIED
+  confidence: high
+  entity_id: resume-analyzer
+  evidence: [github]
+- id: claim-bangla-whisper-timing
+  claim: In one informal test, about 10 seconds of Bangla speech took about 8.33 seconds for Whisper.
+  status: EXPERIMENTAL
+  confidence: low
+  entity_id: bangla-voice-agent
+  evidence: [personal_statement]
+- id: claim-livekit-200ms
+  claim: LiveKit MCP assistant achieved sub-200ms voice roundtrip.
+  status: UNVERIFIED
+  confidence: none
+  entity_id: livekit-mcp-assistant
+  evidence: []
+- id: claim-google-internship
+  claim: Nabil interned at Google.
+  status: UNVERIFIED
+  confidence: none
+  entity_id: person-nabil
+  evidence: []

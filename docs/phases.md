@@ -1,3 +1,5 @@
+> Historical checklist. Implemented architecture: `docs/architecture.md`.
+
 # Implementation Phases
 
 ## Phase 1: Project Setup & Core Configuration

@@ -1,0 +1,36 @@
+id: resume-analyzer
+name: AI Resume Analyzer & Matcher
+type: project
+status: completed
+claim_status: BUILT
+confidence: high
+one_line: LLM-powered CV parsing, entity extraction, and job-match scoring.
+problem: Resumes are unstructured; matching them to jobs is noisy.
+goal: Extract structured entities and score semantic fit.
+nabil_contribution: Implemented parsing, constrained JSON extraction, similarity scoring, and Streamlit UI (per GitHub-linked project description).
+architecture: PDF/DOCX parse → LLM JSON schema extraction → embedding similarity vs job text → Streamlit dashboard.
+technologies:
+  - Python
+  - LLMs
+  - FastAPI
+  - Streamlit
+  - LangChain
+  - NLP
+  - PDF parsing
+data_flow: Resume file → text → structured entities → vector score → recommendations
+decisions: Constrained JSON schemas to reduce extraction drift
+challenges: Not documented
+solutions: Not documented
+results: Not documented with measured accuracy
+benchmarks: []
+limitations: No published accuracy or ATS benchmark in this repo.
+future_improvements: Not documented
+github: https://github.com/THENABILMAN/THENABILMAN_AI_Resume-Analyzer
+demo: https://github.com/THENABILMAN/THENABILMAN_AI_Resume-Analyzer
+evidence:
+  - type: github
+    source: https://github.com/THENABILMAN/THENABILMAN_AI_Resume-Analyzer
+    description: Dedicated project repository URL in portfolio
+  - type: portfolio
+    source: src/data/resumeData.ts
+    description: Architecture bullets

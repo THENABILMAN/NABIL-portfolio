@@ -14,7 +14,7 @@
 
 <br />
 
-**Autonomous Agent Architectures • Sub-Second Hybrid RAG • LLM/LMM Fine-Tuning • High-Throughput Backends**
+**Evidence-grounded digital twin • Canonical knowledge • Hybrid retrieval • Honest claim status**
 
 [Live Website](https://thenabilman.vercel.app/) • [Flagship FITMAN](https://fitmanver.vercel.app/) • [GitHub Profile](https://github.com/THENABILMAN) • [Verified Resume](https://thenabilman.vercel.app/resume.pdf)
 
@@ -24,30 +24,24 @@
 
 ## 📌 Overview
 
-This repository houses the personal portfolio website, interactive developer terminal (`nabil-cli`), and autonomous AI digital twin agent for **Mohammad Ali Nabil (THENABILMAN)**.
+A full-stack AI portfolio platform with a retrieval-grounded technical digital twin, interactive developer terminal, structured knowledge base, and evidence-backed responses.
 
-Engineered with a high-performance **Next.js 14** frontend and a dedicated **FastAPI** backend, the platform showcases production-grade multi-agent architectures, low-latency streaming pipelines, full-stack systems, and a 7-layer technical knowledge graph. Visitors can interact with a live AI digital twin trained on Nabil's verified resume, project architectures, and engineering philosophies.
+The Next.js site and FastAPI service share canonical YAML in `knowledge/`. The twin answers from structured facts and retrieved evidence. It refuses when the knowledge base has no support. It does **not** impersonate Nabil, and this backend is **not** a multi-agent LangGraph runtime (LangGraph is documented on FITMAN, not used to orchestrate this agent).
 
 ---
 
 ## 🚀 Key Architectural Highlights
 
-- **Dual-Layer Intelligent RAG Pipeline**:
-  - **Instant Fast-Path Router (< 30ms)**: Zero-latency regular expression and intent matching engine answering common queries (bio, tech stack, featured projects, fine-tuning, resume download, contact info) instantaneously without vector DB overhead.
-  - **Pinecone Serverless Dense Retrieval (1024-dim)**: Employs `llama-text-embed-v2` vector embeddings and cosine distance metrics for semantic similarity search with verified document citations.
-  - **Hybrid Search & Fallback**: Combines semantic embeddings with BM25 keyword matching and reciprocal rank scoring.
-  - **Resilient LLM Gateway**: OpenRouter API (`google/gemma-4-31b-it`, `meta-llama/llama-3-70b-instruct`) with automatic model fallback hierarchies.
+- **Canonical knowledge**: YAML entities (person, experience, projects, skills, claims, benchmarks) exported to `src/data/canonical.json`.
+- **Fast path**: Deterministic questions are answered from structured knowledge, not a second hardcoded resume.
+- **Retrieval**: Pinecone dense vectors (when configured) merged with lexical overlap. Empty retrieval refuses instead of guessing.
+- **Claims**: VERIFIED / BUILT / EXPERIMENTAL / LEARNING / PLANNED / ASPIRATIONAL / UNVERIFIED — statuses are never upgraded by the model.
+- **API**: `{ answer, grounded, confidence, sources, claims, entity, model }`.
+- **Security**: CORS allowlist, ingest admin secret, chat rate limit, prompt-injection policy.
 
-- **LLM & LMM Fine-Tuning & Model Training**:
-  - Parameter-Efficient Fine-Tuning (PEFT) with **LoRA** and **QLoRA** on domain-specific datasets.
-  - Sub-hour local fine-tuning using **Unsloth** and **Hugging Face TRL**.
-  - Multimodal Large Vision-Language Models (LMMs) for document OCR and multimodal tool-use.
-  - Alignment via Supervised Fine-Tuning (SFT) and Direct Preference Optimization (DPO).
+See `docs/architecture.md`, `docs/agent.md`, `docs/claims.md`.
 
-- **Multi-Agent Orchestration**:
-  - Stateful multi-agent Directed Acyclic Graphs (DAGs) using **LangGraph**.
-  - Persistent conversation memory across session boundaries.
-  - Strict JSON schema validation with **Pydantic v2** and automatic error-correcting retry loops.
+Older marketing bullets (BM25+RRF+BGE, LoRA expertise, FITMAN as production, sub-300ms Groq) are **not** current system claims. Details: `docs/claims.md`.
 
 - **Real-Time Voice & Multimodal Audio Pipelines**:
   - Full-duplex conversational audio streaming over **WebSockets**.
@@ -159,27 +153,20 @@ The terminal routes the query through the fast-path router or performs vector re
 ```
 .
 ├── backend/                      # Python FastAPI RAG Service (Conda: nabport)
-│   ├── tests/                    # Automated integration & unit tests
-│   │   └── test_rag.py           # Pinecone retrieval & OpenRouter LLM test
-│   ├── config.py                 # Environment variables, model names & paths
-│   ├── embeddings.py             # Pinecone 1024-dim llama-text-embed-v2 client
-│   ├── ingest.py                 # Document parser, semantic chunker & vector upsert
-│   ├── main.py                   # FastAPI REST and SSE streaming endpoints
-│   ├── rag_service.py            # Fast-path router, similarity search & generation
-│   ├── requirements.txt          # Python dependencies
-│   └── README.md                 # Backend documentation
+│   ├── knowledge_store.py        # Canonical YAML loader, classifier, fast path
+│   ├── rag_service.py            # Hybrid retrieve + grounded generation
+│   ├── ingest.py                 # Entity chunks + resume/notes upsert
+│   ├── tests/test_rag.py
+│   └── tests/eval_questions.json
 │
-├── docs/                         # Technical Specifications & Design Specs
-│   ├── architecture.md           # Full-stack architectural blueprints
-│   ├── design.md                 # UI design tokens, aesthetics & color schemes
-│   ├── phases.md                 # Implementation roadmap
-│   ├── prd.md                    # Product Requirements Document
-│   └── rules.md                  # Engineering and coding guidelines
+├── knowledge/                    # Canonical source of truth (YAML + markdown)
 │
-├── public/                       # Static Assets & Verified Knowledge Data
-│   ├── knowledegebase.md         # Source of truth for Nabil's projects & career data
-│   ├── resume.pdf                # Official downloadable resume PDF
-│   └── README.md                 # Public assets documentation
+├── docs/                         # architecture.md, agent.md, claims.md, evaluation.md
+│
+├── public/
+│   ├── knowledgebase.md          # Legacy notes (personal statements)
+│   ├── knowledegebase.md         # Compatibility stub
+│   └── resume.pdf
 │
 ├── scripts/                      # Automated Launch Scripts
 │   ├── run_web.bat               # Windows Command Prompt full-stack runner
@@ -272,7 +259,7 @@ pip install -r backend/requirements.txt
 ```powershell
 python backend/ingest.py
 ```
-*This parses `public/knowledegebase.md` and `public/resume.pdf`, chunks the text into semantic sections, generates 1024-dimensional embeddings, and upserts them into Pinecone.*
+*Indexes canonical `knowledge/` chunks, `public/resume.pdf`, and `public/knowledgebase.md` into Pinecone with entity metadata. Requires `PINECONE_API_KEY`. Export frontend JSON with `python backend/export_canonical.py`.*
 
 ---
 

@@ -1,0 +1,58 @@
+id: fitman
+name: FITMAN
+type: project
+status: active_development
+claim_status: BUILT
+confidence: medium
+one_line: Full-stack AI fitness and nutrition coaching platform with LangGraph agents and a FastAPI backend.
+problem: Personalized workout and nutrition coaching is hard to keep consistent without structured user context.
+goal: Adaptive macros, workouts, logging, and an AI coach with persistent context.
+nabil_contribution: >
+  Portfolio materials describe Nabil as the engineer of the full-stack app (React/Vite frontend,
+  FastAPI backend, Supabase, LangGraph agent state). This repository does not contain FITMAN source,
+  so contribution claims are taken from portfolio documentation, not from a code audit.
+architecture: >
+  Client UI → FastAPI gateway → LangGraph state machine → Groq LLM → Supabase PostgreSQL.
+  Source notes also describe a CoachState TypedDict covering profile, workout, nutrition,
+  memory, and document context.
+technologies:
+  - React
+  - TypeScript
+  - Vite
+  - Tailwind CSS
+  - FastAPI
+  - Python
+  - Supabase
+  - PostgreSQL
+  - LangGraph
+  - LangChain
+  - Groq
+data_flow: Not fully documented beyond the high-level architecture above.
+decisions:
+  - Stateful LangGraph agent rather than a single-turn chatbot (documented intent).
+challenges: Not documented
+solutions: Not documented
+results: A public demo URL is listed in the portfolio. User counts and production SLAs are not documented.
+benchmarks: []
+limitations:
+  - This portfolio repo does not include FITMAN source code.
+  - Knowledge-base notes originally labeled FITMAN as a planned project; UI copy later called it production.
+  - Canonical status is active_development with a listed demo, not audited production.
+future_improvements: Not documented
+github: https://github.com/thenabilman/fitman
+github_verified_in_this_repo: false
+demo: https://fitmanver.vercel.app/
+evidence:
+  - type: deployed_demo
+    source: https://fitmanver.vercel.app/
+    description: Demo URL listed in portfolio (not load-tested here)
+  - type: portfolio
+    source: src/components/projects/ProjectsSection.tsx
+    description: Project card and architecture bullets
+  - type: personal_statement
+    source: knowledge/source-notes.md
+    description: Original notes describe FITMAN as a larger planned project
+conflict_resolution: >
+  Source notes say planned; site copy said Active Production. Without source in this repo,
+  status is active_development. Do not call FITMAN production. Do not cite <300ms Groq latency
+  as a verified benchmark.

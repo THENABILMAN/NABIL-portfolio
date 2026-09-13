@@ -17,9 +17,9 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Mohammad Ali Nabil | AI Engineer — Agentic Systems, RAG & LLM Workflows",
+  title: "Mohammad Ali Nabil | AI Engineer — RAG, FastAPI & LLM workflows",
   description:
-    "Portfolio of Mohammad Ali Nabil, AI Engineer specializing in autonomous agents, RAG pipelines, LLM APIs, and scalable Python backends.",
+    "Portfolio of Mohammad Ali Nabil: RAG systems, FastAPI backends, documented agents, and an evidence-grounded digital twin.",
   keywords: [
     "AI Engineer",
     "LLM",
@@ -27,16 +27,14 @@ export const metadata: Metadata = {
     "LangGraph",
     "FastAPI",
     "Mohammad Ali Nabil",
-    "Autonomous Agents",
     "Python",
-    "MCP Protocol",
     "Dhaka Bangladesh",
   ],
   authors: [{ name: "Mohammad Ali Nabil", url: "https://github.com/THENABILMAN" }],
   openGraph: {
-    title: "Mohammad Ali Nabil | AI Engineer — Agentic Systems, RAG & LLM Workflows",
+    title: "Mohammad Ali Nabil | AI Engineer — RAG, FastAPI & LLM workflows",
     description:
-      "Portfolio of Mohammad Ali Nabil, AI Engineer specializing in autonomous agents, RAG pipelines, LLM APIs, and scalable Python backends.",
+      "Portfolio of Mohammad Ali Nabil: RAG systems, FastAPI backends, documented agents, and an evidence-grounded digital twin.",
     type: "website",
     locale: "en_US",
     siteName: "Mohammad Ali Nabil Portfolio",
@@ -44,7 +42,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Mohammad Ali Nabil | AI Engineer",
-    description: "Architecting Autonomous AI Agents & RAG Workflows.",
+    description: "RAG systems, FastAPI backends, and an evidence-grounded portfolio digital twin.",
   },
   robots: {
     index: true,
@@ -60,6 +58,12 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable} dark scroll-smooth`}>
       <body className="relative isolate bg-black text-white antialiased min-h-screen flex flex-col font-sans">
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[60] focus:rounded-lg focus:bg-white focus:px-4 focus:py-2 focus:text-black"
+        >
+          Skip to content
+        </a>
         <LenisProvider>
           <WireframeGrid />
           <div className="relative z-10 bg-transparent">{children}</div>

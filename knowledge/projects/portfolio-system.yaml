@@ -1,0 +1,39 @@
+id: portfolio-digital-twin
+name: Nabil Portfolio Technical Digital Twin
+type: portfolio_system
+status: active_development
+claim_status: BUILT
+confidence: high
+one_line: This repository's evidence-grounded RAG agent over structured portfolio knowledge.
+problem: Visitors need accurate answers about Nabil without marketing hallucination.
+goal: Canonical knowledge → hybrid retrieval → claim-aware grounded generation.
+nabil_contribution: Designed and implemented the Next.js portfolio, FastAPI RAG service, Pinecone indexing, and digital-twin policy in this repository.
+architecture: >
+  Visitor → Next.js → FastAPI → query classification → entity resolution →
+  canonical knowledge + Pinecone dense retrieval + lexical overlap → rerank →
+  evidence validation → LLM (OpenRouter) → answer + confidence + sources + claims.
+technologies:
+  - Next.js
+  - TypeScript
+  - FastAPI
+  - Python
+  - Pinecone
+  - llama-text-embed-v2
+  - OpenRouter
+data_flow: Query → classify/resolve → retrieve/merge → validate → generate
+decisions:
+  - Canonical YAML knowledge is the source of truth.
+  - Retrieval failure must refuse rather than use the model's latent biography.
+  - Fast path answers come from structured knowledge, not a second hardcoded resume.
+challenges: Duplicate marketing copy vs source notes; inflated metrics in earlier UI.
+solutions: Claim taxonomy, provenance, honest FITMAN status, ingest protection.
+results: Implemented in this repository. No published latency SLA.
+benchmarks: []
+limitations: Dense retrieval depends on Pinecone being indexed with current knowledge. Lexical search works locally from YAML even if Pinecone is empty.
+future_improvements: Cross-encoder rerank, reproducible eval harness with live models.
+github: https://github.com/THENABILMAN/NABIL-portfolio
+demo: null
+evidence:
+  - type: project_repository
+    source: https://github.com/THENABILMAN/NABIL-portfolio
+    description: This codebase

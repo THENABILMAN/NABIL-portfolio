@@ -1,0 +1,1025 @@
+{
+  "person": {
+    "id": "person-nabil",
+    "type": "person",
+    "name": "Mohammad Ali Nabil",
+    "preferred_name": "Nabil",
+    "brand": "THENABILMAN",
+    "location": "Dhaka, Bangladesh",
+    "email": "thenabilman@gmail.com",
+    "phone": "+8801909315967",
+    "linkedin": "https://www.linkedin.com/in/mohammadalinabil/",
+    "github": "https://github.com/THENABILMAN",
+    "instagram": "https://www.instagram.com/thenabilman/",
+    "booking_url": "https://calendly.com/thenabilman",
+    "availability": "Open to AI engineering opportunities",
+    "headline": "AI Engineer focused on RAG systems, LLM-powered automation, and Python backends",
+    "summary": "Computer Science undergraduate at North South University. Former AI Engineer Intern on the GenAI team at The Data Island. Builds LLM-powered automation, RAG systems, structured data workflows, FastAPI backends, and experimental real-time voice agents.\n",
+    "positioning": "An AI engineer who wants to understand systems underneath libraries, not only call APIs. Documented work includes internship automation pipelines, personal RAG/agent/voice projects, and this evidence-grounded portfolio digital twin.\n",
+    "agent_identity": "I'm Nabil's portfolio AI agent. I represent his documented engineering work, experience, projects, skills, and technical interests.\n",
+    "not_identity": "I am not Mohammad Ali Nabil.",
+    "hardware": {
+      "machine": "Acer Predator Helios Neo 16",
+      "gpu": "RTX 4050 6 GB VRAM",
+      "cpu": "Intel i7 13th-generation HX",
+      "ram": "16 GB",
+      "storage": "1 TB SSD",
+      "evidence": [
+        {
+          "type": "personal_statement",
+          "source": "knowledge/source-notes.md",
+          "description": "Hardware listed in personal portfolio notes"
+        }
+      ]
+    },
+    "leadership": [
+      {
+        "name": "TechFest 2025 FC25 tournament",
+        "role": "Event leadership / organization (NSU)",
+        "notes": "Portfolio notes mention ~30+ volunteers, 256 players, 115+ institutions, 25,000+ prize pool. Figures are personal statements, not independently audited in this repository."
+      }
+    ],
+    "tutoring": {
+      "duration": "around 2 years",
+      "methodology": [
+        "Diagnostic",
+        "Concept",
+        "Example",
+        "Guided practice",
+        "Independent practice",
+        "Hints",
+        "Exam practice",
+        "Quiz / homework"
+      ],
+      "status": "UNVERIFIED",
+      "evidence": [
+        {
+          "type": "personal_statement",
+          "source": "knowledge/source-notes.md",
+          "description": "Self-reported tutoring experience"
+        }
+      ]
+    },
+    "links": {
+      "resume": "/resume.pdf"
+    }
+  },
+  "education": {
+    "id": "nsu-cse",
+    "type": "education",
+    "institution": "North South University",
+    "degree": "BSc in Computer Science & Engineering",
+    "status": "undergraduate",
+    "period": "Not independently dated in this repository",
+    "location": "Dhaka, Bangladesh",
+    "claim_status": "VERIFIED",
+    "confidence": "high",
+    "notes": "Source notes describe Nabil as a current undergraduate. Resume copy previously said \"Graduated / Undergraduate\". Canonical status is undergraduate unless Nabil confirms graduation.\n",
+    "highlights": [
+      "Coursework and interests in AI, ML, data structures, and algorithms",
+      "Practical projects alongside the degree (personal statement)"
+    ],
+    "academic_interests": [
+      "Artificial Intelligence",
+      "Machine Learning",
+      "NLP",
+      "LLMs and transformers",
+      "RAG and agents",
+      "Backend engineering",
+      "C++ and algorithms",
+      "Quantum computing (aspirational graduate interest)"
+    ],
+    "evidence": [
+      {
+        "type": "resume",
+        "source": "public/resume.pdf",
+        "description": "Education listed on resume"
+      },
+      {
+        "type": "personal_statement",
+        "source": "knowledge/source-notes.md",
+        "description": "North South University undergraduate CSE"
+      }
+    ]
+  },
+  "experience": [
+    {
+      "id": "data-island",
+      "type": "experience",
+      "role": "AI Engineer Intern",
+      "company": "The Data Island",
+      "team": "GenAI",
+      "period": "November 2025 – January 2026",
+      "location": "Remote / Dhaka, Bangladesh",
+      "status": "completed",
+      "claim_status": "VERIFIED",
+      "confidence": "high",
+      "summary": "Internship on the GenAI team focused on LLM-powered automation, scraping, structured extraction, batch processing, and agent debugging.\n",
+      "responsibilities": [
+        "Built Python web scraping and data processing pipelines",
+        "Worked on structured data extraction, cleaning, normalization, and validation",
+        "Designed batch execution with retry logic for larger workflows",
+        "Debugged LLM/agent reasoning loops",
+        "Integrated LLM APIs into automation workflows"
+      ],
+      "outcomes": [
+        "Exposure to the gap between AI prototypes and production engineering workflows",
+        "Hands-on experience with high-volume extraction and validation"
+      ],
+      "lessons_learned": [
+        "Reliability, retries, and validation matter as much as model quality",
+        "Agent loops fail without structured outputs and debugging"
+      ],
+      "technologies": [
+        "Python",
+        "LLM APIs",
+        "Structured extraction",
+        "Data pipelines",
+        "Batch execution",
+        "Agent debugging"
+      ],
+      "evidence": [
+        {
+          "type": "resume",
+          "source": "public/resume.pdf",
+          "description": "Internship listed on resume"
+        },
+        {
+          "type": "personal_statement",
+          "source": "knowledge/source-notes.md",
+          "description": "GenAI intern responsibilities"
+        }
+      ],
+      "github": null
+    }
+  ],
+  "projects": [
+    {
+      "id": "autonomous-agent-system",
+      "name": "End-to-End AI Agent System",
+      "type": "project",
+      "status": "completed",
+      "claim_status": "BUILT",
+      "confidence": "medium",
+      "one_line": "Agent framework with vector memory, tool calling, and output validation.",
+      "problem": "Open-ended queries need multi-step planning, retrieval, and tool use.",
+      "goal": "Decompose tasks, retrieve context, call tools, and self-correct invalid outputs.",
+      "nabil_contribution": "Described as personal implementation in portfolio copy. Dedicated repository URL is listed but not verified from this repo.",
+      "architecture": "LangChain-style ReAct loops, vector memory, FastAPI and Streamlit UI.",
+      "technologies": [
+        "Python",
+        "FastAPI",
+        "Streamlit",
+        "LangChain",
+        "Pinecone",
+        "Groq",
+        "Pydantic"
+      ],
+      "data_flow": "Query → plan → retrieve/tools → validate → respond",
+      "decisions": "Pydantic validation with retry on schema failure",
+      "challenges": "Not documented",
+      "solutions": "Not documented",
+      "results": "Not documented",
+      "benchmarks": [],
+      "limitations": [
+        "No dedicated repository verified inside this portfolio repo.",
+        "Older copy called this enterprise-grade, which is not evidenced."
+      ],
+      "future_improvements": "Not documented",
+      "github": null,
+      "github_unverified_url": "https://github.com/thenabilman/agent-system",
+      "demo": null,
+      "evidence": [
+        {
+          "type": "portfolio",
+          "source": "src/data/resumeData.ts",
+          "description": "Project description in portfolio dataset"
+        }
+      ]
+    },
+    {
+      "id": "bangla-voice-agent",
+      "name": "End-to-End Bangla AI Voice Agent",
+      "type": "project",
+      "status": "experimental",
+      "claim_status": "EXPERIMENTAL",
+      "confidence": "medium",
+      "one_line": "Bengali speech recognition and synthesis pipeline for a voice agent.",
+      "problem": "Voice AI stacks are English-centric; Bangla is lower-resource.",
+      "goal": "Native Bangla STT → LLM → Bangla TTS.",
+      "nabil_contribution": "Explored/built Bangla ASR, Bengali prompt constraints, and neural TTS. Related experiments used Whisper, Deepgram, and Cartesia.",
+      "architecture": "Bangla ASR → multilingual LLM with Bengali script constraints → Bangla TTS. Real-time chunks over FastAPI WebSockets (portfolio description).",
+      "technologies": [
+        "Python",
+        "PyTorch",
+        "FastAPI",
+        "Whisper",
+        "Bangla STT",
+        "Bangla TTS",
+        "Deepgram Nova-3",
+        "Cartesia Sonic-2"
+      ],
+      "data_flow": "Bangla audio → transcript → LLM → Bangla speech",
+      "decisions": "Strict Bengali prompts to reduce script mixing",
+      "challenges": "Low-resource language performance and latency",
+      "solutions": "Not fully documented",
+      "results": "One informal Whisper timing is recorded (see benchmarks). Not a production accuracy claim.",
+      "benchmarks": [
+        "bangla-whisper-informal"
+      ],
+      "limitations": "Do not claim production accuracy or \"fine-tuned Bengali Whisper\" as verified training work. Notes say he tested Bangla Whisper; \"fine-tuned\" in older marketing copy is UNVERIFIED.\n",
+      "future_improvements": "Not documented",
+      "github": "https://github.com/THENABILMAN/THENABILMAN_End-to-End_Bangla_AI_voice-agent",
+      "demo": "https://github.com/THENABILMAN/THENABILMAN_End-to-End_Bangla_AI_voice-agent",
+      "evidence": [
+        {
+          "type": "github",
+          "source": "https://github.com/THENABILMAN/THENABILMAN_End-to-End_Bangla_AI_voice-agent",
+          "description": "Dedicated repository URL"
+        },
+        {
+          "type": "personal_statement",
+          "source": "knowledge/source-notes.md",
+          "description": "Bangla voice experiments and informal Whisper timing"
+        }
+      ]
+    },
+    {
+      "id": "fitman",
+      "name": "FITMAN",
+      "type": "project",
+      "status": "active_development",
+      "claim_status": "BUILT",
+      "confidence": "medium",
+      "one_line": "Full-stack AI fitness and nutrition coaching platform with LangGraph agents and a FastAPI backend.",
+      "problem": "Personalized workout and nutrition coaching is hard to keep consistent without structured user context.",
+      "goal": "Adaptive macros, workouts, logging, and an AI coach with persistent context.",
+      "nabil_contribution": "Portfolio materials describe Nabil as the engineer of the full-stack app (React/Vite frontend, FastAPI backend, Supabase, LangGraph agent state). This repository does not contain FITMAN source, so contribution claims are taken from portfolio documentation, not from a code audit.\n",
+      "architecture": "Client UI → FastAPI gateway → LangGraph state machine → Groq LLM → Supabase PostgreSQL. Source notes also describe a CoachState TypedDict covering profile, workout, nutrition, memory, and document context.\n",
+      "technologies": [
+        "React",
+        "TypeScript",
+        "Vite",
+        "Tailwind CSS",
+        "FastAPI",
+        "Python",
+        "Supabase",
+        "PostgreSQL",
+        "LangGraph",
+        "LangChain",
+        "Groq"
+      ],
+      "data_flow": "Not fully documented beyond the high-level architecture above.",
+      "decisions": [
+        "Stateful LangGraph agent rather than a single-turn chatbot (documented intent)."
+      ],
+      "challenges": "Not documented",
+      "solutions": "Not documented",
+      "results": "A public demo URL is listed in the portfolio. User counts and production SLAs are not documented.",
+      "benchmarks": [],
+      "limitations": [
+        "This portfolio repo does not include FITMAN source code.",
+        "Knowledge-base notes originally labeled FITMAN as a planned project; UI copy later called it production.",
+        "Canonical status is active_development with a listed demo, not audited production."
+      ],
+      "future_improvements": "Not documented",
+      "github": "https://github.com/thenabilman/fitman",
+      "github_verified_in_this_repo": false,
+      "demo": "https://fitmanver.vercel.app/",
+      "evidence": [
+        {
+          "type": "deployed_demo",
+          "source": "https://fitmanver.vercel.app/",
+          "description": "Demo URL listed in portfolio (not load-tested here)"
+        },
+        {
+          "type": "portfolio",
+          "source": "src/components/projects/ProjectsSection.tsx",
+          "description": "Project card and architecture bullets"
+        },
+        {
+          "type": "personal_statement",
+          "source": "knowledge/source-notes.md",
+          "description": "Original notes describe FITMAN as a larger planned project"
+        }
+      ],
+      "conflict_resolution": "Source notes say planned; site copy said Active Production. Without source in this repo, status is active_development. Do not call FITMAN production. Do not cite <300ms Groq latency as a verified benchmark.\n"
+    },
+    {
+      "id": "livekit-mcp-assistant",
+      "name": "LiveKit MCP AI Assistant",
+      "type": "project",
+      "status": "prototype",
+      "claim_status": "EXPERIMENTAL",
+      "confidence": "medium",
+      "one_line": "Voice-first assistant combining LiveKit WebRTC, MCP tools, and retrieval.",
+      "problem": "Voice agents need tools and documents during a live call.",
+      "goal": "Real-time voice plus MCP tools plus vector search.",
+      "nabil_contribution": "Explored LiveKit, MCP, Streamlit, Pinecone, Hugging Face embeddings, Tavily, Groq. Notes say roughly 20 hours on the project.",
+      "architecture": "LiveKit audio → reasoning → retrieval/tools → spoken response.",
+      "technologies": [
+        "Python",
+        "LiveKit",
+        "MCP",
+        "Streamlit",
+        "Pinecone",
+        "Hugging Face embeddings",
+        "Tavily",
+        "Groq",
+        "Whisper",
+        "Cartesia"
+      ],
+      "data_flow": "WebRTC audio → STT → LLM + MCP/RAG → TTS",
+      "decisions": "MCP as a tool interface rather than ad-hoc function calls",
+      "challenges": "Not documented",
+      "solutions": "Not documented",
+      "results": "Informal prototype. Sub-200ms / sub-400ms roundtrip claims in older UI copy are UNVERIFIED.",
+      "benchmarks": [],
+      "limitations": "No reproducible latency benchmark. Dedicated GitHub URL in UI is not verified from this repo.",
+      "future_improvements": "Not documented",
+      "github": null,
+      "github_unverified_url": "https://github.com/thenabilman/livekit-assistant",
+      "demo": null,
+      "evidence": [
+        {
+          "type": "personal_statement",
+          "source": "knowledge/source-notes.md",
+          "description": "LiveKit MCP assistant stack and ~20 hour effort note"
+        },
+        {
+          "type": "portfolio",
+          "source": "src/components/projects/ProjectsSection.tsx",
+          "description": "Prototype project card"
+        }
+      ]
+    },
+    {
+      "id": "portfolio-digital-twin",
+      "name": "Nabil Portfolio Technical Digital Twin",
+      "type": "portfolio_system",
+      "status": "active_development",
+      "claim_status": "BUILT",
+      "confidence": "high",
+      "one_line": "This repository's evidence-grounded RAG agent over structured portfolio knowledge.",
+      "problem": "Visitors need accurate answers about Nabil without marketing hallucination.",
+      "goal": "Canonical knowledge → hybrid retrieval → claim-aware grounded generation.",
+      "nabil_contribution": "Designed and implemented the Next.js portfolio, FastAPI RAG service, Pinecone indexing, and digital-twin policy in this repository.",
+      "architecture": "Visitor → Next.js → FastAPI → query classification → entity resolution → canonical knowledge + Pinecone dense retrieval + lexical overlap → rerank → evidence validation → LLM (OpenRouter) → answer + confidence + sources + claims.\n",
+      "technologies": [
+        "Next.js",
+        "TypeScript",
+        "FastAPI",
+        "Python",
+        "Pinecone",
+        "llama-text-embed-v2",
+        "OpenRouter"
+      ],
+      "data_flow": "Query → classify/resolve → retrieve/merge → validate → generate",
+      "decisions": [
+        "Canonical YAML knowledge is the source of truth.",
+        "Retrieval failure must refuse rather than use the model's latent biography.",
+        "Fast path answers come from structured knowledge, not a second hardcoded resume."
+      ],
+      "challenges": "Duplicate marketing copy vs source notes; inflated metrics in earlier UI.",
+      "solutions": "Claim taxonomy, provenance, honest FITMAN status, ingest protection.",
+      "results": "Implemented in this repository. No published latency SLA.",
+      "benchmarks": [],
+      "limitations": "Dense retrieval depends on Pinecone being indexed with current knowledge. Lexical search works locally from YAML even if Pinecone is empty.",
+      "future_improvements": "Cross-encoder rerank, reproducible eval harness with live models.",
+      "github": "https://github.com/THENABILMAN/NABIL-portfolio",
+      "demo": null,
+      "evidence": [
+        {
+          "type": "project_repository",
+          "source": "https://github.com/THENABILMAN/NABIL-portfolio",
+          "description": "This codebase"
+        }
+      ]
+    },
+    {
+      "id": "rag-agent",
+      "name": "RAG Documentation Agent",
+      "type": "project",
+      "status": "completed",
+      "claim_status": "BUILT",
+      "confidence": "medium",
+      "one_line": "Document Q&A agent using embeddings and retrieved context.",
+      "problem": "Technical docs are hard to query without retrieval.",
+      "goal": "Index markdown/docs and answer with citations.",
+      "nabil_contribution": "Built/worked on a LangChain documentation RAG agent (personal statement + portfolio).",
+      "architecture": "Recursive splitting, embeddings, vector store, optional web tool (Tavily).",
+      "technologies": [
+        "Python",
+        "LangChain",
+        "Pinecone",
+        "Chroma",
+        "Hugging Face embeddings",
+        "Ollama",
+        "mxbai-embed-large",
+        "Tavily",
+        "Streamlit",
+        "FastAPI"
+      ],
+      "data_flow": "Docs → chunks → embeddings → query → context → LLM",
+      "decisions": "Not documented beyond standard RAG pattern",
+      "challenges": "Not documented",
+      "solutions": "Not documented",
+      "results": "Not documented",
+      "benchmarks": [],
+      "limitations": [
+        "Hybrid BM25 + dense search was claimed in UI copy; this portfolio implementation historically used dense Pinecone search plus later lexical merge. Do not claim BM25/RRF/BGE rerank unless evidence exists for that specific project.",
+        "Sub-200ms vector retrieval is not a documented benchmark.",
+        "No dedicated GitHub repository listed beyond the profile URL."
+      ],
+      "future_improvements": "Not documented",
+      "github": null,
+      "demo": null,
+      "evidence": [
+        {
+          "type": "personal_statement",
+          "source": "knowledge/source-notes.md",
+          "description": "LangChain documentation RAG agent notes"
+        },
+        {
+          "type": "portfolio",
+          "source": "src/data/resumeData.ts",
+          "description": "RAG documentation agent project card"
+        }
+      ]
+    },
+    {
+      "id": "realtime-voice-agent",
+      "name": "Real-Time AI Voice Agent",
+      "type": "project",
+      "status": "completed",
+      "claim_status": "BUILT",
+      "confidence": "high",
+      "one_line": "Conversational voice loop with streaming STT, LLM, and TTS.",
+      "problem": "Text chat is slower and less natural than spoken turn-taking.",
+      "goal": "Full-duplex conversational voice over streaming audio.",
+      "nabil_contribution": "Described as implementing WebSocket audio, VAD, Whisper STT, LLM, and neural TTS.",
+      "architecture": "WebSockets + VAD → Whisper STT → LLM → neural TTS playback.",
+      "technologies": [
+        "Python",
+        "Whisper STT",
+        "Neural TTS",
+        "WebSockets",
+        "FastAPI",
+        "Audio streaming"
+      ],
+      "data_flow": "Audio frames → VAD segments → transcript → LLM → speech",
+      "decisions": "Streaming transport rather than file-upload STT",
+      "challenges": "Not documented",
+      "solutions": "Jitter buffering mentioned in portfolio copy",
+      "results": "No reproducible latency study in this repo. \"Sub-second\" is qualitative, not a verified benchmark.",
+      "benchmarks": [],
+      "limitations": "Latency numbers are not evidenced. Treat as experimental/built system, not a measured SLA.",
+      "future_improvements": "Not documented",
+      "github": "https://github.com/THENABILMAN/THENABILMAN_AI_Voice_Agent",
+      "demo": "https://github.com/THENABILMAN/THENABILMAN_AI_Voice_Agent",
+      "evidence": [
+        {
+          "type": "github",
+          "source": "https://github.com/THENABILMAN/THENABILMAN_AI_Voice_Agent",
+          "description": "Dedicated repository URL"
+        }
+      ]
+    },
+    {
+      "id": "resume-analyzer",
+      "name": "AI Resume Analyzer & Matcher",
+      "type": "project",
+      "status": "completed",
+      "claim_status": "BUILT",
+      "confidence": "high",
+      "one_line": "LLM-powered CV parsing, entity extraction, and job-match scoring.",
+      "problem": "Resumes are unstructured; matching them to jobs is noisy.",
+      "goal": "Extract structured entities and score semantic fit.",
+      "nabil_contribution": "Implemented parsing, constrained JSON extraction, similarity scoring, and Streamlit UI (per GitHub-linked project description).",
+      "architecture": "PDF/DOCX parse → LLM JSON schema extraction → embedding similarity vs job text → Streamlit dashboard.",
+      "technologies": [
+        "Python",
+        "LLMs",
+        "FastAPI",
+        "Streamlit",
+        "LangChain",
+        "NLP",
+        "PDF parsing"
+      ],
+      "data_flow": "Resume file → text → structured entities → vector score → recommendations",
+      "decisions": "Constrained JSON schemas to reduce extraction drift",
+      "challenges": "Not documented",
+      "solutions": "Not documented",
+      "results": "Not documented with measured accuracy",
+      "benchmarks": [],
+      "limitations": "No published accuracy or ATS benchmark in this repo.",
+      "future_improvements": "Not documented",
+      "github": "https://github.com/THENABILMAN/THENABILMAN_AI_Resume-Analyzer",
+      "demo": "https://github.com/THENABILMAN/THENABILMAN_AI_Resume-Analyzer",
+      "evidence": [
+        {
+          "type": "github",
+          "source": "https://github.com/THENABILMAN/THENABILMAN_AI_Resume-Analyzer",
+          "description": "Dedicated project repository URL in portfolio"
+        },
+        {
+          "type": "portfolio",
+          "source": "src/data/resumeData.ts",
+          "description": "Architecture bullets"
+        }
+      ]
+    },
+    {
+      "id": "vision-ocr",
+      "name": "AI Vision & OCR Agent",
+      "type": "project",
+      "status": "completed",
+      "claim_status": "BUILT",
+      "confidence": "medium",
+      "one_line": "OpenCV and transformer-based inspection/OCR pipeline.",
+      "problem": "Images and scans need structured extraction.",
+      "goal": "Detect objects / OCR documents and emit JSON.",
+      "nabil_contribution": "Portfolio describes OpenCV preprocessing, Hugging Face vision models, EasyOCR/Tesseract, FastAPI JSON output.",
+      "architecture": "Image/video → OpenCV filters → detector/OCR → JSON via FastAPI.",
+      "technologies": [
+        "Python",
+        "OpenCV",
+        "Hugging Face Transformers",
+        "PyTorch",
+        "EasyOCR",
+        "Tesseract",
+        "FastAPI"
+      ],
+      "data_flow": "Frame/image → preprocess → model → structured payload",
+      "decisions": "Not documented",
+      "challenges": "Not documented",
+      "solutions": "Not documented",
+      "results": "Not documented",
+      "benchmarks": [],
+      "limitations": "No dedicated verified GitHub repository in this repo. \"Fine-tuned object detection\" is UNVERIFIED.",
+      "future_improvements": "Not documented",
+      "github": null,
+      "github_unverified_url": "https://github.com/thenabilman/vision-agent",
+      "demo": null,
+      "evidence": [
+        {
+          "type": "portfolio",
+          "source": "src/data/resumeData.ts",
+          "description": "Vision agent project description"
+        }
+      ]
+    }
+  ],
+  "skills": [
+    {
+      "id": "python",
+      "name": "Python",
+      "level": "Primary",
+      "status": "BUILT",
+      "context": "professional_and_personal",
+      "evidence": [
+        "data-island",
+        "portfolio-digital-twin",
+        "resume-analyzer",
+        "fitman"
+      ]
+    },
+    {
+      "id": "fastapi",
+      "name": "FastAPI",
+      "level": "Hands-on",
+      "status": "BUILT",
+      "context": "personal_and_portfolio",
+      "evidence": [
+        "portfolio-digital-twin",
+        "fitman",
+        "resume-analyzer"
+      ]
+    },
+    {
+      "id": "typescript",
+      "name": "TypeScript",
+      "level": "Hands-on",
+      "status": "BUILT",
+      "context": "personal",
+      "evidence": [
+        "portfolio-digital-twin",
+        "fitman"
+      ]
+    },
+    {
+      "id": "react",
+      "name": "React",
+      "level": "Hands-on",
+      "status": "BUILT",
+      "context": "personal",
+      "evidence": [
+        "portfolio-digital-twin",
+        "fitman"
+      ]
+    },
+    {
+      "id": "nextjs",
+      "name": "Next.js",
+      "level": "Hands-on",
+      "status": "BUILT",
+      "context": "personal",
+      "evidence": [
+        "portfolio-digital-twin"
+      ]
+    },
+    {
+      "id": "langchain",
+      "name": "LangChain",
+      "level": "Hands-on",
+      "status": "BUILT",
+      "context": "personal",
+      "evidence": [
+        "rag-agent",
+        "autonomous-agent-system",
+        "resume-analyzer"
+      ]
+    },
+    {
+      "id": "langgraph",
+      "name": "LangGraph",
+      "level": "Hands-on",
+      "status": "BUILT",
+      "context": "personal",
+      "evidence": [
+        "fitman"
+      ],
+      "notes": "Used in FITMAN per portfolio docs. This portfolio digital twin is not a LangGraph multi-agent system."
+    },
+    {
+      "id": "rag",
+      "name": "RAG",
+      "level": "Strong",
+      "status": "BUILT",
+      "context": "personal",
+      "evidence": [
+        "portfolio-digital-twin",
+        "rag-agent"
+      ]
+    },
+    {
+      "id": "pinecone",
+      "name": "Pinecone",
+      "level": "Hands-on",
+      "status": "BUILT",
+      "context": "personal",
+      "evidence": [
+        "portfolio-digital-twin",
+        "rag-agent"
+      ]
+    },
+    {
+      "id": "chroma",
+      "name": "Chroma",
+      "level": "Working knowledge",
+      "status": "BUILT",
+      "context": "personal",
+      "evidence": [
+        "rag-agent"
+      ]
+    },
+    {
+      "id": "mcp",
+      "name": "MCP",
+      "level": "Experimental",
+      "status": "EXPERIMENTAL",
+      "context": "personal",
+      "evidence": [
+        "livekit-mcp-assistant"
+      ]
+    },
+    {
+      "id": "livekit",
+      "name": "LiveKit",
+      "level": "Experimental",
+      "status": "EXPERIMENTAL",
+      "context": "personal",
+      "evidence": [
+        "livekit-mcp-assistant"
+      ]
+    },
+    {
+      "id": "voice-ai",
+      "name": "Voice AI (STT/TTS)",
+      "level": "Hands-on",
+      "status": "EXPERIMENTAL",
+      "context": "personal",
+      "evidence": [
+        "realtime-voice-agent",
+        "bangla-voice-agent",
+        "livekit-mcp-assistant"
+      ]
+    },
+    {
+      "id": "whisper",
+      "name": "Whisper STT",
+      "level": "Hands-on",
+      "status": "BUILT",
+      "context": "personal",
+      "evidence": [
+        "realtime-voice-agent",
+        "bangla-voice-agent"
+      ]
+    },
+    {
+      "id": "pytorch",
+      "name": "PyTorch",
+      "level": "Working knowledge",
+      "status": "LEARNING",
+      "context": "academic_and_personal",
+      "evidence": [
+        "bangla-voice-agent",
+        "vision-ocr"
+      ]
+    },
+    {
+      "id": "lora",
+      "name": "LoRA / QLoRA / PEFT",
+      "level": "Learning",
+      "status": "LEARNING",
+      "context": "personal",
+      "evidence": [],
+      "notes": "Mentioned in earlier marketing copy. No fine-tuning run, dataset, or repo is evidenced here."
+    },
+    {
+      "id": "sft-dpo",
+      "name": "SFT / DPO / pretraining",
+      "level": "Learning",
+      "status": "LEARNING",
+      "context": "personal",
+      "evidence": [],
+      "notes": "Training alignment methods are interests/learning, not demonstrated professional expertise."
+    },
+    {
+      "id": "unsloth",
+      "name": "Unsloth / Hugging Face TRL",
+      "level": "Learning",
+      "status": "LEARNING",
+      "context": "personal",
+      "evidence": []
+    },
+    {
+      "id": "deepspeed",
+      "name": "DeepSpeed / FSDP",
+      "level": "Familiar",
+      "status": "UNVERIFIED",
+      "context": "personal",
+      "evidence": [],
+      "notes": "Appeared on the knowledge graph as Advanced. No project evidence in this repository."
+    },
+    {
+      "id": "vllm",
+      "name": "vLLM",
+      "level": "Familiar",
+      "status": "UNVERIFIED",
+      "context": "personal",
+      "evidence": []
+    },
+    {
+      "id": "quantization",
+      "name": "Quantization (GGUF / AWQ / bitsandbytes)",
+      "level": "Experimental",
+      "status": "EXPERIMENTAL",
+      "context": "personal",
+      "evidence": [],
+      "notes": "Local GGUF/Ollama experiments are documented; AWQ/bitsandbytes production serving is not."
+    },
+    {
+      "id": "ollama",
+      "name": "Ollama / local LLMs",
+      "level": "Experimental",
+      "status": "EXPERIMENTAL",
+      "context": "personal",
+      "evidence": [],
+      "notes": "Local Qwen/Gemma GGUF experiments on RTX 4050 6GB."
+    },
+    {
+      "id": "supabase",
+      "name": "Supabase / PostgreSQL",
+      "level": "Hands-on",
+      "status": "BUILT",
+      "context": "personal",
+      "evidence": [
+        "fitman"
+      ]
+    },
+    {
+      "id": "opencv",
+      "name": "OpenCV / OCR",
+      "level": "Working knowledge",
+      "status": "BUILT",
+      "context": "personal",
+      "evidence": [
+        "vision-ocr"
+      ]
+    },
+    {
+      "id": "scraping",
+      "name": "Web scraping (BeautifulSoup / Selenium)",
+      "level": "Hands-on",
+      "status": "BUILT",
+      "context": "professional",
+      "evidence": [
+        "data-island"
+      ]
+    },
+    {
+      "id": "cpp",
+      "name": "C++",
+      "level": "Working knowledge",
+      "status": "LEARNING",
+      "context": "academic",
+      "evidence": []
+    },
+    {
+      "id": "c",
+      "name": "C",
+      "level": "Working knowledge",
+      "status": "LEARNING",
+      "context": "academic",
+      "evidence": []
+    },
+    {
+      "id": "java",
+      "name": "Java",
+      "level": "Familiar",
+      "status": "LEARNING",
+      "context": "academic",
+      "evidence": []
+    },
+    {
+      "id": "docker",
+      "name": "Docker",
+      "level": "Familiar",
+      "status": "UNVERIFIED",
+      "context": "personal",
+      "evidence": [],
+      "notes": "Listed in older skill blurbs; no Docker artifacts in this repo."
+    },
+    {
+      "id": "crewai",
+      "name": "CrewAI / AutoGen",
+      "level": "Familiar",
+      "status": "UNVERIFIED",
+      "context": "personal",
+      "evidence": [],
+      "notes": "Mentioned as explored. This portfolio backend does not use them."
+    },
+    {
+      "id": "groq",
+      "name": "Groq",
+      "level": "Hands-on",
+      "status": "BUILT",
+      "context": "personal",
+      "evidence": [
+        "fitman",
+        "livekit-mcp-assistant"
+      ]
+    }
+  ],
+  "claims": [
+    {
+      "id": "claim-data-island-intern",
+      "claim": "Nabil was an AI Engineer Intern on the GenAI team at The Data Island (Nov 2025 – Jan 2026).",
+      "status": "VERIFIED",
+      "confidence": "high",
+      "entity_id": "data-island",
+      "evidence": [
+        "resume",
+        "personal_statement"
+      ]
+    },
+    {
+      "id": "claim-nsu-undergrad",
+      "claim": "Nabil is a Computer Science & Engineering undergraduate at North South University.",
+      "status": "VERIFIED",
+      "confidence": "high",
+      "entity_id": "nsu-cse",
+      "evidence": [
+        "resume",
+        "personal_statement"
+      ]
+    },
+    {
+      "id": "claim-fitman-built",
+      "claim": "Nabil built FITMAN as a full-stack fitness/nutrition app using FastAPI, React, and LangGraph.",
+      "status": "BUILT",
+      "confidence": "medium",
+      "entity_id": "fitman",
+      "evidence": [
+        "portfolio",
+        "deployed_demo"
+      ]
+    },
+    {
+      "id": "claim-fitman-production",
+      "claim": "FITMAN is a production system with verified users and SLAs.",
+      "status": "UNVERIFIED",
+      "confidence": "none",
+      "entity_id": "fitman",
+      "evidence": []
+    },
+    {
+      "id": "claim-fitman-300ms",
+      "claim": "FITMAN Groq streaming responds in under 300ms.",
+      "status": "UNVERIFIED",
+      "confidence": "none",
+      "entity_id": "fitman",
+      "evidence": []
+    },
+    {
+      "id": "claim-portfolio-rag",
+      "claim": "This portfolio implements dense Pinecone retrieval plus lexical overlap over canonical knowledge.",
+      "status": "BUILT",
+      "confidence": "high",
+      "entity_id": "portfolio-digital-twin",
+      "evidence": [
+        "project_repository"
+      ]
+    },
+    {
+      "id": "claim-hybrid-bm25-rrf",
+      "claim": "Nabil's RAG uses BM25, Reciprocal Rank Fusion, and BGE reranking in this portfolio.",
+      "status": "UNVERIFIED",
+      "confidence": "none",
+      "entity_id": "portfolio-digital-twin",
+      "evidence": []
+    },
+    {
+      "id": "claim-lora-expert",
+      "claim": "Nabil specializes in LoRA/QLoRA/PEFT fine-tuning and DPO alignment.",
+      "status": "LEARNING",
+      "confidence": "low",
+      "entity_id": "lora",
+      "evidence": []
+    },
+    {
+      "id": "claim-deepspeed",
+      "claim": "Nabil has advanced DeepSpeed/FSDP distributed training experience.",
+      "status": "UNVERIFIED",
+      "confidence": "none",
+      "entity_id": "deepspeed",
+      "evidence": []
+    },
+    {
+      "id": "claim-resume-analyzer-github",
+      "claim": "Nabil has a dedicated GitHub repository for the AI Resume Analyzer.",
+      "status": "VERIFIED",
+      "confidence": "high",
+      "entity_id": "resume-analyzer",
+      "evidence": [
+        "github"
+      ]
+    },
+    {
+      "id": "claim-bangla-whisper-timing",
+      "claim": "In one informal test, about 10 seconds of Bangla speech took about 8.33 seconds for Whisper.",
+      "status": "EXPERIMENTAL",
+      "confidence": "low",
+      "entity_id": "bangla-voice-agent",
+      "evidence": [
+        "personal_statement"
+      ]
+    },
+    {
+      "id": "claim-livekit-200ms",
+      "claim": "LiveKit MCP assistant achieved sub-200ms voice roundtrip.",
+      "status": "UNVERIFIED",
+      "confidence": "none",
+      "entity_id": "livekit-mcp-assistant",
+      "evidence": []
+    },
+    {
+      "id": "claim-google-internship",
+      "claim": "Nabil interned at Google.",
+      "status": "UNVERIFIED",
+      "confidence": "none",
+      "entity_id": "person-nabil",
+      "evidence": []
+    }
+  ],
+  "benchmarks": [
+    {
+      "id": "bangla-whisper-informal",
+      "project": "bangla-voice-agent",
+      "metric": "whisper_wall_clock_for_clip",
+      "value": 8.33,
+      "unit": "s",
+      "input": "approximately 10 seconds of speech",
+      "environment": "Not documented",
+      "method": "Informal personal test recorded in source notes",
+      "sample_count": 1,
+      "date": "unknown",
+      "status": "EXPERIMENTAL",
+      "reproducible": false,
+      "notes": "Not a verified accuracy or production latency benchmark."
+    }
+  ],
+  "philosophy": "# Engineering philosophy\n\nNabil's documented professional identity is not \"I know how to use ChatGPT.\"\n\nIt is closer to: \"I build and understand the systems behind AI applications.\"\n\n## Learning stack he is working through\n\nPython fundamentals → backend → machine learning → neural networks → transformers → LLMs → RAG → agents → production AI systems.\n\nHe has expressed interest in implementing a Transformer from scratch after studying Attention Is All You Need.\n\n## How he wants to work\n\n- Understand generated code line by line rather than copying it.\n- Debug without blindly relying on AI.\n- Understand how files, APIs, agent state, and backends connect.\n- Strengthen Python and C++ fundamentals.\n\n## How the digital twin should speak\n\n- Professional, technically specific, concise, honest.\n- Never arrogant.\n- Never invent jobs, clients, metrics, degrees, or expertise.\n- Distinguish demonstrated work, experimentation, learning, and goals.\n",
+  "aspirations": "# Aspirations (not achievements)\n\nThese are goals. They are ASPIRATIONAL or PLANNED, not BUILT.\n\n- Become a stronger AI engineer and hardcore software developer.\n- Understand AI systems from first principles, including neural networks in NumPy and transformers from scratch.\n- Build reliable production AI systems (goal, not a claim that all current projects are production).\n- Conduct AI research.\n- Pursue graduate study, with interest in Germany and quantum computing.\n- Build AI products and technical entrepreneurship (automation, services, own products).\n- Combine engineering and research over the long term.\n\nDo not present these as completed credentials.\n"
+}

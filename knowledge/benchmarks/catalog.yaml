@@ -1,0 +1,14 @@
+benchmarks:
+  - id: bangla-whisper-informal
+    project: bangla-voice-agent
+    metric: whisper_wall_clock_for_clip
+    value: 8.33
+    unit: s
+    input: approximately 10 seconds of speech
+    environment: Not documented
+    method: Informal personal test recorded in source notes
+    sample_count: 1
+    date: unknown
+    status: EXPERIMENTAL
+    reproducible: false
+    notes: Not a verified accuracy or production latency benchmark.

@@ -22,7 +22,7 @@ import {
 
 interface SkillItem {
   name: string;
-  level?: "Core" | "Advanced" | "Production";
+  level?: "Core" | "Advanced" | "Hands-on" | "Learning" | "Experimental" | "Familiar" | "Working knowledge";
   highlight?: string;
 }
 
@@ -54,7 +54,7 @@ const DOMAINS: DomainData[] = [
       { name: "iterators / generators", level: "Advanced" },
       { name: "decorators", level: "Advanced" },
       { name: "typing", level: "Advanced" },
-      { name: "package management", level: "Production" },
+      { name: "package management", level: "Hands-on" },
     ],
   },
   {
@@ -68,10 +68,10 @@ const DOMAINS: DomainData[] = [
       { name: "HTTP", level: "Core" },
       { name: "REST", level: "Core" },
       { name: "JSON", level: "Core" },
-      { name: "APIs", level: "Production" },
-      { name: "FastAPI", level: "Production", highlight: "Used in FITMAN" },
+      { name: "APIs", level: "Hands-on" },
+      { name: "FastAPI", level: "Hands-on", highlight: "Used in FITMAN writeup" },
       { name: "async / await", level: "Advanced" },
-      { name: "authentication", level: "Production" },
+      { name: "authentication", level: "Working knowledge" },
       { name: "middleware", level: "Advanced" },
     ],
   },
@@ -84,12 +84,12 @@ const DOMAINS: DomainData[] = [
     icon: Database,
     skills: [
       { name: "SQL", level: "Core" },
-      { name: "PostgreSQL", level: "Production", highlight: "Supabase RLS" },
+      { name: "PostgreSQL", level: "Hands-on", highlight: "Supabase (FITMAN writeup)" },
       { name: "relationships", level: "Core" },
       { name: "joins", level: "Core" },
       { name: "indexes", level: "Advanced" },
       { name: "transactions", level: "Advanced" },
-      { name: "ORM", level: "Production" },
+      { name: "ORM", level: "Working knowledge" },
     ],
   },
   {
@@ -100,15 +100,15 @@ const DOMAINS: DomainData[] = [
     color: "#eab308",
     icon: Terminal,
     skills: [
-      { name: "Git", level: "Production" },
-      { name: "Linux", level: "Production" },
+      { name: "Git", level: "Hands-on" },
+      { name: "Linux", level: "Hands-on" },
       { name: "project architecture", level: "Advanced" },
-      { name: "testing", level: "Production" },
-      { name: "debugging", level: "Production", highlight: "Agent Debugging" },
-      { name: "logging", level: "Production" },
+      { name: "testing", level: "Hands-on" },
+      { name: "debugging", level: "Hands-on", highlight: "Agent Debugging" },
+      { name: "logging", level: "Working knowledge" },
       { name: "environment variables", level: "Core" },
       { name: "dependency management", level: "Core" },
-      { name: "clean code", level: "Production" },
+      { name: "clean code", level: "Hands-on" },
     ],
   },
   {
@@ -119,7 +119,7 @@ const DOMAINS: DomainData[] = [
     color: "#a855f7",
     icon: Cpu,
     skills: [
-      { name: "NumPy", level: "Production" },
+      { name: "NumPy", level: "Working knowledge" },
       { name: "Linear Algebra", level: "Core" },
       { name: "Probability", level: "Core" },
       { name: "Calculus", level: "Core" },
@@ -136,35 +136,35 @@ const DOMAINS: DomainData[] = [
     icon: Layers,
     skills: [
       { name: "Backpropagation", level: "Core" },
-      { name: "PyTorch", level: "Production" },
-      { name: "Transformers Architecture", level: "Production" },
-      { name: "LLM Model Training", level: "Production", highlight: "Pretraining / SFT / DPO" },
-      { name: "CNN & Vision Encoders", level: "Advanced" },
-      { name: "RNN/LSTM", level: "Advanced" },
-      { name: "Attention Mechanisms", level: "Advanced" },
-      { name: "Model Quantization", level: "Production", highlight: "AWQ / GGUF / bitsandbytes" },
-      { name: "Distributed Training", level: "Advanced", highlight: "DeepSpeed / FSDP" },
+      { name: "PyTorch", level: "Working knowledge" },
+      { name: "Transformers Architecture", level: "Learning" },
+      { name: "LLM Model Training", level: "Learning", highlight: "SFT / DPO interest" },
+      { name: "CNN & Vision Encoders", level: "Working knowledge" },
+      { name: "RNN/LSTM", level: "Working knowledge" },
+      { name: "Attention Mechanisms", level: "Learning" },
+      { name: "Model Quantization", level: "Experimental", highlight: "GGUF / Ollama" },
+      { name: "Distributed Training", level: "Familiar", highlight: "DeepSpeed / FSDP unverified" },
     ],
   },
   {
     id: 7,
-    name: "AI Engineering & LLM/LMM Tuning",
-    tag: "AGENTIC SYSTEMS, RAG & FINE-TUNING",
-    summary: "Autonomous state graph agents, dense/sparse vector retrieval, LLM & LMM (multimodal) fine-tuning (LoRA/QLoRA), and model alignment.",
+    name: "AI Engineering",
+    tag: "AGENTIC SYSTEMS, RAG & EXPERIMENTS",
+    summary: "Stateful agents, RAG, and experimental voice/MCP work. Fine-tuning methods are learning, not evidenced expertise.",
     color: "#ff4d6d",
     icon: Sparkles,
     skills: [
-      { name: "LLM & LMM Fine-Tuning", level: "Production", highlight: "LoRA / QLoRA / PEFT" },
-      { name: "Unsloth & Hugging Face TRL", level: "Production", highlight: "Sub-Hour LoRA" },
-      { name: "Dataset Curation & SFT", level: "Production", highlight: "Instruction Tuning" },
-      { name: "RAG Architecture", level: "Production", highlight: "Pinecone 1024-dim" },
-      { name: "embeddings", level: "Production" },
-      { name: "tool calling", level: "Production", highlight: "MCP Schema" },
-      { name: "agents", level: "Production" },
-      { name: "LangGraph", level: "Production", highlight: "FITMAN DAG" },
-      { name: "evaluation & benchmarking", level: "Production" },
-      { name: "deployment & serving", level: "Production", highlight: "vLLM / Ollama" },
-      { name: "multimodal / vision", level: "Production", highlight: "LiveKit & OpenCV" },
+      { name: "LLM fine-tuning (LoRA / QLoRA)", level: "Learning", highlight: "Learning interest, unverified here" },
+      { name: "Unsloth & Hugging Face TRL", level: "Learning", highlight: "Not evidenced here" },
+      { name: "Dataset Curation & SFT", level: "Learning" },
+      { name: "RAG Architecture", level: "Hands-on", highlight: "This portfolio + Pinecone" },
+      { name: "embeddings", level: "Hands-on" },
+      { name: "tool calling", level: "Experimental", highlight: "MCP prototype" },
+      { name: "agents", level: "Hands-on" },
+      { name: "LangGraph", level: "Hands-on", highlight: "FITMAN writeup" },
+      { name: "evaluation & benchmarking", level: "Learning" },
+      { name: "deployment & serving", level: "Experimental", highlight: "Ollama / GGUF" },
+      { name: "multimodal / vision", level: "Working knowledge", highlight: "OpenCV / LiveKit" },
     ],
   },
 ];
@@ -246,7 +246,7 @@ export default function TechnicalKnowledgeGraph() {
               Technical Knowledge Graph<span className="text-[#800020]">.</span>
             </h2>
             <p className="text-[#a1a1aa] text-sm md:text-base max-w-2xl leading-relaxed">
-              Complete engineering hierarchy: from foundational Python runtime, asynchronous backends, and databases to tensor calculus, deep neural transformers, autonomous state graphs, and LLM/LMM fine-tuning.
+              Skills grouped by evidence: built systems, experimental work, and learning topics. Fine-tuning methods are learning interests, not claimed expertise.
             </p>
           </div>
 
@@ -260,7 +260,7 @@ export default function TechnicalKnowledgeGraph() {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search skills (e.g. LLM Fine-Tuning, LoRA, LangGraph)..."
-                className="bg-[#09090c] border border-[#23232a] rounded-xl pl-9 pr-8 py-2.5 text-xs font-mono text-white placeholder:text-[#52525b] outline-none focus:border-[#800020] transition-colors w-full sm:w-76"
+                className="bg-[#09090c] border border-[#23232a] rounded-xl pl-9 pr-8 py-2.5 text-base sm:text-xs font-mono text-white placeholder:text-[#52525b] outline-none focus:border-[#800020] transition-colors w-full sm:w-76"
               />
               {searchQuery && (
                 <button
@@ -323,7 +323,7 @@ export default function TechnicalKnowledgeGraph() {
             className="p-3.5 bg-[#09090c] border border-[#23232a] rounded-xl cursor-default"
           >
             <span className="text-[#71717a] block mb-1 text-[10px]">TECHNICAL SKILLS</span>
-            <span className="text-white text-base sm:text-lg font-bold">{totalSkills} Verified Competencies</span>
+            <span className="text-white text-base sm:text-lg font-bold">{totalSkills} Catalogued skills</span>
           </motion.div>
           <motion.div
             whileHover={{ y: -3, borderColor: "#eab308" }}
@@ -331,7 +331,7 @@ export default function TechnicalKnowledgeGraph() {
             className="p-3.5 bg-[#09090c] border border-[#23232a] rounded-xl cursor-default"
           >
             <span className="text-[#71717a] block mb-1 text-[10px]">SPECTRUM</span>
-            <span className="text-white text-base sm:text-lg font-bold">Theory + Production RAG</span>
+            <span className="text-white text-base sm:text-lg font-bold">Fundamentals → RAG</span>
           </motion.div>
           <motion.div
             whileHover={{ y: -3, borderColor: "#22c55e" }}
@@ -340,7 +340,7 @@ export default function TechnicalKnowledgeGraph() {
           >
             <span className="text-[#71717a] block mb-1 text-[10px]">EXECUTION STATUS</span>
             <span className="text-[#22c55e] text-base sm:text-lg font-bold flex items-center gap-1.5">
-              <CheckCircle2 className="w-4 h-4" /> Production Tested
+              <CheckCircle2 className="w-4 h-4" /> Evidence-labelled
             </span>
           </motion.div>
         </motion.div>

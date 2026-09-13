@@ -1,0 +1,36 @@
+id: autonomous-agent-system
+name: End-to-End AI Agent System
+type: project
+status: completed
+claim_status: BUILT
+confidence: medium
+one_line: Agent framework with vector memory, tool calling, and output validation.
+problem: Open-ended queries need multi-step planning, retrieval, and tool use.
+goal: Decompose tasks, retrieve context, call tools, and self-correct invalid outputs.
+nabil_contribution: Described as personal implementation in portfolio copy. Dedicated repository URL is listed but not verified from this repo.
+architecture: LangChain-style ReAct loops, vector memory, FastAPI and Streamlit UI.
+technologies:
+  - Python
+  - FastAPI
+  - Streamlit
+  - LangChain
+  - Pinecone
+  - Groq
+  - Pydantic
+data_flow: Query → plan → retrieve/tools → validate → respond
+decisions: Pydantic validation with retry on schema failure
+challenges: Not documented
+solutions: Not documented
+results: Not documented
+benchmarks: []
+limitations:
+  - No dedicated repository verified inside this portfolio repo.
+  - Older copy called this enterprise-grade, which is not evidenced.
+future_improvements: Not documented
+github: null
+github_unverified_url: https://github.com/thenabilman/agent-system
+demo: null
+evidence:
+  - type: portfolio
+    source: src/data/resumeData.ts
+    description: Project description in portfolio dataset

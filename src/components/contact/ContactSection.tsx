@@ -14,7 +14,6 @@ import {
   Check,
   Clock,
   MapPin,
-  Sparkles,
   ExternalLink,
   Phone,
 } from "lucide-react";
@@ -95,7 +94,7 @@ export default function ContactSection() {
             </h2>
 
             <p className="mt-3 max-w-2xl text-sm md:text-base text-[#a1a1aa] leading-relaxed">
-              Open to engineering opportunities, autonomous agent architectures, and production systems. Reach out directly through any of the channels below.
+              {resumeData.personalInfo.availability}. Reach out through any of the channels below.
             </p>
           </motion.div>
         </div>
@@ -266,7 +265,7 @@ export default function ContactSection() {
               <div className="p-3 rounded-xl bg-[#111116] border border-[#22222b] flex items-center justify-between">
                 <span className="font-mono text-[10px] text-[#71717a]">LOCAL TIME:</span>
                 <span className="font-mono text-xs font-semibold text-[#38bdf8] tabular-nums">
-                  {localTime || "04:45:00 AM"}
+                  {localTime || "—"}
                 </span>
               </div>
             </div>
@@ -276,10 +275,7 @@ export default function ContactSection() {
                 <span className="w-2 h-2 rounded-full bg-[#22c55e] animate-pulse" />
                 Open to Roles
               </span>
-              <span className="text-[#a1a1aa] flex items-center gap-1">
-                <Sparkles className="w-3 h-3 text-[#eab308]" />
-                &lt; 24h reply
-              </span>
+              <span className="text-[#a1a1aa]">{resumeData.personalInfo.availability}</span>
             </div>
           </motion.div>
 
@@ -396,12 +392,12 @@ export default function ContactSection() {
 
           <div className="flex items-center gap-4">
             <a
-              href="https://github.com/THENABILMAN"
+              href={resumeData.personalInfo.github}
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-white transition-colors"
             >
-              github.com/THENABILMAN
+              {resumeData.personalInfo.githubUsername} ↗
             </a>
             <span>•</span>
             <motion.button

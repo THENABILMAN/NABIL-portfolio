@@ -1,0 +1,40 @@
+id: bangla-voice-agent
+name: End-to-End Bangla AI Voice Agent
+type: project
+status: experimental
+claim_status: EXPERIMENTAL
+confidence: medium
+one_line: Bengali speech recognition and synthesis pipeline for a voice agent.
+problem: Voice AI stacks are English-centric; Bangla is lower-resource.
+goal: Native Bangla STT → LLM → Bangla TTS.
+nabil_contribution: Explored/built Bangla ASR, Bengali prompt constraints, and neural TTS. Related experiments used Whisper, Deepgram, and Cartesia.
+architecture: Bangla ASR → multilingual LLM with Bengali script constraints → Bangla TTS. Real-time chunks over FastAPI WebSockets (portfolio description).
+technologies:
+  - Python
+  - PyTorch
+  - FastAPI
+  - Whisper
+  - Bangla STT
+  - Bangla TTS
+  - Deepgram Nova-3
+  - Cartesia Sonic-2
+data_flow: Bangla audio → transcript → LLM → Bangla speech
+decisions: Strict Bengali prompts to reduce script mixing
+challenges: Low-resource language performance and latency
+solutions: Not fully documented
+results: One informal Whisper timing is recorded (see benchmarks). Not a production accuracy claim.
+benchmarks:
+  - bangla-whisper-informal
+limitations: >
+  Do not claim production accuracy or "fine-tuned Bengali Whisper" as verified training work.
+  Notes say he tested Bangla Whisper; "fine-tuned" in older marketing copy is UNVERIFIED.
+future_improvements: Not documented
+github: https://github.com/THENABILMAN/THENABILMAN_End-to-End_Bangla_AI_voice-agent
+demo: https://github.com/THENABILMAN/THENABILMAN_End-to-End_Bangla_AI_voice-agent
+evidence:
+  - type: github
+    source: https://github.com/THENABILMAN/THENABILMAN_End-to-End_Bangla_AI_voice-agent
+    description: Dedicated repository URL
+  - type: personal_statement
+    source: knowledge/source-notes.md
+    description: Bangla voice experiments and informal Whisper timing

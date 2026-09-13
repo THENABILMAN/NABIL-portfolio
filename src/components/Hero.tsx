@@ -3,28 +3,28 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
-  ArrowRight,
   FileText,
-  Mail,
   Github,
   Terminal,
-  Cpu,
   GraduationCap,
   Briefcase,
   MapPin,
   Code2,
-  Sparkles,
   ExternalLink,
-  Layers,
   ArrowDown,
-  User,
 } from "lucide-react";
+import { resumeData } from "@/data/resumeData";
 
 export default function ProfessionalHero() {
   const [activeTab, setActiveTab] = useState<"profile" | "background" | "stack">("profile");
+  const { personalInfo, experience, education, skillCategories } = resumeData;
+  const intern = experience[0];
+  const builtSkills = skillCategories.find((c) => c.id === "built")?.skills.map((s) => s.name) ?? [];
+  const experimentalSkills =
+    skillCategories.find((c) => c.id === "experimental")?.skills.map((s) => s.name) ?? [];
 
   return (
-    <section className="w-full bg-black text-white min-h-[90vh] flex items-center px-4 sm:px-6 lg:px-12 border-b border-[#1a1a1f] font-sans py-20 relative overflow-hidden">
+    <section className="w-full bg-black text-white min-h-[90vh] flex items-center px-4 sm:px-6 lg:px-12 border-b border-[#1a1a1f] font-sans py-24 sm:py-20 relative overflow-hidden">
       {/* Background ambient lighting with subtle pulsation */}
       <motion.div
         animate={{
@@ -68,7 +68,7 @@ export default function ProfessionalHero() {
             className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#0c0c0e] border border-[#2A1E1A] text-[11px] font-mono text-[#a1a1aa] uppercase tracking-[0.18em]"
           >
             <span className="w-2 h-2 rounded-full bg-[#22c55e] animate-pulse" />
-            <span>Available for Software &amp; AI Engineering Roles</span>
+            <span>{personalInfo.availability}</span>
           </motion.div>
 
           {/* Main Headline */}
@@ -88,11 +88,12 @@ export default function ProfessionalHero() {
               </motion.span>
             </h2>
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-[1.1] font-mono">
-              Mohammad <br />
-              Ali Nabil<span className="text-[#800020]">.</span>
+              {personalInfo.name.split(" ").slice(0, 2).join(" ")} <br />
+              {personalInfo.name.split(" ").slice(2).join(" ")}
+              <span className="text-[#800020]">.</span>
             </h1>
             <p className="mt-3 text-lg sm:text-xl text-[#d4d4d8] font-mono font-medium">
-              Software Developer &amp; AI Systems Engineer
+              {personalInfo.headline}
             </p>
           </motion.div>
 
@@ -103,7 +104,7 @@ export default function ProfessionalHero() {
             transition={{ duration: 0.5, delay: 0.3 }}
             className="text-[#a1a1aa] text-sm sm:text-base max-w-xl leading-relaxed"
           >
-            Computer Science undergraduate at <span className="text-white font-medium">North South University</span> and former GenAI intern at <span className="text-white font-medium">The Data Island</span>. I build production-grade software, autonomous multi-agent pipelines, RAG systems, and full-stack web applications with Python, FastAPI, and modern frontend tools.
+            {personalInfo.summary}
           </motion.p>
 
           {/* Key Personal Facts with Hover Micro-Interactions */}
@@ -123,7 +124,7 @@ export default function ProfessionalHero() {
                 Education
               </div>
               <div className="text-white font-semibold truncate">BSc in CSE</div>
-              <div className="text-[11px] text-[#a1a1aa] truncate">North South Univ.</div>
+              <div className="text-[11px] text-[#a1a1aa] truncate">{education.institution}</div>
             </motion.div>
 
             <motion.div
@@ -135,8 +136,8 @@ export default function ProfessionalHero() {
                 <Briefcase className="w-3.5 h-3.5 text-[#ff4d6d]" />
                 Experience
               </div>
-              <div className="text-white font-semibold truncate">The Data Island</div>
-              <div className="text-[11px] text-[#a1a1aa] truncate">GenAI Team Intern</div>
+              <div className="text-white font-semibold truncate">{intern?.company ?? "Internship"}</div>
+              <div className="text-[11px] text-[#a1a1aa] truncate">{intern?.role ?? "AI Engineer Intern"}</div>
             </motion.div>
 
             <motion.div
@@ -148,8 +149,8 @@ export default function ProfessionalHero() {
                 <MapPin className="w-3.5 h-3.5 text-[#22c55e]" />
                 Location
               </div>
-              <div className="text-white font-semibold truncate">Dhaka, Bangladesh</div>
-              <div className="text-[11px] text-[#a1a1aa] truncate">Open to Remote</div>
+              <div className="text-white font-semibold truncate">{personalInfo.location}</div>
+              <div className="text-[11px] text-[#a1a1aa] truncate">Open to remote</div>
             </motion.div>
           </motion.div>
 
@@ -183,7 +184,7 @@ export default function ProfessionalHero() {
             <motion.a
               whileHover={{ scale: 1.03, y: -2 }}
               whileTap={{ scale: 0.97 }}
-              href="https://github.com/THENABILMAN"
+              href={personalInfo.github}
               target="_blank"
               rel="noreferrer"
               className="bg-[#121217] hover:bg-[#1a1a22] text-white border border-[#23232a] hover:border-white/40 font-medium px-4 py-3 rounded-xl transition-all flex items-center gap-2"
@@ -195,7 +196,7 @@ export default function ProfessionalHero() {
             <motion.a
               whileHover={{ scale: 1.03, y: -2 }}
               whileTap={{ scale: 0.97 }}
-              href="/resume.pdf"
+              href={personalInfo.resumeUrl}
               target="_blank"
               className="bg-[#121217] hover:bg-[#1a1a22] text-white border border-[#23232a] hover:border-[#38bdf8]/50 font-medium px-4 py-3 rounded-xl transition-all flex items-center gap-2"
             >
@@ -236,49 +237,32 @@ export default function ProfessionalHero() {
               </div>
             </div>
 
-            {/* Profile Tab Switcher */}
-            <div className="grid grid-cols-3 gap-2 mb-4">
-              <motion.button
-                whileTap={{ scale: 0.96 }}
-                type="button"
-                onClick={() => setActiveTab("profile")}
-                className={`py-2 px-3 rounded-xl border text-center transition-all cursor-pointer ${
-                  activeTab === "profile"
-                    ? "bg-[#14141c] border-[#ff4d6d]/60 text-white shadow-[0_0_12px_rgba(128,0,32,0.25)]"
-                    : "bg-[#0b0b0e] border-[#1f1f26] text-[#71717a] hover:text-[#d4d4d8]"
-                }`}
-              >
-                <span className="block text-[11px] font-semibold">01 // Overview</span>
-              </motion.button>
-
-              <motion.button
-                whileTap={{ scale: 0.96 }}
-                type="button"
-                onClick={() => setActiveTab("background")}
-                className={`py-2 px-3 rounded-xl border text-center transition-all cursor-pointer ${
-                  activeTab === "background"
-                    ? "bg-[#14141c] border-[#ff4d6d]/60 text-white shadow-[0_0_12px_rgba(128,0,32,0.25)]"
-                    : "bg-[#0b0b0e] border-[#1f1f26] text-[#71717a] hover:text-[#d4d4d8]"
-                }`}
-              >
-                <span className="block text-[11px] font-semibold">02 // Experience</span>
-              </motion.button>
-
-              <motion.button
-                whileTap={{ scale: 0.96 }}
-                type="button"
-                onClick={() => setActiveTab("stack")}
-                className={`py-2 px-3 rounded-xl border text-center transition-all cursor-pointer ${
-                  activeTab === "stack"
-                    ? "bg-[#14141c] border-[#ff4d6d]/60 text-white shadow-[0_0_12px_rgba(128,0,32,0.25)]"
-                    : "bg-[#0b0b0e] border-[#1f1f26] text-[#71717a] hover:text-[#d4d4d8]"
-                }`}
-              >
-                <span className="block text-[11px] font-semibold">03 // Core Stack</span>
-              </motion.button>
+            <div className="grid grid-cols-3 gap-2 mb-4" role="tablist" aria-label="Profile details">
+              {(
+                [
+                  { id: "profile" as const, label: "01 // Overview" },
+                  { id: "background" as const, label: "02 // Experience" },
+                  { id: "stack" as const, label: "03 // Core Stack" },
+                ]
+              ).map((tab) => (
+                <motion.button
+                  key={tab.id}
+                  whileTap={{ scale: 0.96 }}
+                  type="button"
+                  role="tab"
+                  aria-selected={activeTab === tab.id}
+                  onClick={() => setActiveTab(tab.id)}
+                  className={`py-2 px-3 rounded-xl border text-center transition-all cursor-pointer ${
+                    activeTab === tab.id
+                      ? "bg-[#14141c] border-[#ff4d6d]/60 text-white shadow-[0_0_12px_rgba(128,0,32,0.25)]"
+                      : "bg-[#0b0b0e] border-[#1f1f26] text-[#71717a] hover:text-[#d4d4d8]"
+                  }`}
+                >
+                  <span className="block text-[11px] font-semibold">{tab.label}</span>
+                </motion.button>
+              ))}
             </div>
 
-            {/* Code Body with Smooth AnimatePresence transitions */}
             <div className="bg-[#050507] p-4 rounded-xl border border-[#1a1a22] min-h-[220px] overflow-x-auto leading-relaxed">
               <AnimatePresence mode="wait">
                 {activeTab === "profile" && (
@@ -294,45 +278,24 @@ export default function ProfessionalHero() {
                       <span className="text-white font-semibold">engineer</span> = &#123;
                       <br />
                       &nbsp;&nbsp;<span className="text-[#a1a1aa]">name</span>:{" "}
-                      <span className="text-[#22c55e]">&quot;Mohammad Ali Nabil&quot;</span>,
+                      <span className="text-[#22c55e]">&quot;{personalInfo.name}&quot;</span>,
                       <br />
                       &nbsp;&nbsp;<span className="text-[#a1a1aa]">role</span>:{" "}
-                      <span className="text-[#22c55e]">&quot;Software Developer &amp; AI Builder&quot;</span>,
+                      <span className="text-[#22c55e]">&quot;{personalInfo.headline}&quot;</span>,
                       <br />
                       &nbsp;&nbsp;<span className="text-[#a1a1aa]">location</span>:{" "}
-                      <span className="text-[#22c55e]">&quot;Dhaka, Bangladesh&quot;</span>,
-                      <br />
-                      &nbsp;&nbsp;<span className="text-[#a1a1aa]">passion</span>:{" "}
-                      <span className="text-[#eab308]">
-                        &quot;Building hardcore systems, not just calling APIs&quot;
-                      </span>
-                      ,
+                      <span className="text-[#22c55e]">&quot;{personalInfo.location}&quot;</span>,
                       <br />
                       &nbsp;&nbsp;<span className="text-[#a1a1aa]">focus</span>: [
                       <br />
                       &nbsp;&nbsp;&nbsp;&nbsp;
-                      <span className="text-[#ff8da1]">
-                        &quot;Autonomous Multi-Agent Systems (LangGraph)&quot;
-                      </span>
-                      ,
+                      <span className="text-[#ff8da1]">&quot;RAG systems and FastAPI backends&quot;</span>,
                       <br />
                       &nbsp;&nbsp;&nbsp;&nbsp;
-                      <span className="text-[#ff8da1]">
-                        &quot;LLM &amp; Large Multimodal (LMM) Fine-Tuning &amp; Model Training&quot;
-                      </span>
-                      ,
+                      <span className="text-[#ff8da1]">&quot;LangGraph agents (FITMAN writeup)&quot;</span>,
                       <br />
                       &nbsp;&nbsp;&nbsp;&nbsp;
-                      <span className="text-[#ff8da1]">
-                        &quot;Retrieval-Augmented Generation (Dense/Sparse RAG)&quot;
-                      </span>
-                      ,
-                      <br />
-                      &nbsp;&nbsp;&nbsp;&nbsp;
-                      <span className="text-[#ff8da1]">
-                        &quot;Scalable Full-Stack Web Backends (FastAPI, React)&quot;
-                      </span>
-                      ,
+                      <span className="text-[#ff8da1]">&quot;Voice agents (experimental / built)&quot;</span>,
                       <br />
                       &nbsp;&nbsp;],
                       <br />
@@ -350,26 +313,26 @@ export default function ProfessionalHero() {
                     transition={{ duration: 0.2 }}
                     className="space-y-3 text-xs font-mono"
                   >
-                    <div className="p-3 rounded-lg bg-[#0b0b0f] border border-[#1f1f26]">
-                      <div className="flex items-center justify-between text-[#38bdf8] font-semibold text-[11px] mb-1">
-                        <span>THE DATA ISLAND</span>
-                        <span className="text-[#71717a]">Nov 2025 – Jan 2026</span>
+                    {intern && (
+                      <div className="p-3 rounded-lg bg-[#0b0b0f] border border-[#1f1f26]">
+                        <div className="flex items-center justify-between text-[#38bdf8] font-semibold text-[11px] mb-1 gap-2">
+                          <span className="truncate">{intern.company.toUpperCase()}</span>
+                          <span className="text-[#71717a] shrink-0">{intern.period}</span>
+                        </div>
+                        <div className="text-white text-xs">
+                          {intern.role}
+                          {intern.department ? ` — ${intern.department}` : ""}
+                        </div>
+                        <p className="text-[#a1a1aa] text-[11px] mt-1">{intern.summary}</p>
                       </div>
-                      <div className="text-white text-xs">AI Engineer Intern — GenAI Team</div>
-                      <p className="text-[#a1a1aa] text-[11px] mt-1">
-                        Engineered end-to-end data scraping, web extraction, validation, batch processing, and agent debugging workflows.
-                      </p>
-                    </div>
-
+                    )}
                     <div className="p-3 rounded-lg bg-[#0b0b0f] border border-[#1f1f26]">
-                      <div className="flex items-center justify-between text-[#22c55e] font-semibold text-[11px] mb-1">
-                        <span>NORTH SOUTH UNIVERSITY</span>
-                        <span className="text-[#71717a]">Undergraduate</span>
+                      <div className="flex items-center justify-between text-[#22c55e] font-semibold text-[11px] mb-1 gap-2">
+                        <span className="truncate">{education.institution.toUpperCase()}</span>
+                        <span className="text-[#71717a] shrink-0">{education.period}</span>
                       </div>
-                      <div className="text-white text-xs">BSc in Computer Science &amp; Engineering</div>
-                      <p className="text-[#a1a1aa] text-[11px] mt-1">
-                        Rigorous coursework in Data Structures, Algorithms, Machine Learning, Database Systems, and Distributed Computing.
-                      </p>
+                      <div className="text-white text-xs">{education.degree}</div>
+                      <p className="text-[#a1a1aa] text-[11px] mt-1">{education.highlights[0]}</p>
                     </div>
                   </motion.div>
                 )}
@@ -384,29 +347,9 @@ export default function ProfessionalHero() {
                     className="space-y-2.5 text-xs font-mono"
                   >
                     <div>
-                      <span className="text-[#ff4d6d] font-semibold block mb-1">
-                        AI, Models &amp; Tuning:
-                      </span>
+                      <span className="text-[#ff4d6d] font-semibold block mb-1">Built / demonstrated:</span>
                       <div className="flex flex-wrap gap-1.5">
-                        {["LLM/LMM Tuning", "LoRA/QLoRA", "Unsloth", "LangGraph", "LangChain", "Pinecone", "Groq LLaMA-3", "LiveKit WebRTC", "PyTorch", "MCP"].map(
-                          (tech) => (
-                            <span
-                              key={tech}
-                              className="px-2 py-0.5 rounded bg-[#111116] border border-[#23232a] text-[#d4d4d8] text-[11px]"
-                            >
-                              {tech}
-                            </span>
-                          )
-                        )}
-                      </div>
-                    </div>
-
-                    <div>
-                      <span className="text-[#38bdf8] font-semibold block mb-1">
-                        Backend &amp; Database:
-                      </span>
-                      <div className="flex flex-wrap gap-1.5">
-                        {["Python", "FastAPI", "Asyncio", "PostgreSQL", "Supabase", "Docker", "REST APIs"].map((tech) => (
+                        {builtSkills.slice(0, 12).map((tech) => (
                           <span
                             key={tech}
                             className="px-2 py-0.5 rounded bg-[#111116] border border-[#23232a] text-[#d4d4d8] text-[11px]"
@@ -416,13 +359,10 @@ export default function ProfessionalHero() {
                         ))}
                       </div>
                     </div>
-
                     <div>
-                      <span className="text-[#22c55e] font-semibold block mb-1">
-                        Languages &amp; Tools:
-                      </span>
+                      <span className="text-[#38bdf8] font-semibold block mb-1">Experimental:</span>
                       <div className="flex flex-wrap gap-1.5">
-                        {["Python", "C++", "TypeScript", "React", "Linux", "Git"].map((tech) => (
+                        {experimentalSkills.map((tech) => (
                           <span
                             key={tech}
                             className="px-2 py-0.5 rounded bg-[#111116] border border-[#23232a] text-[#d4d4d8] text-[11px]"
@@ -437,19 +377,18 @@ export default function ProfessionalHero() {
               </AnimatePresence>
             </div>
 
-            {/* Bottom Status Row */}
             <div className="mt-3 pt-3 border-t border-[#1f1f26] flex items-center justify-between text-[11px] text-[#71717a] font-mono">
               <span className="flex items-center gap-1.5 text-[#22c55e]">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#22c55e]" />
                 Building practical systems &amp; modern apps
               </span>
               <a
-                href="https://github.com/THENABILMAN"
+                href={personalInfo.github}
                 target="_blank"
                 rel="noreferrer"
                 className="text-[#a1a1aa] hover:text-white flex items-center gap-1 transition-colors"
               >
-                <span>@THENABILMAN</span>
+                <span>{personalInfo.githubUsername}</span>
                 <ExternalLink className="w-3 h-3" />
               </a>
             </div>

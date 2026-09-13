@@ -1,0 +1,31 @@
+id: nsu-cse
+type: education
+institution: North South University
+degree: BSc in Computer Science & Engineering
+status: undergraduate
+period: Not independently dated in this repository
+location: Dhaka, Bangladesh
+claim_status: VERIFIED
+confidence: high
+notes: >
+  Source notes describe Nabil as a current undergraduate. Resume copy previously said
+  "Graduated / Undergraduate". Canonical status is undergraduate unless Nabil confirms graduation.
+highlights:
+  - Coursework and interests in AI, ML, data structures, and algorithms
+  - Practical projects alongside the degree (personal statement)
+academic_interests:
+  - Artificial Intelligence
+  - Machine Learning
+  - NLP
+  - LLMs and transformers
+  - RAG and agents
+  - Backend engineering
+  - C++ and algorithms
+  - Quantum computing (aspirational graduate interest)
+evidence:
+  - type: resume
+    source: public/resume.pdf
+    description: Education listed on resume
+  - type: personal_statement
+    source: knowledge/source-notes.md
+    description: North South University undergraduate CSE

@@ -1,0 +1,40 @@
+id: livekit-mcp-assistant
+name: LiveKit MCP AI Assistant
+type: project
+status: prototype
+claim_status: EXPERIMENTAL
+confidence: medium
+one_line: Voice-first assistant combining LiveKit WebRTC, MCP tools, and retrieval.
+problem: Voice agents need tools and documents during a live call.
+goal: Real-time voice plus MCP tools plus vector search.
+nabil_contribution: Explored LiveKit, MCP, Streamlit, Pinecone, Hugging Face embeddings, Tavily, Groq. Notes say roughly 20 hours on the project.
+architecture: LiveKit audio → reasoning → retrieval/tools → spoken response.
+technologies:
+  - Python
+  - LiveKit
+  - MCP
+  - Streamlit
+  - Pinecone
+  - Hugging Face embeddings
+  - Tavily
+  - Groq
+  - Whisper
+  - Cartesia
+data_flow: WebRTC audio → STT → LLM + MCP/RAG → TTS
+decisions: MCP as a tool interface rather than ad-hoc function calls
+challenges: Not documented
+solutions: Not documented
+results: Informal prototype. Sub-200ms / sub-400ms roundtrip claims in older UI copy are UNVERIFIED.
+benchmarks: []
+limitations: No reproducible latency benchmark. Dedicated GitHub URL in UI is not verified from this repo.
+future_improvements: Not documented
+github: null
+github_unverified_url: https://github.com/thenabilman/livekit-assistant
+demo: null
+evidence:
+  - type: personal_statement
+    source: knowledge/source-notes.md
+    description: LiveKit MCP assistant stack and ~20 hour effort note
+  - type: portfolio
+    source: src/components/projects/ProjectsSection.tsx
+    description: Prototype project card

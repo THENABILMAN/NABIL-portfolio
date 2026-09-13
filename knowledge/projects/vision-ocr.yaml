@@ -1,0 +1,34 @@
+id: vision-ocr
+name: AI Vision & OCR Agent
+type: project
+status: completed
+claim_status: BUILT
+confidence: medium
+one_line: OpenCV and transformer-based inspection/OCR pipeline.
+problem: Images and scans need structured extraction.
+goal: Detect objects / OCR documents and emit JSON.
+nabil_contribution: Portfolio describes OpenCV preprocessing, Hugging Face vision models, EasyOCR/Tesseract, FastAPI JSON output.
+architecture: Image/video → OpenCV filters → detector/OCR → JSON via FastAPI.
+technologies:
+  - Python
+  - OpenCV
+  - Hugging Face Transformers
+  - PyTorch
+  - EasyOCR
+  - Tesseract
+  - FastAPI
+data_flow: Frame/image → preprocess → model → structured payload
+decisions: Not documented
+challenges: Not documented
+solutions: Not documented
+results: Not documented
+benchmarks: []
+limitations: No dedicated verified GitHub repository in this repo. "Fine-tuned object detection" is UNVERIFIED.
+future_improvements: Not documented
+github: null
+github_unverified_url: https://github.com/thenabilman/vision-agent
+demo: null
+evidence:
+  - type: portfolio
+    source: src/data/resumeData.ts
+    description: Vision agent project description

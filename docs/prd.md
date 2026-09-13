@@ -1,3 +1,5 @@
+> Historical planning document. Current behavior is described in `docs/architecture.md`.
+
 # Product Requirements Document (PRD) - AI Engineer Portfolio
 
 ## 1. Project Overview

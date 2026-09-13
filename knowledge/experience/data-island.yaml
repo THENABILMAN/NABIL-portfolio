@@ -1,0 +1,40 @@
+id: data-island
+type: experience
+role: AI Engineer Intern
+company: The Data Island
+team: GenAI
+period: November 2025 – January 2026
+location: Remote / Dhaka, Bangladesh
+status: completed
+claim_status: VERIFIED
+confidence: high
+summary: >
+  Internship on the GenAI team focused on LLM-powered automation, scraping,
+  structured extraction, batch processing, and agent debugging.
+responsibilities:
+  - Built Python web scraping and data processing pipelines
+  - Worked on structured data extraction, cleaning, normalization, and validation
+  - Designed batch execution with retry logic for larger workflows
+  - Debugged LLM/agent reasoning loops
+  - Integrated LLM APIs into automation workflows
+outcomes:
+  - Exposure to the gap between AI prototypes and production engineering workflows
+  - Hands-on experience with high-volume extraction and validation
+lessons_learned:
+  - Reliability, retries, and validation matter as much as model quality
+  - Agent loops fail without structured outputs and debugging
+technologies:
+  - Python
+  - LLM APIs
+  - Structured extraction
+  - Data pipelines
+  - Batch execution
+  - Agent debugging
+evidence:
+  - type: resume
+    source: public/resume.pdf
+    description: Internship listed on resume
+  - type: personal_statement
+    source: knowledge/source-notes.md
+    description: GenAI intern responsibilities
+github: null

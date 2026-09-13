@@ -1,40 +1,44 @@
-# System Architecture & Tech Stack
+# Current architecture
 
-## 1. Tech Stack Overview
+This file describes the **implemented** portfolio stack, not an earlier planning sketch.
 
-| Layer | Technology Selected |
+## Stack
+
+| Layer | Implementation |
 | :--- | :--- |
-| **Framework** | Next.js 14+ (App Router) or React + Vite |
-| **Styling** | Tailwind CSS + Shadcn UI |
-| **Animations** | Framer Motion + Lucide React (Icons) |
-| **Deployment** | Vercel or Netlify |
-| **Form Handling** | React Hook Form + Zod (Validation) |
-| **AI Integration (Optional)** | Vercel AI SDK + Groq / OpenAI API |
+| Frontend | Next.js 14 App Router, Tailwind, Framer Motion |
+| Chat UI | `src/components/terminal/TerminalWidget.tsx` |
+| BFF | `src/app/api/chat/route.ts` proxies to FastAPI |
+| Digital twin | FastAPI (`backend/main.py`) |
+| Canonical knowledge | YAML under `knowledge/` |
+| Dense retrieval | Pinecone + `llama-text-embed-v2` (when keys are configured) |
+| Lexical retrieval | Token overlap over canonical documents |
+| Generation | OpenRouter with ordered model fallbacks |
+| Deploy | Vercel Services (`vercel.json`): Next.js + FastAPI |
 
-## 2. Directory Structure
+## Request path
 
-```text
-portfolio/
-├── public/
-│   ├── resume.pdf
-│   └── project-previews/
-├── src/
-│   ├── components/
-│   │   ├── ui/               # Reusable base components (Shadcn)
-│   │   ├── hero.tsx          # Hero section with interactive elements
-│   │   ├── about.tsx         # Experience & Education
-│   │   ├── projects.tsx      # Project grid & detail modals
-│   │   ├── skills.tsx        # Interactive skill badges
-│   │   ├── ai-widget.tsx     # Custom AI Assistant Chatbot
-│   │   └── contact.tsx       # Contact form & footer
-│   ├── data/
-│   │   ├── portfolioData.ts  # Centralized resume JSON data
-│   │   └── projectsData.ts   # Detailed project metadata
-│   ├── lib/
-│   │   └── utils.ts          # Helper utilities
-│   └── app/                  # Next.js Pages / Routes
-├── prd.md
-├── architecture.md
-├── rules.md
-├── phases.md
-└── design.md
+```
+Visitor
+  → Next.js /api/chat
+  → FastAPI /api/chat
+  → Query classifier + entity resolver
+  → Canonical fast-path (structured facts)
+     or dense + lexical retrieve → merge → validate
+  → LLM only if evidence exists
+  → { answer, grounded, confidence, sources, claims, entity }
+```
+
+This backend is **not** a LangGraph/CrewAI multi-agent runtime. It is a retrieval-grounded digital twin. LangGraph appears in Nabil's project catalog (FITMAN writeup), not as the portfolio agent's orchestrator.
+
+## Knowledge
+
+`knowledge/` is the source of truth. `src/data/canonical.json` is the exported snapshot for the frontend. `src/data/resumeData.ts` is aligned to the same statuses.
+
+## Security
+
+- CORS allowlist (no wildcard)
+- `/api/ingest` requires `X-Admin-Secret` matching `INGEST_SECRET`
+- In-memory rate limit on chat
+- Retrieval text is treated as data, not instructions
+- Health endpoint does not return API keys
