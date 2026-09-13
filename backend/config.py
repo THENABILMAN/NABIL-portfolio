@@ -30,7 +30,7 @@ RESUME_PDF_PATH = ROOT_DIR / "public" / "resume.pdf"
 
 # Server Configuration
 HOST = os.getenv("BACKEND_HOST", "0.0.0.0")
-PORT = int(os.getenv("BACKEND_PORT", "8000"))
+PORT = int(os.getenv("PORT", os.getenv("BACKEND_PORT", "8000")))
 ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "http://127.0.0.1:3000",
