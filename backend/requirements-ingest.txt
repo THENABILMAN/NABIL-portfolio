@@ -1,0 +1,5 @@
+# Local-only extras for ingest.py. Kept out of requirements.txt so the deployed
+# function stays small.
+-r requirements.txt
+langchain-text-splitters>=0.2.0
+pypdf>=4.0.0

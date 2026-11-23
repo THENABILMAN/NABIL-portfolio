@@ -1,36 +1,33 @@
 import type { Config } from "tailwindcss";
 
 const config: Config = {
-  darkMode: ["class"],
-  content: [
-    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
-  ],
+  content: ["./src/components/**/*.{ts,tsx}", "./src/app/**/*.{ts,tsx}"],
   theme: {
     extend: {
       colors: {
-        void: "#000000",
-        "bone-white": "#ffffff",
-        "ash-gray": "#888888",
-        "silver-mist": "#b0b0b0",
+        bg: "#000000",
+        surface: "#0a0a0c",
+        raised: "#111114",
+        line: "#1e1e23",
+        "line-strong": "#2e2e35",
+        ink: "#f4f4f5",
+        "ink-2": "#c9c9cf",
+        muted: "#8f8f99",
+        burgundy: "#800020",
+        crimson: "#ff4d6d",
+        cyan: "#38bdf8",
       },
       fontFamily: {
-        sans: ["var(--font-inter)", "PPNeueMontreal", "Inter", "sans-serif"],
+        sans: ["var(--font-inter)", "Inter", "sans-serif"],
         mono: ["var(--font-jetbrains)", "JetBrains Mono", "monospace"],
       },
       letterSpacing: {
         tighter: "-0.06em",
-        tight: "-0.04em",
+        tight: "-0.035em",
         wide: "0.04em",
       },
-      borderRadius: {
-        pill: "22.5px",
-        card: "24px",
-      },
-      boxShadow: {
-        white: "0 0 30px rgba(255, 255, 255, 0.12)",
-        subtle: "0 0 24px rgba(255, 255, 255, 0.04)",
+      maxWidth: {
+        wrap: "1200px",
       },
     },
   },

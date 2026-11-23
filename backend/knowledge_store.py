@@ -3,41 +3,85 @@
 from __future__ import annotations
 
 import re
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from pathlib import Path
-from typing import Any, Dict, List, Optional, Tuple
+from typing import Any, Dict, List, Optional
 
 import yaml
 
-from backend import config
+import config
 
-CLAIM_STATUSES = {
-    "VERIFIED",
-    "BUILT",
-    "EXPERIMENTAL",
-    "LEARNING",
-    "PLANNED",
-    "ASPIRATIONAL",
-    "UNVERIFIED",
-}
-
-CONFIDENCE_RANK = {"none": 0, "low": 1, "medium": 2, "high": 3}
+REFUSAL = "I don't have enough verified information in Nabil's portfolio knowledge base to answer that accurately."
 
 STOPWORDS = {
-    "the", "a", "an", "of", "and", "or", "to", "in", "for", "on", "with", "is",
-    "are", "was", "what", "who", "how", "does", "did", "nabil", "his", "he",
-    "about", "tell", "me", "please",
+    "a", "about", "an", "and", "any", "are", "as", "at", "be", "by", "can", "did", "do",
+    "does", "for", "from", "has", "have", "he", "him", "his", "how", "in", "is", "it",
+    "know", "knows", "me", "nabil", "of", "on", "or", "please", "tell", "that", "the",
+    "this", "to", "use", "used", "uses", "was", "what", "when", "where", "which", "who",
+    "why", "with", "you", "your",
+}
+
+# A document must match at least this share of the query's meaningful words to
+# count as evidence. One shared word is a coincidence, not grounding.
+MIN_LEXICAL_SCORE = 0.5
+
+KNOWN_COMPANIES = (
+    r"(google|meta|facebook|openai|anthropic|microsoft|amazon|apple|netflix|nvidia|tesla|deepmind)"
+)
+
+PROJECT_ALIASES = {
+    "fitman": "fitman",
+    "resume analyzer": "resume-analyzer",
+    "cv analyzer": "resume-analyzer",
+    "bangla": "bangla-voice-agent",
+    "bengali": "bangla-voice-agent",
+    "livekit": "livekit-mcp-assistant",
+    "mcp": "livekit-mcp-assistant",
+    "vision": "vision-ocr",
+    "ocr": "vision-ocr",
+    "voice agent": "realtime-voice-agent",
+    "documentation rag": "rag-agent",
+    "rag agent": "rag-agent",
+    "autonomous agent": "autonomous-agent-system",
+    "agent system": "autonomous-agent-system",
+    "linear regression": "linear-regression-scratch",
+    "logistic regression": "logistic-regression-scratch",
+    "neural network in numpy": "neural-network-numpy",
+    "neural network using numpy": "neural-network-numpy",
+    "numpy neural network": "neural-network-numpy",
+    "neural network in pytorch": "neural-network-pytorch",
+    "neural network using pytorch": "neural-network-pytorch",
+    "pytorch neural network": "neural-network-pytorch",
+    "mnist": "mnist-classifier",
+    "svm": "svm-experiment",
+    "support vector machine": "svm-experiment",
 }
 
 
-@dataclass
-class Source:
-    source_id: str
-    source_type: str
-    title: str
-    url: Optional[str]
-    section: str
-    relevance: float
+FOUNDATION_TERMS = (
+    "foundations", "linear algebra", "calculus", "probability", "statistics", "math", "mathematics",
+    "machine learning", "ml", "deep learning", "neural network", "neural networks", "backpropagation",
+)
+
+
+def normalize_query(query: str) -> str:
+    possessive_free = re.sub(r"['’]s\b", "", query.lower())
+    return re.sub(r"[?!.,\"'`’]+", "", possessive_free).strip()
+
+
+def has_term(text: str, term: str) -> bool:
+    """Whole-term match, so "bangla" skips "bangladesh" and "c" skips "c++"."""
+    return re.search(rf"(?<![a-z0-9+#]){re.escape(term)}(?![a-z0-9+#])", text) is not None
+
+
+def tokenize(text: str) -> List[str]:
+    return re.findall(r"[a-z0-9]+", text.lower())
+
+
+def as_text(value: Any) -> str:
+    if isinstance(value, list):
+        return " ".join(str(item) for item in value)
+    return "" if value is None else str(value)
 
 
 @dataclass
@@ -56,6 +100,7 @@ class KnowledgeStore:
         self.root = Path(root or config.KNOWLEDGE_DIR)
         self.person: Dict[str, Any] = {}
         self.education: Dict[str, Any] = {}
+        self.foundations: Dict[str, Any] = {}
         self.experience: List[Dict[str, Any]] = []
         self.projects: List[Dict[str, Any]] = []
         self.skills: List[Dict[str, Any]] = []
@@ -74,6 +119,7 @@ class KnowledgeStore:
     def _load(self) -> None:
         self.person = self._read_yaml(self.root / "person.yaml")
         self.education = self._read_yaml(self.root / "education.yaml")
+        self.foundations = self._read_yaml(self.root / "foundations" / "foundations.yaml")
         self.experience = [
             self._read_yaml(p) for p in sorted((self.root / "experience").glob("*.yaml"))
         ]
@@ -93,6 +139,7 @@ class KnowledgeStore:
         self.entities = {}
         self._index_entity(self.person)
         self._index_entity(self.education)
+        self._index_entity(self.foundations)
         for item in self.experience + self.projects + self.skills:
             self._index_entity(item)
 
@@ -185,6 +232,14 @@ class KnowledgeStore:
             f"{e.get('degree')} at {e.get('institution')}. Status: {e.get('status')}. {e.get('notes')}",
             {"claim_status": e.get("claim_status", "VERIFIED"), "confidence": e.get("confidence", "high")})
 
+        f = self.foundations
+        for area in f.get("areas", []):
+            add("foundations", "foundations", area["id"],
+                f"{area['name']} (self-study reported by Nabil, not professional experience): "
+                f"{', '.join(area['topics'])}",
+                {"claim_status": f.get("claim_status", "UNVERIFIED"), "confidence": f.get("confidence", "medium"),
+                 "source_type": "personal_statement"})
+
         for exp in self.experience:
             bullets = "\n".join(f"- {b}" for b in exp.get("responsibilities", []))
             add(exp["id"], "experience", "overview",
@@ -202,7 +257,7 @@ class KnowledgeStore:
                 f"Nabil's contribution: {proj.get('nabil_contribution')}\n"
                 f"Architecture: {proj.get('architecture')}\n"
                 f"Technologies: {techs}\n"
-                f"Limitations: {proj.get('limitations')}\n"
+                f"Limitations: {as_text(proj.get('limitations'))}\n"
                 f"GitHub: {proj.get('github')}\nDemo: {proj.get('demo')}\n"
                 f"Conflict notes: {proj.get('conflict_resolution', '')}"
             )
@@ -214,7 +269,7 @@ class KnowledgeStore:
                 "technology": techs[:200],
             })
             for section in ("problem", "architecture", "nabil_contribution", "limitations"):
-                add(proj["id"], "project", section, str(proj.get(section, "")), {
+                add(proj["id"], "project", section, as_text(proj.get(section)), {
                     "claim_status": proj.get("claim_status", "UNVERIFIED"),
                     "confidence": proj.get("confidence", "medium"),
                     "source_url": proj.get("github") or "",
@@ -224,7 +279,7 @@ class KnowledgeStore:
             add(sk["id"], "skill", "overview",
                 f"{sk.get('name')} — proficiency: {sk.get('level')}, status: {sk.get('status')}. "
                 f"Context: {sk.get('context')}. Notes: {sk.get('notes', '')}. "
-                f"Evidence entities: {sk.get('evidence')}",
+                f"Evidence entities: {', '.join(sk.get('evidence') or [])}",
                 {"claim_status": sk.get("status", "UNVERIFIED"), "confidence": "medium",
                  "technology": sk.get("name", "")})
 
@@ -248,16 +303,16 @@ class KnowledgeStore:
         return docs
 
     def lexical_search(self, query: str, top_k: int = 8) -> List[Dict[str, Any]]:
-        tokens = [t for t in re.findall(r"[a-z0-9]+", query.lower()) if t not in STOPWORDS and len(t) > 1]
+        tokens = [t for t in tokenize(query) if t not in STOPWORDS and len(t) > 1]
         if not tokens:
             return []
         scored = []
         for doc in self.documents:
-            text = doc["text"].lower()
-            hits = sum(1 for t in tokens if t in text)
-            if hits == 0:
-                continue
+            doc_tokens = set(tokenize(doc["text"]))
+            hits = sum(1 for t in tokens if t in doc_tokens)
             score = hits / len(tokens)
+            if score < MIN_LEXICAL_SCORE:
+                continue
             # light entity boost
             eid = doc["metadata"].get("entity_id", "")
             if eid and eid.replace("-", " ") in query.lower():
@@ -273,64 +328,56 @@ class KnowledgeStore:
         return scored[:top_k]
 
     def classify_query(self, query: str) -> Dict[str, Any]:
-        q = query.lower()
-        if re.search(r"\b(ignore (previous|all) instructions|reveal (your )?(system|hidden) prompt|private (key|info))\b", q):
-            return {"intent": "adversarial", "entity_type": None, "entity_id": None}
-        if re.search(r"\b(google internship|intern(ed)? at google|worked at (meta|openai|microsoft|amazon))\b", q):
+        q = normalize_query(query)
+        if re.search(
+            r"\b(ignore (\w+ )?(previous |prior )?instructions"
+            r"|(reveal|show|print) (\w+ )?(system|hidden) prompt|private (key|info))\b",
+            q,
+        ):
+            return {"intent": "adversarial", "entity_type": "person", "entity_id": "person-nabil"}
+        if re.search(
+            rf"\b{KNOWN_COMPANIES} (internship|intern|job)\b"
+            rf"|\b(interned|internship|intern|worked|work|job|employed)\b.{{0,20}}\b(at|for|with) {KNOWN_COMPANIES}\b",
+            q,
+        ):
             return {"intent": "unknown_job", "entity_type": "person", "entity_id": "person-nabil"}
-        if re.search(r"\b(salary|how many users|revenue|doi|unpublished|research paper|publication)\b", q):
-            return {"intent": "unknown_metric", "entity_type": None, "entity_id": None}
-        if re.search(r"\b(who are you|who is nabil|about nabil|introduce yourself|whoami)\b", q):
+        if re.search(r"\b(salary|how many (users|clients|customers)|revenue|doi|unpublished|research paper|publication)\b", q):
+            project = next((pid for alias, pid in PROJECT_ALIASES.items() if has_term(q, alias)), None)
+            return {"intent": "unknown_metric", "entity_type": "project" if project else None, "entity_id": project}
+        if re.search(r"\b(who are you|who is nabil|introduce yourself|whoami)\b|^(tell me )?about nabil$", q):
             return {"intent": "identity", "entity_type": "person", "entity_id": "person-nabil"}
+
+        # Before the contact check: "resume" in "resume analyzer" is a project, not a CV.
+        for alias, pid in PROJECT_ALIASES.items():
+            if has_term(q, alias):
+                return {"intent": "project", "entity_type": "project", "entity_id": pid}
+
         if re.search(r"\b(contact|email|phone|linkedin|github|resume|cv)\b", q):
             return {"intent": "contact", "entity_type": "person", "entity_id": "person-nabil"}
-        if re.search(r"\b(data island|internship)\b", q):
+        if re.search(r"\b(data island|intern|interned|internship)\b", q):
             return {"intent": "experience", "entity_type": "experience", "entity_id": "data-island"}
-        if re.search(r"\b(education|university|nsu|north south|degree|undergrad)\b", q):
+        # Before education: "graduate study" is a goal, not his current degree.
+        if re.search(r"\b(future goals?|aspirations?|study in germany|graduate study|quantum computing)\b", q):
+            return {"intent": "aspirations", "entity_type": "aspirations", "entity_id": "aspirations"}
+        if re.search(r"\b(education|university|nsu|north south|degree|undergrad|studying|studies|graduate|graduated)\b", q):
             return {"intent": "education", "entity_type": "education", "entity_id": "nsu-cse"}
         if re.search(r"\b(philosophy|first principles|how he learns)\b", q):
             return {"intent": "philosophy", "entity_type": "philosophy", "entity_id": "philosophy"}
-        if re.search(r"\b(future goals?|aspirations?|study in germany|graduate study|quantum computing)\b", q):
-            return {"intent": "aspirations", "entity_type": "aspirations", "entity_id": "aspirations"}
         if re.search(r"\b(this portfolio|digital twin|portfolio (ai|agent|rag)|how does (the )?portfolio)\b", q):
             return {"intent": "portfolio_system", "entity_type": "portfolio_system", "entity_id": "portfolio-digital-twin"}
-
-        project_aliases = {
-            "fitman": "fitman",
-            "resume analyzer": "resume-analyzer",
-            "cv analyzer": "resume-analyzer",
-            "bangla": "bangla-voice-agent",
-            "bengali": "bangla-voice-agent",
-            "livekit": "livekit-mcp-assistant",
-            "mcp": "livekit-mcp-assistant",
-            "vision": "vision-ocr",
-            "ocr": "vision-ocr",
-            "voice agent": "realtime-voice-agent",
-            "documentation rag": "rag-agent",
-            "rag agent": "rag-agent",
-            "autonomous agent": "autonomous-agent-system",
-            "agent system": "autonomous-agent-system",
-        }
-        for alias, pid in project_aliases.items():
-            if alias in q:
-                return {"intent": "project", "entity_type": "project", "entity_id": pid}
-
         if re.search(r"\b(projects|what has he built|featured systems)\b", q):
             return {"intent": "projects_list", "entity_type": "project", "entity_id": None}
 
         for sk in self.skills:
-            name = (sk.get("name") or "").lower()
-            sid = sk.get("id", "")
-            if sid and re.search(rf"\b{re.escape(sid)}\b", q):
-                return {"intent": "skill", "entity_type": "skill", "entity_id": sid}
-            if name and name.split("/")[0].strip() in q:
-                return {"intent": "skill", "entity_type": "skill", "entity_id": sid}
+            terms = [t.strip() for t in re.split(r"[/()]", (sk.get("name") or "").lower()) if t.strip()]
+            if any(has_term(q, term) for term in [sk.get("id", ""), *terms] if term):
+                return {"intent": "skill", "entity_type": "skill", "entity_id": sk.get("id")}
+
+        if any(has_term(q, term) for term in FOUNDATION_TERMS):
+            return {"intent": "foundations", "entity_type": "foundations", "entity_id": "foundations"}
 
         if re.search(r"\b(skills|tech stack|technologies)\b", q):
             return {"intent": "skills_list", "entity_type": "skill", "entity_id": None}
-
-        if re.search(r"\b(how many users|revenue|salary|clients?)\b", q):
-            return {"intent": "unknown_metric", "entity_type": None, "entity_id": None}
 
         return {"intent": "open", "entity_type": None, "entity_id": None}
 
@@ -356,8 +403,7 @@ class KnowledgeStore:
         return "\n".join(lines)
 
     def fast_resolve(self, query: str) -> Optional[FastAnswer]:
-        q = query.strip().lower()
-        q = re.sub(r"[?!.,\"'`]+", "", q).strip()
+        q = normalize_query(query)
         classification = self.classify_query(q)
         person = self.person
 
@@ -368,8 +414,8 @@ class KnowledgeStore:
                 entity_id="person-nabil",
                 claims=[],
                 sources=[],
-                confidence="HIGH",
-                grounded=True,
+                confidence="NONE",
+                grounded=False,
             )
 
         if re.search(r"^(hi|hello|hey|sup|yo|howdy|hola|greetings|good morning|good afternoon|good evening|hi there)$", q):
@@ -378,7 +424,7 @@ class KnowledgeStore:
                 entity_type="person",
                 entity_id="person-nabil",
                 claims=[],
-                sources=self._fmt_evidence(person.get("hardware", {}).get("evidence"), "identity", "person-nabil")[:1] or [{
+                sources=[{
                     "source_id": "person-identity",
                     "source_type": "structured_knowledge",
                     "title": "Canonical person record",
@@ -463,6 +509,18 @@ class KnowledgeStore:
                 claims=self.claims_for("nsu-cse"),
                 sources=self._fmt_evidence(edu.get("evidence"), "education", "nsu-cse"),
                 confidence="HIGH",
+            )
+
+        if classification["intent"] == "foundations":
+            f = self.foundations
+            areas = "\n".join(f"• {a['name']}: {', '.join(a['topics'])}" for a in f.get("areas", []))
+            return FastAnswer(
+                answer=f"{f.get('summary', '').strip()}\nClaim status: {f.get('claim_status')}.\n{areas}",
+                entity_type="foundations",
+                entity_id="foundations",
+                claims=[],
+                sources=self._fmt_evidence(f.get("evidence"), "foundations", "foundations"),
+                confidence="MEDIUM",
             )
 
         if classification["intent"] == "philosophy":
@@ -599,7 +657,7 @@ class KnowledgeStore:
 
         if classification["intent"] in {"unknown_job", "unknown_metric"}:
             return FastAnswer(
-                answer="I don't have enough verified information in Nabil's portfolio knowledge base to answer that accurately.",
+                answer=REFUSAL,
                 entity_type=classification.get("entity_type"),
                 entity_id=classification.get("entity_id"),
                 claims=[],
@@ -621,42 +679,20 @@ class KnowledgeStore:
             f"Architecture: {proj.get('architecture')}\n"
             f"Nabil's contribution: {proj.get('nabil_contribution')}\n"
             f"Technologies: {techs}\n"
-            f"Limitations: {proj.get('limitations')}\n"
+            f"Limitations: {as_text(proj.get('limitations'))}\n"
             f"GitHub: {gh}\nDemo: {demo}"
         )
 
-    def cli_skills_text(self) -> str:
-        built = [s for s in self.skills if s.get("status") in {"BUILT", "VERIFIED"}]
-        learning = [s for s in self.skills if s.get("status") in {"LEARNING", "EXPERIMENTAL", "UNVERIFIED"}]
-        def line(items):
-            return ", ".join(f"{s['name']} [{s['level']}]" for s in items)
-        return (
-            "Built / demonstrated:\n• " + line(built) +
-            "\n\nExperimental / learning / unverified:\n• " + line(learning)
-        )
-
-    def cli_projects_text(self) -> List[Dict[str, str]]:
-        return [
-            {
-                "name": p.get("name", ""),
-                "blurb": p.get("one_line", ""),
-                "status": p.get("status", ""),
-            }
-            for p in self.projects
-            if p.get("id") != "portfolio-digital-twin"
-        ]
-
     def export_public_dict(self) -> Dict[str, Any]:
+        """Only what the site renders: this file ships in the browser bundle."""
+        private = {"hardware", "leadership", "tutoring", "not_identity", "positioning"}
         return {
-            "person": self.person,
+            "person": {k: v for k, v in self.person.items() if k not in private},
             "education": self.education,
             "experience": self.experience,
             "projects": self.projects,
             "skills": self.skills,
-            "claims": self.claims,
-            "benchmarks": self.benchmarks,
-            "philosophy": self.philosophy,
-            "aspirations": self.aspirations,
+            "foundations": self.foundations,
         }
 
 

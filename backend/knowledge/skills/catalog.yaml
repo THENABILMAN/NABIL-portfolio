@@ -1,0 +1,265 @@
+skills:
+  - id: python
+    name: Python
+    group: Languages
+    level: Primary
+    status: BUILT
+    context: professional_and_personal
+    evidence: [data-island, portfolio-digital-twin, resume-analyzer, fitman]
+  - id: fastapi
+    name: FastAPI
+    group: Backend and data
+    level: Hands-on
+    status: BUILT
+    context: personal_and_portfolio
+    evidence: [portfolio-digital-twin, fitman, resume-analyzer]
+  - id: typescript
+    name: TypeScript
+    group: Languages
+    level: Hands-on
+    status: BUILT
+    context: personal
+    evidence: [portfolio-digital-twin, fitman]
+  - id: react
+    name: React
+    group: Frontend
+    level: Hands-on
+    status: BUILT
+    context: personal
+    evidence: [portfolio-digital-twin, fitman]
+  - id: nextjs
+    name: Next.js
+    group: Frontend
+    level: Hands-on
+    status: BUILT
+    context: personal
+    evidence: [portfolio-digital-twin]
+  - id: langchain
+    name: LangChain
+    group: LLM and agents
+    level: Hands-on
+    status: BUILT
+    context: personal
+    evidence: [rag-agent, autonomous-agent-system, resume-analyzer]
+  - id: langgraph
+    name: LangGraph
+    group: LLM and agents
+    level: Hands-on
+    status: BUILT
+    context: personal
+    evidence: [fitman]
+    notes: Used in FITMAN per portfolio docs. This portfolio digital twin is not a LangGraph multi-agent system.
+  - id: rag
+    name: RAG
+    group: LLM and agents
+    level: Strong
+    status: BUILT
+    context: personal
+    evidence: [portfolio-digital-twin, rag-agent]
+  - id: pinecone
+    name: Pinecone
+    group: Databases
+    level: Hands-on
+    status: BUILT
+    context: personal
+    evidence: [portfolio-digital-twin, rag-agent]
+  - id: chroma
+    name: Chroma
+    group: Databases
+    level: Working knowledge
+    status: BUILT
+    context: personal
+    evidence: [rag-agent]
+  - id: mcp
+    name: MCP
+    group: LLM and agents
+    level: Experimental
+    status: EXPERIMENTAL
+    context: personal
+    evidence: [livekit-mcp-assistant]
+  - id: livekit
+    name: LiveKit
+    group: Voice
+    level: Experimental
+    status: EXPERIMENTAL
+    context: personal
+    evidence: [livekit-mcp-assistant]
+  - id: voice-ai
+    name: Voice AI (STT/TTS)
+    group: Voice
+    level: Hands-on
+    status: EXPERIMENTAL
+    context: personal
+    evidence: [realtime-voice-agent, bangla-voice-agent, livekit-mcp-assistant]
+  - id: whisper
+    name: Whisper STT
+    group: Voice
+    level: Hands-on
+    status: BUILT
+    context: personal
+    evidence: [realtime-voice-agent, bangla-voice-agent]
+  - id: pytorch
+    name: PyTorch
+    group: Machine learning
+    level: Working knowledge
+    status: LEARNING
+    context: academic_and_personal
+    evidence: [bangla-voice-agent, vision-ocr, neural-network-pytorch]
+  - id: lora
+    name: LoRA / QLoRA / PEFT
+    group: Training and inference
+    level: Learning
+    status: LEARNING
+    context: personal
+    evidence: []
+    notes: Mentioned in earlier marketing copy. No fine-tuning run, dataset, or repo is evidenced here.
+  - id: sft-dpo
+    name: SFT / DPO / pretraining
+    group: Training and inference
+    level: Learning
+    status: LEARNING
+    context: personal
+    evidence: []
+    notes: Training alignment methods are interests/learning, not demonstrated professional expertise.
+  - id: unsloth
+    name: Unsloth / Hugging Face TRL
+    group: Training and inference
+    level: Learning
+    status: LEARNING
+    context: personal
+    evidence: []
+  - id: deepspeed
+    name: DeepSpeed / FSDP
+    group: Training and inference
+    level: Familiar
+    status: UNVERIFIED
+    context: personal
+    evidence: []
+    notes: Appeared on the knowledge graph as Advanced. No project evidence in this repository.
+  - id: vllm
+    name: vLLM
+    group: Training and inference
+    level: Familiar
+    status: UNVERIFIED
+    context: personal
+    evidence: []
+  - id: quantization
+    name: Quantization (GGUF / AWQ / bitsandbytes)
+    group: Training and inference
+    level: Experimental
+    status: EXPERIMENTAL
+    context: personal
+    evidence: []
+    notes: Local GGUF/Ollama experiments are documented; AWQ/bitsandbytes production serving is not.
+  - id: ollama
+    name: Ollama / local LLMs
+    group: LLM and agents
+    level: Experimental
+    status: EXPERIMENTAL
+    context: personal
+    evidence: []
+    notes: Local Qwen/Gemma GGUF experiments on RTX 4050 6GB.
+  - id: supabase
+    name: Supabase / PostgreSQL
+    group: Databases
+    level: Hands-on
+    status: BUILT
+    context: personal
+    evidence: [fitman]
+  - id: opencv
+    name: OpenCV / OCR
+    group: Machine learning
+    level: Working knowledge
+    status: BUILT
+    context: personal
+    evidence: [vision-ocr]
+  - id: scraping
+    name: Web scraping (BeautifulSoup / Selenium)
+    group: Backend and data
+    level: Hands-on
+    status: BUILT
+    context: professional
+    evidence: [data-island]
+  - id: cpp
+    name: C++
+    group: Languages
+    level: Working knowledge
+    status: LEARNING
+    context: academic
+    evidence: []
+  - id: c
+    name: C
+    group: Languages
+    level: Working knowledge
+    status: LEARNING
+    context: academic
+    evidence: []
+  - id: java
+    name: Java
+    group: Languages
+    level: Familiar
+    status: LEARNING
+    context: academic
+    evidence: []
+  - id: docker
+    name: Docker
+    group: Backend and data
+    level: Familiar
+    status: UNVERIFIED
+    context: personal
+    evidence: []
+    notes: Listed in older skill blurbs; no Docker artifacts in this repo.
+  - id: crewai
+    name: CrewAI / AutoGen
+    group: LLM and agents
+    level: Familiar
+    status: UNVERIFIED
+    context: personal
+    evidence: []
+    notes: Mentioned as explored. This portfolio backend does not use them.
+  - id: groq
+    name: Groq
+    group: LLM and agents
+    level: Hands-on
+    status: BUILT
+    context: personal
+    evidence: [fitman, livekit-mcp-assistant]
+  - id: numpy
+    name: NumPy
+    group: Machine learning
+    level: Working knowledge
+    status: BUILT
+    context: personal
+    evidence: [neural-network-numpy]
+  - id: scikit-learn
+    name: Scikit-learn
+    group: Machine learning
+    level: Learning
+    status: LEARNING
+    context: personal
+    evidence: []
+    notes: Self-study of classical ML algorithms.
+  - id: pandas
+    name: Pandas
+    group: Machine learning
+    level: Learning
+    status: LEARNING
+    context: personal
+    evidence: []
+    notes: Self-study.
+  - id: scipy
+    name: SciPy
+    group: Machine learning
+    level: Learning
+    status: LEARNING
+    context: personal
+    evidence: []
+    notes: Self-study.
+  - id: matplotlib
+    name: Matplotlib
+    group: Machine learning
+    level: Learning
+    status: LEARNING
+    context: personal
+    evidence: []
+    notes: Self-study.

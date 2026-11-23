@@ -9,18 +9,15 @@ if hasattr(sys.stdout, "reconfigure"):
     except Exception:
         pass
 
-BASE_DIR = Path(__file__).resolve().parent
-ROOT_DIR = BASE_DIR.parent
-if str(ROOT_DIR) not in sys.path:
-    sys.path.insert(0, str(ROOT_DIR))
+sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from pypdf import PdfReader
-from pinecone import Pinecone
 
-from backend import config
-from backend.embeddings import PineconeEmbeddings
-from backend.knowledge_store import KnowledgeStore
+import config
+from embeddings import HuggingFaceEmbeddings
+from knowledge_store import KnowledgeStore
+from vector_store import AtlasVectorStore
 
 
 def load_canonical_documents() -> List[Dict[str, Any]]:
@@ -28,10 +25,6 @@ def load_canonical_documents() -> List[Dict[str, Any]]:
     docs = []
     for doc in store.documents:
         meta = dict(doc["metadata"])
-        # Pinecone metadata values must be scalars or lists of strings
-        tech = meta.get("technology", "")
-        if isinstance(tech, list):
-            meta["technology"] = ",".join(tech)[:200]
         docs.append({
             "id": doc["id"].replace(" ", "_")[:80],
             "text": doc["text"],
@@ -65,7 +58,7 @@ def load_markdown_documents(file_path: Path) -> List[Dict[str, Any]]:
             "id": f"notes_md_{i}",
             "text": cleaned_chunk,
             "metadata": {
-                "source": "knowledgebase.md",
+                "source": "source-notes.md",
                 "source_type": "personal_statement",
                 "section": first_line[:60] or "source-notes",
                 "entity_id": "source-notes",
@@ -125,42 +118,29 @@ def load_pdf_documents(file_path: Path) -> List[Dict[str, Any]]:
 def run_ingestion():
     print("==================================================")
     print("Portfolio RAG ingestion (canonical + resume + notes)")
-    print(f"Target Index: {config.PINECONE_INDEX_NAME}")
+    print(f"Target: {config.MONGODB_DB}.{config.MONGODB_COLLECTION}")
     print("==================================================")
 
-    if not config.PINECONE_API_KEY:
-        raise RuntimeError("PINECONE_API_KEY is not set")
+    if not config.MONGODB_URI or not (config.HF_TOKEN or config.EMBEDDING_URL):
+        raise RuntimeError("Set MONGODB_URI, and either HF_TOKEN or EMBEDDING_URL")
 
-    kb_path = config.KNOWLEDGE_BASE_PATH
-    if not kb_path.exists():
-        kb_path = config.LEGACY_KNOWLEDGE_BASE_PATH
-
-    all_docs = load_canonical_documents() + load_pdf_documents(config.RESUME_PDF_PATH) + load_markdown_documents(kb_path)
+    all_docs = (
+        load_canonical_documents()
+        + load_pdf_documents(config.RESUME_PDF_PATH)
+        + load_markdown_documents(config.SOURCE_NOTES_PATH)
+    )
     if not all_docs:
         print("[ERROR] No documents loaded! Aborting ingestion.")
         return
 
-    pc = Pinecone(api_key=config.PINECONE_API_KEY)
-    index = pc.Index(config.PINECONE_INDEX_NAME)
-    embedder = PineconeEmbeddings(api_key=config.PINECONE_API_KEY, model=config.EMBEDDING_MODEL)
+    print("[INFO] Generating embeddings via Hugging Face Inference...")
+    embeddings = HuggingFaceEmbeddings().embed_documents([doc["text"] for doc in all_docs])
 
-    texts = [doc["text"] for doc in all_docs]
-    print("[INFO] Generating embeddings via Pinecone Inference...")
-    embeddings = embedder.embed_documents(texts, batch_size=32)
-
-    vectors = []
-    for doc, emb in zip(all_docs, embeddings):
-        vectors.append({"id": doc["id"], "values": emb, "metadata": doc["metadata"]})
-
-    batch_size = 50
-    for i in range(0, len(vectors), batch_size):
-        batch = vectors[i : i + batch_size]
-        index.upsert(vectors=batch)
-        print(f"  -> Upserted batch {i // batch_size + 1} ({len(batch)} vectors)")
-
+    vectors = AtlasVectorStore()
+    count = vectors.replace_all(all_docs, embeddings)
+    print(f"[OK] Stored {count} chunks. Building the vector index...")
+    vectors.ensure_index()
     print("[DONE] Ingestion completed successfully!")
-    stats = index.describe_index_stats()
-    print(f"[STATS] Current index vector count: {stats.get('total_vector_count', 'unknown')}")
 
 
 if __name__ == "__main__":

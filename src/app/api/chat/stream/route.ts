@@ -1,44 +1,41 @@
 import { NextRequest } from "next/server";
+import { backendUrl, clientIpHeaders } from "@/lib/backend";
 
-const BACKEND_FASTAPI_URL = process.env.BACKEND_INTERNAL_URL || "http://127.0.0.1:8000";
+export const maxDuration = 60;
+
+const STREAM_TIMEOUT_MS = 55_000;
+
+function jsonError(error: string, status: number) {
+  return new Response(JSON.stringify({ error }), {
+    status,
+    headers: { "Content-Type": "application/json" },
+  });
+}
 
 export async function GET(req: NextRequest) {
   const query = req.nextUrl.searchParams.get("query")?.trim() ?? "";
-  if (!query) {
-    return new Response(JSON.stringify({ error: "Query cannot be empty." }), {
-      status: 400,
-      headers: { "Content-Type": "application/json" },
-    });
-  }
+  if (!query) return jsonError("Query cannot be empty.", 400);
 
   try {
-    const backend = await fetch(
-      `${BACKEND_FASTAPI_URL}/api/chat/stream?query=${encodeURIComponent(query)}`,
-      {
-        headers: { Accept: "text/event-stream" },
-        cache: "no-store",
-      }
-    );
+    const backend = await fetch(backendUrl(`/api/chat/stream?query=${encodeURIComponent(query)}`), {
+      headers: { Accept: "text/event-stream", ...clientIpHeaders(req) },
+      cache: "no-store",
+      signal: AbortSignal.timeout(STREAM_TIMEOUT_MS),
+    });
 
     if (!backend.ok || !backend.body) {
-      return new Response(JSON.stringify({ error: "Stream unavailable." }), {
-        status: backend.status || 502,
-        headers: { "Content-Type": "application/json" },
-      });
+      return jsonError("Stream unavailable.", backend.status || 502);
     }
 
     return new Response(backend.body, {
-      status: 200,
       headers: {
         "Content-Type": "text/event-stream",
         "Cache-Control": "no-cache, no-transform",
         Connection: "keep-alive",
+        "X-Accel-Buffering": "no",
       },
     });
   } catch {
-    return new Response(JSON.stringify({ error: "Backend stream unreachable." }), {
-      status: 502,
-      headers: { "Content-Type": "application/json" },
-    });
+    return jsonError("Backend stream unreachable.", 502);
   }
 }

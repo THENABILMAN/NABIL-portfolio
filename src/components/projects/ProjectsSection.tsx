@@ -1,301 +1,223 @@
 "use client";
 
-import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import {
-  ArrowUpRight,
-  Github,
-  Code2,
-  Layers,
-  CheckCircle2,
-  Activity,
-  Sparkles,
-} from "lucide-react";
-import { resumeData } from "@/data/resumeData";
-import type { Project, ProjectCategoryKey } from "@/types/portfolio";
+import { useEffect, useRef, useState } from "react";
+import { motion, useMotionValueEvent, useReducedMotion, useScroll } from "framer-motion";
+import { ChevronDown } from "lucide-react";
+import { projectGroups, projects } from "@/lib/canonical";
+import { StatusMark } from "@/components/StatusMark";
+import type { Project } from "@/types/portfolio";
 
-function statusClasses(statusType: Project["statusType"]): string {
-  switch (statusType) {
-    case "active":
-      return "text-[#22c55e] bg-[#22c55e]/10 border-[#22c55e]/20";
-    case "experimental":
-      return "text-[#f59e0b] bg-[#f59e0b]/10 border-[#f59e0b]/20";
-    case "prototype":
-      return "text-[#38bdf8] bg-[#38bdf8]/10 border-[#38bdf8]/20";
-    default:
-      return "text-[#a1a1aa] bg-[#111116] border-[#23232a]";
+function ProjectLinks({ project }: { project: Project }) {
+  const demo = project.demoUrl && project.demoUrl !== project.githubUrl ? project.demoUrl : undefined;
+  if (!demo && !project.githubUrl) {
+    return <p className="font-mono text-[12px] text-muted">Source not public</p>;
   }
+  return (
+    <div className="flex flex-col gap-3 sm:flex-row">
+      {demo && (
+        <a href={demo} target="_blank" rel="noreferrer" className="btn-primary">
+          Open the {project.title} demo
+        </a>
+      )}
+      {project.githubUrl && (
+        <a href={project.githubUrl} target="_blank" rel="noreferrer" className="btn-ghost">
+          See the code on GitHub
+        </a>
+      )}
+    </div>
+  );
 }
 
-export default function FixedProjectsShowcase() {
-  const [filter, setFilter] = useState<"all" | ProjectCategoryKey>("all");
-  const catalog = resumeData.projects;
+function Limitations({ items }: { items: string[] }) {
+  if (items.length === 0) return null;
+  return (
+    <div>
+      <p className="label">Limitations</p>
+      <ul className="mt-2 space-y-1.5">
+        {items.map((l) => (
+          <li key={l} className="flex gap-3 text-[14px] leading-relaxed text-ink-2">
+            <span className="mt-[9px] h-px w-3 shrink-0 bg-crimson" aria-hidden="true" />
+            {l}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
 
-  const filtered = catalog.filter((p) => filter === "all" || p.categoryKey === filter);
-  const flagship = filtered.find((p) => p.featured);
-  const secondary = filtered.filter((p) => !p.featured);
+function Pipeline({ steps }: { steps: string[] }) {
+  // The rail fills with the scroll: it starts when the list enters the lower part of
+  // the screen and is full when the list's end reaches the middle. Each step lights
+  // up as the fill passes it, and goes dark again when scrolling back up.
+  const ref = useRef<HTMLOListElement>(null);
+  const reduce = useReducedMotion();
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start 0.8", "end 0.5"] });
+  const [reached, setReached] = useState(0);
+  useMotionValueEvent(scrollYProgress, "change", (v) => {
+    if (!reduce) setReached(Math.round(v * (steps.length - 1)) + (v > 0.02 ? 1 : 0));
+  });
 
   return (
-    <section id="projects" className="w-full bg-black text-white py-20 sm:py-24 px-4 sm:px-6 lg:px-8 border-t border-[#1a1a1f] font-sans relative">
-      <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_60%_30%_at_50%_0%,rgba(128,0,32,0.08),rgba(0,0,0,0))]" />
-
-      <div className="max-w-7xl mx-auto relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6"
-        >
-          <div>
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 text-[11px] font-mono tracking-[0.2em] text-[#a1a1aa] bg-[#0c0c0e] border border-[#2A1E1A] rounded-full uppercase mb-4">
-              <Sparkles className="w-3.5 h-3.5 text-[#ff4d6d]" />
-              <span>FEATURED_PORTFOLIO //</span>
-            </div>
-            <h2 className="text-3xl sm:text-5xl font-bold tracking-tight text-white font-mono">
-              Featured Systems &amp; Applications<span className="text-[#800020]">.</span>
-            </h2>
-            <p className="mt-3 text-sm md:text-base text-[#a1a1aa] max-w-xl leading-relaxed">
-              Documented systems with honest status: built, experimental, prototype, or active development — not marketing copy.
-            </p>
-          </div>
-
-          <div
-            className="flex flex-wrap gap-2 bg-[#09090c] border border-[#23232a] p-1.5 rounded-xl font-mono text-xs self-start md:self-auto"
-            role="tablist"
-            aria-label="Filter projects"
-          >
-            {(
-              [
-                { key: "all" as const, label: `All Systems (${catalog.length})` },
-                { key: "fullstack" as const, label: "Full-Stack" },
-                { key: "agentic" as const, label: "Agentic & RAG" },
-                { key: "voice" as const, label: "Voice & Vision" },
-              ]
-            ).map(({ key, label }) => (
-              <motion.button
-                key={key}
-                type="button"
-                role="tab"
-                aria-selected={filter === key}
-                whileHover={{ scale: 1.04 }}
-                whileTap={{ scale: 0.96 }}
-                onClick={() => setFilter(key)}
-                className={`px-3.5 py-1.5 rounded-lg transition-all cursor-pointer ${
-                  filter === key
-                    ? "bg-[#800020] text-white font-semibold shadow-[0_0_12px_rgba(128,0,32,0.35)]"
-                    : "text-[#8e8e99] hover:text-white"
+    <div className="relative rounded-[4px] border border-line-strong bg-surface p-6 sm:p-8">
+      <p className="label">Request path</p>
+      <ol ref={ref} className="relative mt-6">
+        {/* The rail, and the fill that the scroll draws down it. */}
+        <span className="absolute bottom-8 left-[11px] top-8 w-px bg-line-strong" aria-hidden="true">
+          <motion.span
+            className="absolute inset-0 block origin-top bg-crimson"
+            style={{ scaleY: reduce ? 1 : scrollYProgress }}
+          />
+        </span>
+        {steps.map((step, i) => {
+          const lit = reduce || i < reached;
+          return (
+            <li key={step} className="relative flex h-16 items-center gap-5">
+              <span
+                className={`relative z-10 flex h-[23px] w-[23px] shrink-0 items-center justify-center rounded-full border bg-surface font-mono text-[10px] transition-colors duration-300 ${
+                  lit ? "border-crimson text-crimson" : "border-line-strong text-muted"
                 }`}
               >
-                {label}
-              </motion.button>
-            ))}
-          </div>
-        </motion.div>
+                {i + 1}
+              </span>
+              <span className={`font-mono text-[14px] transition-colors duration-300 ${lit ? "text-ink" : "text-ink-2"}`}>
+                {step}
+              </span>
+            </li>
+          );
+        })}
+      </ol>
+    </div>
+  );
+}
 
-        {flagship && (
-          <motion.div
-            layout
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            whileHover={{ y: -3, borderColor: "rgba(255, 77, 109, 0.7)" }}
-            transition={{ duration: 0.3 }}
-            className="mb-10 bg-[#07070a] border border-[#23232a] rounded-2xl p-6 sm:p-8 lg:p-10 shadow-2xl transition-colors duration-300 relative overflow-hidden"
-          >
-            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#800020] to-transparent opacity-70" />
-
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-              <div className="lg:col-span-7">
-                <div className="flex flex-wrap items-center gap-3 font-mono text-xs mb-4">
-                  <span className="px-3 py-1 bg-[#800020]/20 border border-[#800020]/50 rounded-lg text-[#ff8da1] text-[11px] font-semibold">
-                    ★ FLAGSHIP SYSTEM
-                  </span>
-                  <span className="px-2.5 py-1 bg-[#111116] border border-[#23232a] rounded-lg text-[#d4d4d8] text-[11px]">
-                    {flagship.category}
-                  </span>
-                  <span className={`flex items-center gap-1.5 text-[11px] font-mono px-2.5 py-1 rounded-full border ml-auto ${statusClasses(flagship.statusType)}`}>
-                    {flagship.statusType === "active" && (
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#22c55e] animate-ping" />
-                    )}
-                    {flagship.status}
-                  </span>
-                </div>
-
-                <h3 className="text-3xl sm:text-5xl font-bold text-white mb-2 font-mono tracking-tight">
-                  {flagship.title}
-                </h3>
-                <p className="text-[#38bdf8] font-mono text-xs sm:text-sm mb-4">{flagship.subtitle}</p>
-                <p className="text-[#a1a1aa] text-sm leading-relaxed mb-6">{flagship.description}</p>
-
-                {flagship.highlights.length > 0 && (
-                  <div className="space-y-2 mb-6">
-                    <span className="text-[10px] font-mono uppercase tracking-wider text-[#71717a] flex items-center gap-1.5">
-                      <Code2 className="w-3 h-3 text-[#38bdf8]" />
-                      CORE ARCHITECTURE DELIVERABLES
-                    </span>
-                    {flagship.highlights.map((item) => (
-                      <motion.div
-                        key={item}
-                        whileHover={{ x: 3 }}
-                        transition={{ duration: 0.15 }}
-                        className="flex items-start gap-2.5 text-xs text-[#d4d4d8] bg-[#0c0c10] border border-[#1f1f26] p-3 rounded-xl font-mono leading-relaxed"
-                      >
-                        <CheckCircle2 className="w-4 h-4 text-[#ff4d6d] shrink-0 mt-0.5" />
-                        <span>{item}</span>
-                      </motion.div>
-                    ))}
-                  </div>
-                )}
-              </div>
-
-              <div className="lg:col-span-5 flex flex-col justify-between h-full space-y-6">
-                {flagship.pipelineFlow && flagship.pipelineFlow.length > 0 && (
-                  <div className="p-5 rounded-xl bg-[#0b0b0f] border border-[#1f1f26]">
-                    <span className="text-[10px] font-mono uppercase tracking-wider text-[#71717a] mb-3 flex items-center gap-1.5">
-                      <Activity className="w-3.5 h-3.5 text-[#ff4d6d]" />
-                      END-TO-END EXECUTION PIPELINE
-                    </span>
-                    <div className="flex flex-col gap-2 font-mono text-xs">
-                      {flagship.pipelineFlow.map((step, idx) => (
-                        <div key={step} className="flex items-center gap-2">
-                          <span className="w-5 h-5 rounded-md bg-[#181822] text-[#ff4d6d] text-[10px] font-bold flex items-center justify-center border border-[#2a2a35] shrink-0">
-                            {idx + 1}
-                          </span>
-                          <span className="px-2.5 py-1 rounded-lg bg-[#14141c] border border-[#23232a] text-[#d4d4d8] text-[11px] flex-1">
-                            {step}
-                          </span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
-
-                <div>
-                  <span className="text-[10px] font-mono uppercase tracking-wider text-[#71717a] block mb-2">
-                    TECHNOLOGY STACK
-                  </span>
-                  <div className="flex flex-wrap gap-1.5">
-                    {flagship.techStack.map((tag) => (
-                      <span
-                        key={tag}
-                        className="bg-[#111116] text-[#a1a1aa] font-mono text-[10px] px-2.5 py-1 rounded-lg border border-[#23232a]"
-                      >
-                        #{tag}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="pt-4 border-t border-[#1f1f26] flex flex-wrap items-center gap-3">
-                  {flagship.demoUrl && (
-                    <motion.a
-                      whileHover={{ scale: 1.03, y: -2 }}
-                      whileTap={{ scale: 0.97 }}
-                      href={flagship.demoUrl}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="bg-white hover:bg-[#e4e4e7] text-black font-semibold text-xs px-5 py-2.5 rounded-xl transition-all flex items-center gap-1.5 font-mono uppercase tracking-wider cursor-pointer shadow-lg"
-                    >
-                      <span>Live demo</span>
-                      <ArrowUpRight className="w-3.5 h-3.5" />
-                    </motion.a>
-                  )}
-                  {flagship.githubUrl && (
-                    <motion.a
-                      whileHover={{ scale: 1.03, y: -2 }}
-                      whileTap={{ scale: 0.97 }}
-                      href={flagship.githubUrl}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="bg-[#111116] hover:bg-[#1a1a22] text-white border border-[#23232a] hover:border-[#ff4d6d]/50 text-xs font-medium px-4 py-2.5 rounded-xl transition-all flex items-center gap-2 font-mono"
-                    >
-                      <Github className="w-4 h-4" />
-                      <span>GitHub Repository ↗</span>
-                    </motion.a>
-                  )}
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        )}
-
-        {flagship && secondary.length > 0 && (
-          <div className="flex items-center gap-3 my-10">
-            <div className="h-px bg-gradient-to-r from-transparent via-[#2a2a35] to-transparent flex-1" />
-            <span className="font-mono text-[11px] uppercase tracking-widest text-[#71717a] px-3.5 py-1 bg-[#0c0c10] border border-[#1f1f26] rounded-full flex items-center gap-2">
-              <Layers className="w-3.5 h-3.5 text-[#ff4d6d]" />
-              <span>ENGINEERING REPOSITORIES &amp; AGENT SYSTEMS ({secondary.length})</span>
-            </span>
-            <div className="h-px bg-gradient-to-r from-transparent via-[#2a2a35] to-transparent flex-1" />
-          </div>
-        )}
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
-          <AnimatePresence mode="popLayout">
-            {secondary.map((project, idx) => (
-              <motion.article
-                key={project.id}
-                layout
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                whileHover={{ y: -5, borderColor: "rgba(255, 77, 109, 0.6)" }}
-                transition={{ duration: 0.3, delay: idx * 0.05 }}
-                className="bg-[#07070a] border border-[#23232a] rounded-2xl p-6 flex flex-col justify-between shadow-xl transition-colors duration-300 hover:bg-[#0c0c10] group"
-              >
-                <div>
-                  <div className="flex items-center justify-between font-mono text-xs mb-3 gap-2">
-                    <span className="px-2.5 py-1 bg-[#111116] border border-[#23232a] rounded-lg text-[#38bdf8] text-[10px]">
-                      {project.category}
-                    </span>
-                    <span className={`text-[10px] font-mono px-2 py-0.5 rounded border ${statusClasses(project.statusType)}`}>
-                      {project.status}
-                    </span>
-                  </div>
-                  <h4 className="text-lg font-bold text-white mb-1 font-mono group-hover:text-[#ff4d6d] transition-colors">
-                    {project.title}
-                  </h4>
-                  <p className="text-[#a1a1aa] font-mono text-[11px] mb-3">{project.subtitle}</p>
-                  <p className="text-[#8e8e99] text-xs leading-relaxed mb-4">{project.description}</p>
-                  {project.highlights[0] && (
-                    <div className="mb-4 p-3 rounded-xl bg-[#0b0b0f] border border-[#1f1f26] text-[11px] font-mono text-[#d4d4d8] flex items-start gap-2">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-[#ff4d6d] shrink-0 mt-0.5" />
-                      <span className="leading-snug">{project.highlights[0]}</span>
-                    </div>
-                  )}
-                </div>
-
-                <div className="pt-3 border-t border-[#1f1f26]">
-                  <div className="flex flex-wrap gap-1.5 mb-4">
-                    {project.techStack.slice(0, 5).map((tag) => (
-                      <span
-                        key={tag}
-                        className="bg-[#111116] text-[#71717a] font-mono text-[10px] px-2 py-0.5 rounded border border-[#22222b]"
-                      >
-                        #{tag}
-                      </span>
-                    ))}
-                  </div>
-                  <div className="flex items-center justify-between pt-1">
-                    {project.githubUrl ? (
-                      <a
-                        href={project.githubUrl}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="text-xs font-mono text-[#d4d4d8] hover:text-white flex items-center gap-1.5 transition-colors bg-[#121218] hover:bg-[#1a1a24] px-3 py-1.5 rounded-lg border border-[#23232a]"
-                      >
-                        <Github className="w-3.5 h-3.5 text-[#ff4d6d]" />
-                        <span>Source Code</span>
-                      </a>
-                    ) : (
-                      <span className="text-[10px] font-mono text-[#71717a]">No dedicated repo verified here</span>
-                    )}
-                  </div>
-                </div>
-              </motion.article>
-            ))}
-          </AnimatePresence>
+function Featured({ project }: { project: Project }) {
+  return (
+    <article id={`project-${project.id}`} className="mt-14 grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-8">
+      <div className="lg:col-span-7">
+        <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
+          <h3 className="font-mono text-[32px] font-medium tracking-tight text-ink sm:text-[44px]">{project.title}</h3>
+          <StatusMark status={project.statusType} label={project.status} />
         </div>
+        <p className="mt-3 max-w-[56ch] text-[17px] leading-relaxed text-ink">{project.subtitle}</p>
+        {project.goal && <p className="mt-3 max-w-[56ch] text-[15px] leading-relaxed text-ink-2">{project.goal}</p>}
+
+        <p className="mt-8 label">Nabil&apos;s part</p>
+        <p className="mt-2 max-w-[60ch] text-[14px] leading-relaxed text-ink-2">{project.contribution}</p>
+
+        <div className="mt-8">
+          <Limitations items={project.limitations} />
+        </div>
+
+        <p className="mt-8 font-mono text-[12px] text-muted">{project.techStack.join("  ·  ")}</p>
+        <div className="mt-6">
+          <ProjectLinks project={project} />
+        </div>
+      </div>
+
+      <div className="lg:col-span-5">{project.pipelineFlow && project.pipelineFlow.length > 1 && <Pipeline steps={project.pipelineFlow} />}</div>
+    </article>
+  );
+}
+
+function Row({ project, open, onToggle }: { project: Project; open: boolean; onToggle: () => void }) {
+  const panelId = `project-panel-${project.id}`;
+  return (
+    <li id={`project-${project.id}`} className="border-b border-line">
+      <button
+        type="button"
+        onClick={onToggle}
+        aria-expanded={open}
+        aria-controls={panelId}
+        className="group grid min-h-[64px] w-full grid-cols-[1fr_auto_20px] items-center gap-4 py-4 text-left transition-colors hover:bg-raised/60 md:grid-cols-[minmax(0,4fr)_minmax(0,6fr)_160px_20px] md:gap-8"
+      >
+        <span className="font-mono text-[15px] text-ink transition-transform duration-200 group-hover:translate-x-1">
+          {project.title}
+        </span>
+        <span className="hidden text-[14px] text-ink-2 md:block">{project.subtitle}</span>
+        <StatusMark status={project.statusType} label={project.status} />
+        <ChevronDown
+          className={`h-4 w-4 text-muted transition-transform duration-200 ${open ? "rotate-180 text-ink" : ""}`}
+          aria-hidden="true"
+        />
+      </button>
+
+      {open && (
+        <div id={panelId} className="grid grid-cols-1 gap-8 pb-8 pt-2 md:grid-cols-[minmax(0,4fr)_minmax(0,6fr)_180px] md:gap-8">
+          <div className="space-y-5">
+            <p className="text-[14px] text-ink-2 md:hidden">{project.subtitle}</p>
+            <p className="font-mono text-[12px] leading-relaxed text-muted">{project.techStack.join("  ·  ")}</p>
+            <ProjectLinks project={project} />
+          </div>
+          <div className="space-y-6">
+            {project.description && (
+              <div>
+                <p className="label">Problem</p>
+                <p className="mt-2 text-[14px] leading-relaxed text-ink-2">{project.description}</p>
+              </div>
+            )}
+            {project.contribution && (
+              <div>
+                <p className="label">Nabil&apos;s part</p>
+                <p className="mt-2 text-[14px] leading-relaxed text-ink-2">{project.contribution}</p>
+              </div>
+            )}
+            {project.pipelineFlow && project.pipelineFlow.length > 1 && (
+              <div>
+                <p className="label">How it works</p>
+                <p className="mt-2 text-[14px] leading-relaxed text-ink-2">{project.pipelineFlow.join(" → ")}</p>
+              </div>
+            )}
+            <Limitations items={project.limitations} />
+          </div>
+        </div>
+      )}
+    </li>
+  );
+}
+
+const featured = projects.find((p) => p.featured);
+const rest = projects.filter((p) => !p.featured);
+
+export default function ProjectsSection() {
+  const [openId, setOpenId] = useState<string | null>(null);
+
+  // A hero link to a project row opens that row.
+  useEffect(() => {
+    const sync = () => {
+      const id = window.location.hash.replace(/^#project-/, "");
+      if (id && rest.some((p) => p.id === id)) setOpenId(id);
+    };
+    sync();
+    window.addEventListener("hashchange", sync);
+    return () => window.removeEventListener("hashchange", sync);
+  }, []);
+
+  return (
+    <section id="projects" className="section">
+      <div className="wrap">
+        <div className="grid grid-cols-1 gap-6 lg:grid-cols-12 lg:items-end">
+          <h2 className="h2 lg:col-span-7">Projects, labelled by what the evidence shows</h2>
+          <p className="text-base leading-relaxed text-ink-2 lg:col-span-5">
+            Completed, prototype, experimental or in development: each status comes from the knowledge base, with the
+            limits written down beside it.
+          </p>
+        </div>
+
+        {featured && <Featured project={featured} />}
+
+        {projectGroups.map((g) => (
+          <div key={g.key} className="mt-16">
+            <h3 className="flex items-baseline justify-between border-b border-line-strong pb-3 font-mono text-[16px] font-medium text-ink">
+              {g.title}
+              <span className="text-[12px] tabular-nums text-muted">{g.projects.length}</span>
+            </h3>
+            <ul>
+              {g.projects.map((p) => (
+                <Row key={p.id} project={p} open={openId === p.id} onToggle={() => setOpenId(openId === p.id ? null : p.id)} />
+              ))}
+            </ul>
+          </div>
+        ))}
       </div>
     </section>
   );

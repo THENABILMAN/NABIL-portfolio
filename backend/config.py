@@ -1,43 +1,50 @@
+"""Environment-driven settings for the digital twin backend."""
+
 import os
 from pathlib import Path
+
 from dotenv import load_dotenv
 
 BASE_DIR = Path(__file__).resolve().parent
 ROOT_DIR = BASE_DIR.parent
-ENV_PATH = ROOT_DIR / ".env"
-load_dotenv(dotenv_path=ENV_PATH)
+load_dotenv(dotenv_path=ROOT_DIR / ".env")
 
+# Primary: an open Hugging Face model served by vLLM. Skipped while the URL is unset.
+VLLM_BASE_URL = os.getenv("VLLM_BASE_URL", "").strip().rstrip("/")
+VLLM_API_KEY = os.getenv("VLLM_API_KEY", "")
+VLLM_MODEL = os.getenv("VLLM_MODEL") or "Qwen/Qwen3-4B-AWQ"
+
+# Fallback for when the GPU machine is unreachable.
 OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY", "")
 OPENROUTER_BASE_URL = os.getenv("OPENROUTER_BASE_URL", "https://openrouter.ai/api/v1")
-LLM_MODEL = os.getenv("LLM_MODEL", "nex-agi/nex-n2.5-mini:free")
+LLM_MODEL = os.getenv("LLM_MODEL", "cohere/north-mini-code:free")
 FALLBACK_LLM_MODELS = [
     m.strip()
     for m in os.getenv(
         "FALLBACK_LLM_MODELS",
-        "liquid/lfm-2.5-2.6b:free,inclusionai/ling-3.0-flash-vl:free,cohere/north-mini-code:free",
+        "liquid/lfm-2.5-2.6b:free,google/gemma-4-31b-it:free",
     ).split(",")
     if m.strip()
 ]
 
-PINECONE_API_KEY = os.getenv("PINECONE_API_KEY", "")
-PINECONE_INDEX_NAME = os.getenv("PINECONE_INDEX_NAME", "nabilprotfolio")
-EMBEDDING_MODEL = os.getenv("EMBEDDING_MODEL", "llama-text-embed-v2")
-EMBEDDING_DIMENSION = int(os.getenv("EMBEDDING_DIMENSION", "1024"))
+MONGODB_URI = os.getenv("MONGODB_URI", "")
+MONGODB_DB = os.getenv("MONGODB_DB", "portfolio")
+MONGODB_COLLECTION = os.getenv("MONGODB_COLLECTION", "knowledge_chunks")
+MONGODB_VECTOR_INDEX = os.getenv("MONGODB_VECTOR_INDEX", "knowledge_vector")
 
-KNOWLEDGE_DIR = ROOT_DIR / "knowledge"
-KNOWLEDGE_BASE_PATH = ROOT_DIR / "public" / "knowledgebase.md"
-LEGACY_KNOWLEDGE_BASE_PATH = ROOT_DIR / "public" / "knowledegebase.md"
+HF_TOKEN = os.getenv("HF_TOKEN", "")
+# Local dev: a text-embeddings-inference server for the same model, which needs no token.
+EMBEDDING_URL = os.getenv("EMBEDDING_URL", "").strip()
+HF_INFERENCE_URL = "https://router.huggingface.co/hf-inference"
+# Fixed here rather than in the environment: the model, its dimensions, the
+# stored vectors, and MIN_DENSE_SCORE only make sense together.
+EMBEDDING_MODEL = "sentence-transformers/all-mpnet-base-v2"
+EMBEDDING_DIMENSIONS = 768
+
+# Everything the API reads at runtime must live inside backend/: Vercel deploys
+# this directory on its own, so paths above it do not exist in production.
+KNOWLEDGE_DIR = BASE_DIR / "knowledge"
+SOURCE_NOTES_PATH = KNOWLEDGE_DIR / "source-notes.md"
+
+# Only read by ingest.py, which runs from a full checkout.
 RESUME_PDF_PATH = ROOT_DIR / "public" / "resume.pdf"
-
-HOST = os.getenv("BACKEND_HOST", "0.0.0.0")
-PORT = int(os.getenv("PORT", os.getenv("BACKEND_PORT", "8000")))
-INGEST_SECRET = os.getenv("INGEST_SECRET", "")
-
-_default_origins = [
-    "http://localhost:3000",
-    "http://127.0.0.1:3000",
-    "https://thenabilman.com",
-    "https://thenabilman.vercel.app",
-]
-_extra = os.getenv("ALLOWED_ORIGINS", "")
-ALLOWED_ORIGINS = _default_origins + [o.strip() for o in _extra.split(",") if o.strip()]

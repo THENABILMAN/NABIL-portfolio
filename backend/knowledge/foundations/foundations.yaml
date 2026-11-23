@@ -1,0 +1,114 @@
+id: foundations
+type: foundations
+name: Programming, mathematics and machine learning foundations
+status: completed
+claim_status: UNVERIFIED
+confidence: medium
+summary: >
+  Nabil reports completing self-study in programming, mathematics, classical machine learning
+  and deep learning. This is study, not professional experience, and no certificate is documented.
+areas:
+  - id: python-programming
+    name: Python programming
+    topics:
+      - Variables, data types and operators
+      - Conditions and loops
+      - Functions and recursion
+      - Lists, tuples, dictionaries and sets
+      - Classes and object-oriented programming
+      - File handling
+      - Exceptions and debugging
+      - Modules, packages and virtual environments
+      - Jupyter Notebook
+      - NumPy, Matplotlib, SciPy and Pandas
+  - id: linear-algebra
+    name: Linear algebra
+    topics:
+      - Scalars, vectors and matrices
+      - Vector addition and scalar multiplication
+      - Dot products and inner products
+      - Matrix multiplication
+      - Transpose and inverse
+      - Identity and diagonal matrices
+      - Determinants
+      - Complex numbers and complex vectors
+      - Conjugate transpose
+      - Eigenvalues and eigenvectors
+      - Orthogonal and unitary matrices
+      - Tensor products
+      - Vector spaces and basis transformations
+  - id: calculus
+    name: Calculus
+    topics:
+      - Functions and limits
+      - Derivatives
+      - Chain rule
+      - Partial derivatives
+      - Multivariable calculus
+      - Gradients
+      - Jacobians
+      - Optimization
+      - Gradient descent
+  - id: probability-statistics
+    name: Probability and statistics
+    topics:
+      - Probability distributions
+      - Conditional probability
+      - Bayes' theorem
+      - Expected value
+      - Variance and standard deviation
+      - Random variables
+      - Sampling
+      - Hypothesis testing
+      - Confidence intervals
+      - Correlation and covariance
+  - id: ml-fundamentals
+    name: Machine learning fundamentals
+    topics:
+      - Supervised and unsupervised learning
+      - Classification and regression
+      - Training, validation and testing
+      - Features and labels
+      - Overfitting and underfitting
+      - Bias-variance tradeoff
+      - Feature engineering
+      - Data preprocessing
+      - Cross-validation
+  - id: ml-algorithms
+    name: Classical ML algorithms
+    topics:
+      - Linear regression
+      - Logistic regression
+      - K-nearest neighbors
+      - Decision trees
+      - Random forest
+      - Support vector machines
+      - K-means
+      - PCA
+  - id: deep-learning
+    name: Deep learning
+    topics:
+      - Perceptrons
+      - Neural network architecture
+      - Forward propagation
+      - Activation functions
+      - Loss functions
+      - Backpropagation
+      - Gradient descent
+      - SGD and Adam optimizers
+      - Regularization
+      - Batch normalization
+      - Learning rate scheduling
+  - id: pytorch-fundamentals
+    name: PyTorch fundamentals
+    topics:
+      - Tensors and autograd
+      - Dataset and DataLoader
+      - Building neural networks
+      - Training loops
+      - Model evaluation
+      - Saving and loading models
+evidence:
+  - type: personal_statement
+    source: backend/knowledge/source-notes.md
+    description: Self-study reported by Nabil, 2026-11-24

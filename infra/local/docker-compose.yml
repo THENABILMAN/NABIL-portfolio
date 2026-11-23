@@ -1,0 +1,30 @@
+# Local stand-ins for MongoDB Atlas and Hugging Face embeddings.
+#   docker compose -f infra/local/docker-compose.yml up -d
+# No authentication, so both ports are bound to this machine only.
+name: portfolio-local
+services:
+  mongo:
+    image: mongodb/mongodb-atlas-local:8.0
+    hostname: portfolio-mongo
+    ports:
+      - "127.0.0.1:27019:27017"
+    volumes:
+      - mongo-data:/data/db
+      - mongo-config:/data/configdb
+      - mongot-data:/data/mongot
+    mem_limit: 2500m
+
+  embeddings:
+    image: ghcr.io/huggingface/text-embeddings-inference:cpu-1.8.3
+    command: --model-id sentence-transformers/all-mpnet-base-v2 --max-client-batch-size 32
+    ports:
+      - "127.0.0.1:8002:80"
+    volumes:
+      - embedding-cache:/data
+    mem_limit: 1500m
+
+volumes:
+  mongo-data:
+  mongo-config:
+  mongot-data:
+  embedding-cache:

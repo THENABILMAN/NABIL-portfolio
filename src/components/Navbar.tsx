@@ -1,126 +1,104 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Cpu, Menu, X, Send } from "lucide-react";
-import { resumeData } from "@/data/resumeData";
+import { useEffect, useState } from "react";
+import { Menu, X } from "lucide-react";
+import { personalInfo } from "@/lib/canonical";
+
+const NAV_LINKS = [
+  { name: "About", href: "#about" },
+  { name: "Experience", href: "#experience" },
+  { name: "Skills", href: "#skills" },
+  { name: "Projects", href: "#projects" },
+  { name: "Foundations", href: "#foundations" },
+  { name: "Agent", href: "#agent" },
+  { name: "Contact", href: "#contact" },
+];
 
 export default function Navbar() {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const name = resumeData.personalInfo.name;
+  const [scrolled, setScrolled] = useState(false);
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      window.history.scrollRestoration = "manual";
-      window.scrollTo({ top: 0, left: 0, behavior: "instant" as ScrollBehavior });
-    }
-
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const navLinks = [
-    { name: "CLI TERMINAL", href: "#terminal" },
-    { name: "EXPERIENCE", href: "#experience" },
-    { name: "PROJECTS", href: "#projects" },
-    { name: "KNOWLEDGE GRAPH", href: "#skills" },
-    { name: "CONTACT", href: "#contact" },
-  ];
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
+    document.addEventListener("keydown", onKey);
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.body.style.overflow = "";
+    };
+  }, [open]);
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? "bg-black/90 py-3.5 border-b border-white/10 backdrop-blur-xl shadow-2xl" : "bg-transparent py-5"
+      className={`fixed inset-x-0 top-0 z-50 border-b transition-colors duration-200 ${
+        scrolled || open ? "border-line bg-black/90 backdrop-blur-md" : "border-transparent bg-transparent"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-4">
-        <a href="#main-content" className="flex items-center gap-2.5 group min-w-0">
-          <div className="w-9 h-9 rounded-full bg-zinc-900 border border-zinc-700 flex items-center justify-center transition-all duration-300 ease-out group-hover:border-zinc-500 shrink-0">
-            <Cpu className="w-4 h-4 text-white transition-transform duration-300 ease-out group-hover:scale-110" />
-          </div>
-          <div className="flex flex-col min-w-0">
-            <span className="font-mono font-normal tracking-wider text-sm sm:text-base text-white flex items-center gap-1.5 truncate">
-              {name}
-              <span className="inline-block w-1.5 h-1.5 rounded-full bg-white animate-pulse shrink-0" />
-            </span>
-            <span className="font-mono text-[10px] text-[#9a9a9a] uppercase tracking-widest truncate">
-              AI Engineer
-            </span>
-          </div>
+      <div className="wrap flex h-16 items-center justify-between gap-6">
+        <a
+          href="#main-content"
+          className="font-mono text-[14px] text-ink"
+          aria-label={`${personalInfo.name}, back to top`}
+        >
+          <span className="text-crimson">~/</span>nabil
         </a>
 
-        <nav className="hidden md:flex items-center gap-1 lg:gap-2 bg-black/60 border border-white/10 rounded-full px-2 lg:px-4 py-1.5 backdrop-blur-md" aria-label="Primary">
-          {navLinks.map((link) => (
+        <nav aria-label="Primary" className="hidden items-center gap-7 lg:flex">
+          {NAV_LINKS.map((link) => (
+            <a key={link.href} href={link.href} className="link font-mono text-[13px] text-ink-2 hover:text-ink">
+              {link.name}
+            </a>
+          ))}
+          <a href={`mailto:${personalInfo.email}`} className="btn-primary min-h-[36px] px-4 text-[12px]">
+            Email Nabil
+          </a>
+        </nav>
+
+        <button
+          type="button"
+          onClick={() => setOpen((v) => !v)}
+          className="-mr-2 inline-flex h-11 w-11 items-center justify-center text-ink lg:hidden"
+          aria-label={open ? "Close menu" : "Open menu"}
+          aria-expanded={open}
+          aria-controls="mobile-nav"
+        >
+          {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+        </button>
+      </div>
+
+      {open && (
+        <nav
+          id="mobile-nav"
+          aria-label="Primary"
+          className="fixed inset-x-0 bottom-0 top-16 flex flex-col overflow-y-auto border-t border-line bg-black px-4 pb-8 pt-6 lg:hidden"
+        >
+          {NAV_LINKS.map((link) => (
             <a
-              key={link.name}
+              key={link.href}
               href={link.href}
-              className="px-2 lg:px-3.5 py-1 text-[10px] lg:text-xs font-semibold tracking-wider text-[#9a9a9a] hover:text-white rounded-full transition-all whitespace-nowrap"
+              onClick={() => setOpen(false)}
+              className="flex min-h-[56px] items-center border-b border-line font-mono text-[22px] text-ink"
             >
               {link.name}
             </a>
           ))}
-        </nav>
-
-        <div className="hidden md:flex items-center gap-3 shrink-0">
           <a
-            href="#contact"
-            className="inline-flex items-center gap-2 rounded-full bg-white px-4 lg:px-5 py-2.5 text-xs font-semibold uppercase tracking-wider text-black transition-all duration-300 ease-out hover:bg-zinc-200"
+            href={`mailto:${personalInfo.email}`}
+            onClick={() => setOpen(false)}
+            className="btn-primary mt-auto w-full"
           >
-            <span>Let&apos;s Connect</span>
-            <Send className="w-3.5 h-3.5 text-black" />
+            Email Nabil
           </a>
-        </div>
-
-        <button
-          type="button"
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="md:hidden p-2 rounded-lg bg-black border border-white/10 text-[#9a9a9a] hover:text-white"
-          aria-label="Toggle navigation menu"
-          aria-expanded={mobileMenuOpen}
-          aria-controls="mobile-nav"
-        >
-          {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-        </button>
-      </div>
-
-      <AnimatePresence>
-        {mobileMenuOpen && (
-          <motion.div
-            id="mobile-nav"
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-black/95 border-b border-white/10 backdrop-blur-xl px-4 py-6 overflow-hidden"
-          >
-            <div className="flex flex-col gap-3">
-              {navLinks.map((link) => (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="px-4 py-2.5 rounded-lg text-xs font-mono tracking-wider text-[#9a9a9a] hover:text-white hover:bg-white/5 transition-all"
-                >
-                  {link.name}
-                </a>
-              ))}
-              <div className="pt-3 border-t border-white/10 flex flex-col gap-2">
-                <a
-                  href="#contact"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="inline-flex items-center justify-center rounded-full bg-white px-5 py-3 text-center text-xs font-semibold uppercase tracking-wider text-black transition-all duration-300 ease-out hover:bg-zinc-200"
-                >
-                  Get in Touch
-                </a>
-              </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+        </nav>
+      )}
     </header>
   );
 }

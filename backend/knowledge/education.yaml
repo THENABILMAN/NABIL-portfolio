@@ -1,0 +1,29 @@
+id: nsu-cse
+type: education
+institution: North South University
+degree: BSc in Computer Science & Engineering
+status: undergraduate
+period: 2024 – Present
+location: Dhaka, Bangladesh
+claim_status: VERIFIED
+confidence: high
+notes: Current undergraduate (2024 – Present), per the resume and source notes.
+highlights:
+  - Coursework and interests in AI, ML, data structures, and algorithms
+  - Practical projects alongside the degree (personal statement)
+academic_interests:
+  - Artificial Intelligence
+  - Machine Learning
+  - NLP
+  - LLMs and transformers
+  - RAG and agents
+  - Backend engineering
+  - C++ and algorithms
+  - Quantum computing (aspirational graduate interest)
+evidence:
+  - type: resume
+    source: public/resume.pdf
+    description: Education listed on resume
+  - type: personal_statement
+    source: backend/knowledge/source-notes.md
+    description: North South University undergraduate CSE

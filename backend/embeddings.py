@@ -1,65 +1,53 @@
+"""Hugging Face embeddings (hosted, or a local server via EMBEDDING_URL), used for both indexing and search."""
+
 import time
-from typing import List
-from pinecone import Pinecone
+from typing import List, Optional
+
 import httpx
-from backend import config
 
-class PineconeEmbeddings:
-    """
-    Pinecone Inference Embeddings client using llama-text-embed-v2 (1024 dimensions).
-    Supports passage embedding for indexing and query embedding for search.
-    """
-    def __init__(self, api_key: str = None, model: str = None):
-        self.api_key = api_key or config.PINECONE_API_KEY
+import config
+
+MAX_ATTEMPTS = 3
+TIMEOUT_SECONDS = 8.0
+RETRYABLE = {429, 500, 502, 503, 504}
+
+
+class HuggingFaceEmbeddings:
+    def __init__(self, token: Optional[str] = None, model: Optional[str] = None):
         self.model = model or config.EMBEDDING_MODEL
-        self.pc = Pinecone(api_key=self.api_key)
+        self.token = token or config.HF_TOKEN
+        self.url = config.EMBEDDING_URL or f"{config.HF_INFERENCE_URL}/models/{self.model}/pipeline/feature-extraction"
 
-    def embed_documents(self, texts: List[str], batch_size: int = 32) -> List[List[float]]:
-        """Embed a list of document passages."""
+    def _embed(self, inputs: List[str], attempts: int) -> List[List[float]]:
+        for attempt in range(attempts):
+            last = attempt == attempts - 1
+            try:
+                res = httpx.post(
+                    self.url,
+                    headers={"Authorization": f"Bearer {self.token}"} if self.token else {},
+                    json={"inputs": inputs, "truncate": True},
+                    timeout=TIMEOUT_SECONDS,
+                )
+            except httpx.TransportError:
+                if last:
+                    raise
+            else:
+                if last or res.status_code not in RETRYABLE:
+                    res.raise_for_status()
+                    vectors = res.json()
+                    if len(vectors) != len(inputs) or any(len(v) != config.EMBEDDING_DIMENSIONS for v in vectors):
+                        raise ValueError(f"{self.model} did not return {config.EMBEDDING_DIMENSIONS}-dimension vectors")
+                    return vectors
+            time.sleep(1 + attempt)
+        raise RuntimeError("unreachable")
+
+    def embed_documents(self, texts: List[str], batch_size: int = 16) -> List[List[float]]:
         embeddings: List[List[float]] = []
-        if not texts:
-            return embeddings
-
         for i in range(0, len(texts), batch_size):
-            batch = texts[i : i + batch_size]
-            # Clean empty or whitespace strings
-            batch = [t if t.strip() else " " for t in batch]
-            
-            success = False
-            for attempt in range(3):
-                try:
-                    res = self.pc.inference.embed(
-                        model=self.model,
-                        inputs=batch,
-                        parameters={"input_type": "passage", "truncate": "END"}
-                    )
-                    batch_embeds = [item["values"] for item in res]
-                    embeddings.extend(batch_embeds)
-                    success = True
-                    break
-                except Exception as e:
-                    if attempt == 2:
-                        raise e
-                    time.sleep(1 + attempt)
-            
-            if not success:
-                raise RuntimeError(f"Failed to embed batch starting at index {i}")
-
+            batch = [t if t.strip() else " " for t in texts[i : i + batch_size]]
+            embeddings.extend(self._embed(batch, MAX_ATTEMPTS))
         return embeddings
 
     def embed_query(self, text: str) -> List[float]:
-        """Embed a single query string."""
-        text = text.strip() if text.strip() else "general query"
-        for attempt in range(3):
-            try:
-                res = self.pc.inference.embed(
-                    model=self.model,
-                    inputs=[text],
-                    parameters={"input_type": "query", "truncate": "END"}
-                )
-                return res[0]["values"]
-            except Exception as e:
-                if attempt == 2:
-                    raise e
-                time.sleep(1 + attempt)
-        raise RuntimeError("Failed to embed query after retries.")
+        # One attempt: a visitor is waiting, and lexical search covers a miss.
+        return self._embed([text.strip() or "general query"], 1)[0]

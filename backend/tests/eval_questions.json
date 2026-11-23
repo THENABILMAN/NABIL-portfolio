@@ -289,5 +289,61 @@
     "expected_entity": "sft-dpo",
     "expected_claim_status": "LEARNING",
     "uncertainty_expected": false
+  },
+  {
+    "id": "qf01",
+    "question": "Does Nabil know linear algebra?",
+    "category": "foundations",
+    "expected_entity": "foundations",
+    "grounding_required": true,
+    "uncertainty_expected": false
+  },
+  {
+    "id": "qf02",
+    "question": "What machine learning has he studied?",
+    "category": "foundations",
+    "expected_entity": "foundations",
+    "grounding_required": true,
+    "uncertainty_expected": false
+  },
+  {
+    "id": "qf03",
+    "question": "Did he build linear regression from scratch?",
+    "category": "foundations",
+    "expected_entity": "linear-regression-scratch",
+    "grounding_required": true,
+    "uncertainty_expected": false
+  },
+  {
+    "id": "qf04",
+    "question": "Tell me about the neural network in NumPy",
+    "category": "foundations",
+    "expected_entity": "neural-network-numpy",
+    "grounding_required": true,
+    "uncertainty_expected": false
+  },
+  {
+    "id": "qf05",
+    "question": "Has he worked with MNIST?",
+    "category": "foundations",
+    "expected_entity": "mnist-classifier",
+    "grounding_required": true,
+    "uncertainty_expected": false
+  },
+  {
+    "id": "qf06",
+    "question": "Tell me about his SVM experiment",
+    "category": "foundations",
+    "expected_entity": "svm-experiment",
+    "grounding_required": true,
+    "uncertainty_expected": false
+  },
+  {
+    "id": "qf07",
+    "question": "Does he use NumPy?",
+    "category": "foundations",
+    "expected_entity": "numpy",
+    "grounding_required": true,
+    "uncertainty_expected": false
   }
 ]

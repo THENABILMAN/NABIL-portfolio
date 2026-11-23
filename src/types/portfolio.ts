@@ -1,15 +1,6 @@
-export type ClaimStatus =
-  | "VERIFIED"
-  | "BUILT"
-  | "EXPERIMENTAL"
-  | "LEARNING"
-  | "PLANNED"
-  | "ASPIRATIONAL"
-  | "UNVERIFIED";
-
 export type Confidence = "HIGH" | "MEDIUM" | "LOW" | "NONE";
 
-export type ProjectCategoryKey = "agentic" | "voice" | "fullstack";
+export type ProjectCategoryKey = "agentic" | "voice" | "fullstack" | "vision" | "foundations";
 
 export interface TwinSource {
   source_id?: string;
@@ -53,9 +44,7 @@ export interface Project {
   id: string;
   title: string;
   subtitle: string;
-  period: string;
   description: string;
-  detailedDescription: string;
   category: string;
   categoryKey: ProjectCategoryKey;
   status: string;
@@ -65,8 +54,11 @@ export interface Project {
   githubUrl?: string;
   demoUrl?: string;
   highlights: string[];
-  architecture?: string[];
   pipelineFlow?: string[];
+  goal: string;
+  contribution: string;
+  limitations: string[];
+  results: string;
 }
 
 export interface Experience {
@@ -80,6 +72,7 @@ export interface Experience {
   summary: string;
   bullets: string[];
   skillsUsed: string[];
+  lessons: string[];
 }
 
 export interface Education {
@@ -91,9 +84,15 @@ export interface Education {
 }
 
 export interface SkillItem {
+  id: string;
   name: string;
   level: string;
   tag: string;
+  group: string;
+  /** Names of the projects or roles the knowledge base cites as evidence. */
+  usedIn: string[];
+  /** Local logo under /icons, when one exists. */
+  icon?: { src: string; ink?: boolean };
 }
 
 export interface SkillCategory {

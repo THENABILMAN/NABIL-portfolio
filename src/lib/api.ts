@@ -103,12 +103,12 @@ export async function streamDigitalTwin(
       handlers.onMeta?.({ grounded, confidence, entity, claims, sources, model });
     }
     if (type === "sources") {
-      sources = grounded || Array.isArray(payload.sources) ? asSources(payload.sources) : [];
-      if (!grounded) sources = [];
+      sources = grounded ? asSources(payload.sources) : [];
       handlers.onMeta?.({ grounded, confidence, entity, claims, sources, model });
     }
     if (type === "model" && typeof payload.model === "string") {
       model = payload.model;
+      handlers.onMeta?.({ grounded, confidence, entity, claims, sources, model });
     }
     if (type === "token" && typeof payload.token === "string") {
       answer += payload.token;
@@ -144,15 +144,11 @@ export async function streamDigitalTwin(
     }
   }
 
-  if (!grounded) {
-    sources = [];
-  }
-
   return {
     answer: answer.trim() || EMPTY.answer,
     grounded,
     confidence,
-    sources: grounded ? sources : [],
+    sources,
     claims,
     entity,
     model,
@@ -164,19 +160,16 @@ export async function queryDigitalTwin(
   history: ChatTurn[],
   handlers: TwinStreamHandlers = {}
 ): Promise<TwinResponse> {
+  // The stream endpoint takes no history, so follow-ups use the JSON route.
   if (history.length === 0) {
     try {
       return await streamDigitalTwin(message, handlers);
     } catch {
-      const result = await askDigitalTwin(message, history);
-      handlers.onMeta?.(result);
-      handlers.onToken?.(result.answer);
-      return result;
+      // Fall through. The caller replaces any partial text with this result.
     }
   }
 
   const result = await askDigitalTwin(message, history);
   handlers.onMeta?.(result);
-  handlers.onToken?.(result.answer);
   return result;
 }

@@ -1,0 +1,29 @@
+id: neural-network-numpy
+name: Neural Network in NumPy
+type: project
+category: foundations
+status: completed
+claim_status: BUILT
+confidence: medium
+one_line: A neural network built with NumPy.
+problem: Learning project from Nabil's machine learning foundations study.
+goal: Understand how a neural network works underneath the framework.
+nabil_contribution: Built by Nabil as a personal learning project (personal statement).
+architecture: Not documented
+technologies:
+  - Python
+  - NumPy
+data_flow: Not documented
+decisions: Not documented
+challenges: Not documented
+solutions: Not documented
+results: Not documented
+benchmarks: []
+limitations: Learning project. No public repository or measured results are documented.
+future_improvements: Not documented
+github: null
+demo: null
+evidence:
+  - type: personal_statement
+    source: backend/knowledge/source-notes.md
+    description: Built during foundations study, reported by Nabil 2026-11-24

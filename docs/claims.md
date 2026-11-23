@@ -12,7 +12,7 @@ Evidence priority (strongest first):
 6. Personal statement (`source-notes.md`)
 7. Aspirational material
 
-Confidence (`HIGH` / `MEDIUM` / `LOW` / `NONE`) is **not** a Pinecone similarity score.
+Confidence (`HIGH` / `MEDIUM` / `LOW` / `NONE`) is **not** a vector similarity score.
 
 Notable downgrades vs older site copy:
 

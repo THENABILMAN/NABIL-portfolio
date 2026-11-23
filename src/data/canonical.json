@@ -11,55 +11,10 @@
     "linkedin": "https://www.linkedin.com/in/mohammadalinabil/",
     "github": "https://github.com/THENABILMAN",
     "instagram": "https://www.instagram.com/thenabilman/",
-    "booking_url": "https://calendly.com/thenabilman",
     "availability": "Open to AI engineering opportunities",
     "headline": "AI Engineer focused on RAG systems, LLM-powered automation, and Python backends",
     "summary": "Computer Science undergraduate at North South University. Former AI Engineer Intern on the GenAI team at The Data Island. Builds LLM-powered automation, RAG systems, structured data workflows, FastAPI backends, and experimental real-time voice agents.\n",
-    "positioning": "An AI engineer who wants to understand systems underneath libraries, not only call APIs. Documented work includes internship automation pipelines, personal RAG/agent/voice projects, and this evidence-grounded portfolio digital twin.\n",
     "agent_identity": "I'm Nabil's portfolio AI agent. I represent his documented engineering work, experience, projects, skills, and technical interests.\n",
-    "not_identity": "I am not Mohammad Ali Nabil.",
-    "hardware": {
-      "machine": "Acer Predator Helios Neo 16",
-      "gpu": "RTX 4050 6 GB VRAM",
-      "cpu": "Intel i7 13th-generation HX",
-      "ram": "16 GB",
-      "storage": "1 TB SSD",
-      "evidence": [
-        {
-          "type": "personal_statement",
-          "source": "knowledge/source-notes.md",
-          "description": "Hardware listed in personal portfolio notes"
-        }
-      ]
-    },
-    "leadership": [
-      {
-        "name": "TechFest 2025 FC25 tournament",
-        "role": "Event leadership / organization (NSU)",
-        "notes": "Portfolio notes mention ~30+ volunteers, 256 players, 115+ institutions, 25,000+ prize pool. Figures are personal statements, not independently audited in this repository."
-      }
-    ],
-    "tutoring": {
-      "duration": "around 2 years",
-      "methodology": [
-        "Diagnostic",
-        "Concept",
-        "Example",
-        "Guided practice",
-        "Independent practice",
-        "Hints",
-        "Exam practice",
-        "Quiz / homework"
-      ],
-      "status": "UNVERIFIED",
-      "evidence": [
-        {
-          "type": "personal_statement",
-          "source": "knowledge/source-notes.md",
-          "description": "Self-reported tutoring experience"
-        }
-      ]
-    },
     "links": {
       "resume": "/resume.pdf"
     }
@@ -70,11 +25,11 @@
     "institution": "North South University",
     "degree": "BSc in Computer Science & Engineering",
     "status": "undergraduate",
-    "period": "Not independently dated in this repository",
+    "period": "2024 – Present",
     "location": "Dhaka, Bangladesh",
     "claim_status": "VERIFIED",
     "confidence": "high",
-    "notes": "Source notes describe Nabil as a current undergraduate. Resume copy previously said \"Graduated / Undergraduate\". Canonical status is undergraduate unless Nabil confirms graduation.\n",
+    "notes": "Current undergraduate (2024 – Present), per the resume and source notes.",
     "highlights": [
       "Coursework and interests in AI, ML, data structures, and algorithms",
       "Practical projects alongside the degree (personal statement)"
@@ -97,7 +52,7 @@
       },
       {
         "type": "personal_statement",
-        "source": "knowledge/source-notes.md",
+        "source": "backend/knowledge/source-notes.md",
         "description": "North South University undergraduate CSE"
       }
     ]
@@ -146,7 +101,7 @@
         },
         {
           "type": "personal_statement",
-          "source": "knowledge/source-notes.md",
+          "source": "backend/knowledge/source-notes.md",
           "description": "GenAI intern responsibilities"
         }
       ],
@@ -192,7 +147,7 @@
       "evidence": [
         {
           "type": "portfolio",
-          "source": "src/data/resumeData.ts",
+          "source": "backend/knowledge/source-notes.md",
           "description": "Project description in portfolio dataset"
         }
       ]
@@ -239,7 +194,7 @@
         },
         {
           "type": "personal_statement",
-          "source": "knowledge/source-notes.md",
+          "source": "backend/knowledge/source-notes.md",
           "description": "Bangla voice experiments and informal Whisper timing"
         }
       ]
@@ -283,7 +238,8 @@
         "Canonical status is active_development with a listed demo, not audited production."
       ],
       "future_improvements": "Not documented",
-      "github": "https://github.com/thenabilman/fitman",
+      "github": null,
+      "github_unverified_url": "https://github.com/thenabilman/fitman",
       "github_verified_in_this_repo": false,
       "demo": "https://fitmanver.vercel.app/",
       "evidence": [
@@ -299,11 +255,45 @@
         },
         {
           "type": "personal_statement",
-          "source": "knowledge/source-notes.md",
+          "source": "backend/knowledge/source-notes.md",
           "description": "Original notes describe FITMAN as a larger planned project"
         }
       ],
       "conflict_resolution": "Source notes say planned; site copy said Active Production. Without source in this repo, status is active_development. Do not call FITMAN production. Do not cite <300ms Groq latency as a verified benchmark.\n"
+    },
+    {
+      "id": "linear-regression-scratch",
+      "name": "Linear Regression from Scratch",
+      "type": "project",
+      "category": "foundations",
+      "status": "completed",
+      "claim_status": "BUILT",
+      "confidence": "medium",
+      "one_line": "Linear regression implemented from scratch.",
+      "problem": "Learning project from Nabil's machine learning foundations study.",
+      "goal": "Understand prediction and optimization by implementing the algorithm.",
+      "nabil_contribution": "Built by Nabil as a personal learning project (personal statement).",
+      "architecture": "Not documented",
+      "technologies": [
+        "Python"
+      ],
+      "data_flow": "Not documented",
+      "decisions": "Not documented",
+      "challenges": "Not documented",
+      "solutions": "Not documented",
+      "results": "Not documented",
+      "benchmarks": [],
+      "limitations": "Learning project. No public repository or measured results are documented.",
+      "future_improvements": "Not documented",
+      "github": null,
+      "demo": null,
+      "evidence": [
+        {
+          "type": "personal_statement",
+          "source": "backend/knowledge/source-notes.md",
+          "description": "Built during foundations study, reported by Nabil 2026-11-24"
+        }
+      ]
     },
     {
       "id": "livekit-mcp-assistant",
@@ -343,13 +333,151 @@
       "evidence": [
         {
           "type": "personal_statement",
-          "source": "knowledge/source-notes.md",
+          "source": "backend/knowledge/source-notes.md",
           "description": "LiveKit MCP assistant stack and ~20 hour effort note"
         },
         {
           "type": "portfolio",
           "source": "src/components/projects/ProjectsSection.tsx",
           "description": "Prototype project card"
+        }
+      ]
+    },
+    {
+      "id": "logistic-regression-scratch",
+      "name": "Logistic Regression from Scratch",
+      "type": "project",
+      "category": "foundations",
+      "status": "completed",
+      "claim_status": "BUILT",
+      "confidence": "medium",
+      "one_line": "Logistic regression implemented from scratch.",
+      "problem": "Learning project from Nabil's machine learning foundations study.",
+      "goal": "Understand classification by implementing the algorithm.",
+      "nabil_contribution": "Built by Nabil as a personal learning project (personal statement).",
+      "architecture": "Not documented",
+      "technologies": [
+        "Python"
+      ],
+      "data_flow": "Not documented",
+      "decisions": "Not documented",
+      "challenges": "Not documented",
+      "solutions": "Not documented",
+      "results": "Not documented",
+      "benchmarks": [],
+      "limitations": "Learning project. No public repository or measured results are documented.",
+      "future_improvements": "Not documented",
+      "github": null,
+      "demo": null,
+      "evidence": [
+        {
+          "type": "personal_statement",
+          "source": "backend/knowledge/source-notes.md",
+          "description": "Built during foundations study, reported by Nabil 2026-11-24"
+        }
+      ]
+    },
+    {
+      "id": "mnist-classifier",
+      "name": "MNIST Image Classification",
+      "type": "project",
+      "category": "foundations",
+      "status": "completed",
+      "claim_status": "BUILT",
+      "confidence": "medium",
+      "one_line": "Image classification on the MNIST dataset.",
+      "problem": "Learning project from Nabil's machine learning foundations study.",
+      "goal": "Classify MNIST images.",
+      "nabil_contribution": "Built by Nabil as a personal learning project (personal statement).",
+      "architecture": "Not documented",
+      "technologies": [
+        "Python"
+      ],
+      "data_flow": "Not documented",
+      "decisions": "Not documented",
+      "challenges": "Not documented",
+      "solutions": "Not documented",
+      "results": "Not documented",
+      "benchmarks": [],
+      "limitations": "Learning project. No public repository or measured results are documented.",
+      "future_improvements": "Not documented",
+      "github": null,
+      "demo": null,
+      "evidence": [
+        {
+          "type": "personal_statement",
+          "source": "backend/knowledge/source-notes.md",
+          "description": "Built during foundations study, reported by Nabil 2026-11-24"
+        }
+      ]
+    },
+    {
+      "id": "neural-network-numpy",
+      "name": "Neural Network in NumPy",
+      "type": "project",
+      "category": "foundations",
+      "status": "completed",
+      "claim_status": "BUILT",
+      "confidence": "medium",
+      "one_line": "A neural network built with NumPy.",
+      "problem": "Learning project from Nabil's machine learning foundations study.",
+      "goal": "Understand how a neural network works underneath the framework.",
+      "nabil_contribution": "Built by Nabil as a personal learning project (personal statement).",
+      "architecture": "Not documented",
+      "technologies": [
+        "Python",
+        "NumPy"
+      ],
+      "data_flow": "Not documented",
+      "decisions": "Not documented",
+      "challenges": "Not documented",
+      "solutions": "Not documented",
+      "results": "Not documented",
+      "benchmarks": [],
+      "limitations": "Learning project. No public repository or measured results are documented.",
+      "future_improvements": "Not documented",
+      "github": null,
+      "demo": null,
+      "evidence": [
+        {
+          "type": "personal_statement",
+          "source": "backend/knowledge/source-notes.md",
+          "description": "Built during foundations study, reported by Nabil 2026-11-24"
+        }
+      ]
+    },
+    {
+      "id": "neural-network-pytorch",
+      "name": "Neural Network in PyTorch",
+      "type": "project",
+      "category": "foundations",
+      "status": "completed",
+      "claim_status": "BUILT",
+      "confidence": "medium",
+      "one_line": "A neural network built with PyTorch.",
+      "problem": "Learning project from Nabil's machine learning foundations study.",
+      "goal": "Learn to build and train a neural network in PyTorch.",
+      "nabil_contribution": "Built by Nabil as a personal learning project (personal statement).",
+      "architecture": "Not documented",
+      "technologies": [
+        "Python",
+        "PyTorch"
+      ],
+      "data_flow": "Not documented",
+      "decisions": "Not documented",
+      "challenges": "Not documented",
+      "solutions": "Not documented",
+      "results": "Not documented",
+      "benchmarks": [],
+      "limitations": "Learning project. No public repository or measured results are documented.",
+      "future_improvements": "Not documented",
+      "github": null,
+      "demo": null,
+      "evidence": [
+        {
+          "type": "personal_statement",
+          "source": "backend/knowledge/source-notes.md",
+          "description": "Built during foundations study, reported by Nabil 2026-11-24"
         }
       ]
     },
@@ -361,10 +489,10 @@
       "claim_status": "BUILT",
       "confidence": "high",
       "one_line": "This repository's evidence-grounded RAG agent over structured portfolio knowledge.",
-      "problem": "Visitors need accurate answers about Nabil without marketing hallucination.",
+      "problem": "Visitors need accurate answers about Nabil without marketing hype or hallucination.",
       "goal": "Canonical knowledge → hybrid retrieval → claim-aware grounded generation.",
       "nabil_contribution": "Designed and implemented the Next.js portfolio, FastAPI RAG service, Pinecone indexing, and digital-twin policy in this repository.",
-      "architecture": "Visitor → Next.js → FastAPI → query classification → entity resolution → canonical knowledge + Pinecone dense retrieval + lexical overlap → rerank → evidence validation → LLM (OpenRouter) → answer + confidence + sources + claims.\n",
+      "architecture": "Visitor → Next.js → FastAPI → query classification → entity resolution → canonical knowledge + Pinecone dense retrieval + lexical overlap → merge → LLM (OpenRouter) only when evidence exists → answer + confidence + sources + claims.\n",
       "technologies": [
         "Next.js",
         "TypeScript",
@@ -374,14 +502,14 @@
         "llama-text-embed-v2",
         "OpenRouter"
       ],
-      "data_flow": "Query → classify/resolve → retrieve/merge → validate → generate",
+      "data_flow": "Query → classify/resolve → retrieve/merge → generate",
       "decisions": [
         "Canonical YAML knowledge is the source of truth.",
         "Retrieval failure must refuse rather than use the model's latent biography.",
         "Fast path answers come from structured knowledge, not a second hardcoded resume."
       ],
       "challenges": "Duplicate marketing copy vs source notes; inflated metrics in earlier UI.",
-      "solutions": "Claim taxonomy, provenance, honest FITMAN status, ingest protection.",
+      "solutions": "Claim taxonomy, provenance, honest FITMAN status, refusal when evidence is missing.",
       "results": "Implemented in this repository. No published latency SLA.",
       "benchmarks": [],
       "limitations": "Dense retrieval depends on Pinecone being indexed with current knowledge. Lexical search works locally from YAML even if Pinecone is empty.",
@@ -437,12 +565,12 @@
       "evidence": [
         {
           "type": "personal_statement",
-          "source": "knowledge/source-notes.md",
+          "source": "backend/knowledge/source-notes.md",
           "description": "LangChain documentation RAG agent notes"
         },
         {
           "type": "portfolio",
-          "source": "src/data/resumeData.ts",
+          "source": "backend/knowledge/source-notes.md",
           "description": "RAG documentation agent project card"
         }
       ]
@@ -524,8 +652,42 @@
         },
         {
           "type": "portfolio",
-          "source": "src/data/resumeData.ts",
+          "source": "backend/knowledge/source-notes.md",
           "description": "Architecture bullets"
+        }
+      ]
+    },
+    {
+      "id": "svm-experiment",
+      "name": "Classical SVM Classification Experiment",
+      "type": "project",
+      "category": "foundations",
+      "status": "completed",
+      "claim_status": "BUILT",
+      "confidence": "medium",
+      "one_line": "A classification experiment with a classical support vector machine.",
+      "problem": "Learning project from Nabil's machine learning foundations study.",
+      "goal": "Understand kernels and margins through a classification experiment.",
+      "nabil_contribution": "Built by Nabil as a personal learning project (personal statement).",
+      "architecture": "Not documented",
+      "technologies": [
+        "Python"
+      ],
+      "data_flow": "Not documented",
+      "decisions": "Not documented",
+      "challenges": "Not documented",
+      "solutions": "Not documented",
+      "results": "Not documented",
+      "benchmarks": [],
+      "limitations": "Learning project. No public repository or measured results are documented.",
+      "future_improvements": "Not documented",
+      "github": null,
+      "demo": null,
+      "evidence": [
+        {
+          "type": "personal_statement",
+          "source": "backend/knowledge/source-notes.md",
+          "description": "Built during foundations study, reported by Nabil 2026-11-24"
         }
       ]
     },
@@ -564,7 +726,7 @@
       "evidence": [
         {
           "type": "portfolio",
-          "source": "src/data/resumeData.ts",
+          "source": "backend/knowledge/source-notes.md",
           "description": "Vision agent project description"
         }
       ]
@@ -574,6 +736,7 @@
     {
       "id": "python",
       "name": "Python",
+      "group": "Languages",
       "level": "Primary",
       "status": "BUILT",
       "context": "professional_and_personal",
@@ -587,6 +750,7 @@
     {
       "id": "fastapi",
       "name": "FastAPI",
+      "group": "Backend and data",
       "level": "Hands-on",
       "status": "BUILT",
       "context": "personal_and_portfolio",
@@ -599,6 +763,7 @@
     {
       "id": "typescript",
       "name": "TypeScript",
+      "group": "Languages",
       "level": "Hands-on",
       "status": "BUILT",
       "context": "personal",
@@ -610,6 +775,7 @@
     {
       "id": "react",
       "name": "React",
+      "group": "Frontend",
       "level": "Hands-on",
       "status": "BUILT",
       "context": "personal",
@@ -621,6 +787,7 @@
     {
       "id": "nextjs",
       "name": "Next.js",
+      "group": "Frontend",
       "level": "Hands-on",
       "status": "BUILT",
       "context": "personal",
@@ -631,6 +798,7 @@
     {
       "id": "langchain",
       "name": "LangChain",
+      "group": "LLM and agents",
       "level": "Hands-on",
       "status": "BUILT",
       "context": "personal",
@@ -643,6 +811,7 @@
     {
       "id": "langgraph",
       "name": "LangGraph",
+      "group": "LLM and agents",
       "level": "Hands-on",
       "status": "BUILT",
       "context": "personal",
@@ -654,6 +823,7 @@
     {
       "id": "rag",
       "name": "RAG",
+      "group": "LLM and agents",
       "level": "Strong",
       "status": "BUILT",
       "context": "personal",
@@ -665,6 +835,7 @@
     {
       "id": "pinecone",
       "name": "Pinecone",
+      "group": "Databases",
       "level": "Hands-on",
       "status": "BUILT",
       "context": "personal",
@@ -676,6 +847,7 @@
     {
       "id": "chroma",
       "name": "Chroma",
+      "group": "Databases",
       "level": "Working knowledge",
       "status": "BUILT",
       "context": "personal",
@@ -686,6 +858,7 @@
     {
       "id": "mcp",
       "name": "MCP",
+      "group": "LLM and agents",
       "level": "Experimental",
       "status": "EXPERIMENTAL",
       "context": "personal",
@@ -696,6 +869,7 @@
     {
       "id": "livekit",
       "name": "LiveKit",
+      "group": "Voice",
       "level": "Experimental",
       "status": "EXPERIMENTAL",
       "context": "personal",
@@ -706,6 +880,7 @@
     {
       "id": "voice-ai",
       "name": "Voice AI (STT/TTS)",
+      "group": "Voice",
       "level": "Hands-on",
       "status": "EXPERIMENTAL",
       "context": "personal",
@@ -718,6 +893,7 @@
     {
       "id": "whisper",
       "name": "Whisper STT",
+      "group": "Voice",
       "level": "Hands-on",
       "status": "BUILT",
       "context": "personal",
@@ -729,17 +905,20 @@
     {
       "id": "pytorch",
       "name": "PyTorch",
+      "group": "Machine learning",
       "level": "Working knowledge",
       "status": "LEARNING",
       "context": "academic_and_personal",
       "evidence": [
         "bangla-voice-agent",
-        "vision-ocr"
+        "vision-ocr",
+        "neural-network-pytorch"
       ]
     },
     {
       "id": "lora",
       "name": "LoRA / QLoRA / PEFT",
+      "group": "Training and inference",
       "level": "Learning",
       "status": "LEARNING",
       "context": "personal",
@@ -749,6 +928,7 @@
     {
       "id": "sft-dpo",
       "name": "SFT / DPO / pretraining",
+      "group": "Training and inference",
       "level": "Learning",
       "status": "LEARNING",
       "context": "personal",
@@ -758,6 +938,7 @@
     {
       "id": "unsloth",
       "name": "Unsloth / Hugging Face TRL",
+      "group": "Training and inference",
       "level": "Learning",
       "status": "LEARNING",
       "context": "personal",
@@ -766,6 +947,7 @@
     {
       "id": "deepspeed",
       "name": "DeepSpeed / FSDP",
+      "group": "Training and inference",
       "level": "Familiar",
       "status": "UNVERIFIED",
       "context": "personal",
@@ -775,6 +957,7 @@
     {
       "id": "vllm",
       "name": "vLLM",
+      "group": "Training and inference",
       "level": "Familiar",
       "status": "UNVERIFIED",
       "context": "personal",
@@ -783,6 +966,7 @@
     {
       "id": "quantization",
       "name": "Quantization (GGUF / AWQ / bitsandbytes)",
+      "group": "Training and inference",
       "level": "Experimental",
       "status": "EXPERIMENTAL",
       "context": "personal",
@@ -792,6 +976,7 @@
     {
       "id": "ollama",
       "name": "Ollama / local LLMs",
+      "group": "LLM and agents",
       "level": "Experimental",
       "status": "EXPERIMENTAL",
       "context": "personal",
@@ -801,6 +986,7 @@
     {
       "id": "supabase",
       "name": "Supabase / PostgreSQL",
+      "group": "Databases",
       "level": "Hands-on",
       "status": "BUILT",
       "context": "personal",
@@ -811,6 +997,7 @@
     {
       "id": "opencv",
       "name": "OpenCV / OCR",
+      "group": "Machine learning",
       "level": "Working knowledge",
       "status": "BUILT",
       "context": "personal",
@@ -821,6 +1008,7 @@
     {
       "id": "scraping",
       "name": "Web scraping (BeautifulSoup / Selenium)",
+      "group": "Backend and data",
       "level": "Hands-on",
       "status": "BUILT",
       "context": "professional",
@@ -831,6 +1019,7 @@
     {
       "id": "cpp",
       "name": "C++",
+      "group": "Languages",
       "level": "Working knowledge",
       "status": "LEARNING",
       "context": "academic",
@@ -839,6 +1028,7 @@
     {
       "id": "c",
       "name": "C",
+      "group": "Languages",
       "level": "Working knowledge",
       "status": "LEARNING",
       "context": "academic",
@@ -847,6 +1037,7 @@
     {
       "id": "java",
       "name": "Java",
+      "group": "Languages",
       "level": "Familiar",
       "status": "LEARNING",
       "context": "academic",
@@ -855,6 +1046,7 @@
     {
       "id": "docker",
       "name": "Docker",
+      "group": "Backend and data",
       "level": "Familiar",
       "status": "UNVERIFIED",
       "context": "personal",
@@ -864,6 +1056,7 @@
     {
       "id": "crewai",
       "name": "CrewAI / AutoGen",
+      "group": "LLM and agents",
       "level": "Familiar",
       "status": "UNVERIFIED",
       "context": "personal",
@@ -873,6 +1066,7 @@
     {
       "id": "groq",
       "name": "Groq",
+      "group": "LLM and agents",
       "level": "Hands-on",
       "status": "BUILT",
       "context": "personal",
@@ -880,146 +1074,199 @@
         "fitman",
         "livekit-mcp-assistant"
       ]
-    }
-  ],
-  "claims": [
-    {
-      "id": "claim-data-island-intern",
-      "claim": "Nabil was an AI Engineer Intern on the GenAI team at The Data Island (Nov 2025 – Jan 2026).",
-      "status": "VERIFIED",
-      "confidence": "high",
-      "entity_id": "data-island",
-      "evidence": [
-        "resume",
-        "personal_statement"
-      ]
     },
     {
-      "id": "claim-nsu-undergrad",
-      "claim": "Nabil is a Computer Science & Engineering undergraduate at North South University.",
-      "status": "VERIFIED",
-      "confidence": "high",
-      "entity_id": "nsu-cse",
-      "evidence": [
-        "resume",
-        "personal_statement"
-      ]
-    },
-    {
-      "id": "claim-fitman-built",
-      "claim": "Nabil built FITMAN as a full-stack fitness/nutrition app using FastAPI, React, and LangGraph.",
+      "id": "numpy",
+      "name": "NumPy",
+      "group": "Machine learning",
+      "level": "Working knowledge",
       "status": "BUILT",
-      "confidence": "medium",
-      "entity_id": "fitman",
+      "context": "personal",
       "evidence": [
-        "portfolio",
-        "deployed_demo"
+        "neural-network-numpy"
       ]
     },
     {
-      "id": "claim-fitman-production",
-      "claim": "FITMAN is a production system with verified users and SLAs.",
-      "status": "UNVERIFIED",
-      "confidence": "none",
-      "entity_id": "fitman",
-      "evidence": []
-    },
-    {
-      "id": "claim-fitman-300ms",
-      "claim": "FITMAN Groq streaming responds in under 300ms.",
-      "status": "UNVERIFIED",
-      "confidence": "none",
-      "entity_id": "fitman",
-      "evidence": []
-    },
-    {
-      "id": "claim-portfolio-rag",
-      "claim": "This portfolio implements dense Pinecone retrieval plus lexical overlap over canonical knowledge.",
-      "status": "BUILT",
-      "confidence": "high",
-      "entity_id": "portfolio-digital-twin",
-      "evidence": [
-        "project_repository"
-      ]
-    },
-    {
-      "id": "claim-hybrid-bm25-rrf",
-      "claim": "Nabil's RAG uses BM25, Reciprocal Rank Fusion, and BGE reranking in this portfolio.",
-      "status": "UNVERIFIED",
-      "confidence": "none",
-      "entity_id": "portfolio-digital-twin",
-      "evidence": []
-    },
-    {
-      "id": "claim-lora-expert",
-      "claim": "Nabil specializes in LoRA/QLoRA/PEFT fine-tuning and DPO alignment.",
+      "id": "scikit-learn",
+      "name": "Scikit-learn",
+      "group": "Machine learning",
+      "level": "Learning",
       "status": "LEARNING",
-      "confidence": "low",
-      "entity_id": "lora",
-      "evidence": []
+      "context": "personal",
+      "evidence": [],
+      "notes": "Self-study of classical ML algorithms."
     },
     {
-      "id": "claim-deepspeed",
-      "claim": "Nabil has advanced DeepSpeed/FSDP distributed training experience.",
-      "status": "UNVERIFIED",
-      "confidence": "none",
-      "entity_id": "deepspeed",
-      "evidence": []
+      "id": "pandas",
+      "name": "Pandas",
+      "group": "Machine learning",
+      "level": "Learning",
+      "status": "LEARNING",
+      "context": "personal",
+      "evidence": [],
+      "notes": "Self-study."
     },
     {
-      "id": "claim-resume-analyzer-github",
-      "claim": "Nabil has a dedicated GitHub repository for the AI Resume Analyzer.",
-      "status": "VERIFIED",
-      "confidence": "high",
-      "entity_id": "resume-analyzer",
-      "evidence": [
-        "github"
-      ]
+      "id": "scipy",
+      "name": "SciPy",
+      "group": "Machine learning",
+      "level": "Learning",
+      "status": "LEARNING",
+      "context": "personal",
+      "evidence": [],
+      "notes": "Self-study."
     },
     {
-      "id": "claim-bangla-whisper-timing",
-      "claim": "In one informal test, about 10 seconds of Bangla speech took about 8.33 seconds for Whisper.",
-      "status": "EXPERIMENTAL",
-      "confidence": "low",
-      "entity_id": "bangla-voice-agent",
-      "evidence": [
-        "personal_statement"
-      ]
-    },
-    {
-      "id": "claim-livekit-200ms",
-      "claim": "LiveKit MCP assistant achieved sub-200ms voice roundtrip.",
-      "status": "UNVERIFIED",
-      "confidence": "none",
-      "entity_id": "livekit-mcp-assistant",
-      "evidence": []
-    },
-    {
-      "id": "claim-google-internship",
-      "claim": "Nabil interned at Google.",
-      "status": "UNVERIFIED",
-      "confidence": "none",
-      "entity_id": "person-nabil",
-      "evidence": []
+      "id": "matplotlib",
+      "name": "Matplotlib",
+      "group": "Machine learning",
+      "level": "Learning",
+      "status": "LEARNING",
+      "context": "personal",
+      "evidence": [],
+      "notes": "Self-study."
     }
   ],
-  "benchmarks": [
-    {
-      "id": "bangla-whisper-informal",
-      "project": "bangla-voice-agent",
-      "metric": "whisper_wall_clock_for_clip",
-      "value": 8.33,
-      "unit": "s",
-      "input": "approximately 10 seconds of speech",
-      "environment": "Not documented",
-      "method": "Informal personal test recorded in source notes",
-      "sample_count": 1,
-      "date": "unknown",
-      "status": "EXPERIMENTAL",
-      "reproducible": false,
-      "notes": "Not a verified accuracy or production latency benchmark."
-    }
-  ],
-  "philosophy": "# Engineering philosophy\n\nNabil's documented professional identity is not \"I know how to use ChatGPT.\"\n\nIt is closer to: \"I build and understand the systems behind AI applications.\"\n\n## Learning stack he is working through\n\nPython fundamentals → backend → machine learning → neural networks → transformers → LLMs → RAG → agents → production AI systems.\n\nHe has expressed interest in implementing a Transformer from scratch after studying Attention Is All You Need.\n\n## How he wants to work\n\n- Understand generated code line by line rather than copying it.\n- Debug without blindly relying on AI.\n- Understand how files, APIs, agent state, and backends connect.\n- Strengthen Python and C++ fundamentals.\n\n## How the digital twin should speak\n\n- Professional, technically specific, concise, honest.\n- Never arrogant.\n- Never invent jobs, clients, metrics, degrees, or expertise.\n- Distinguish demonstrated work, experimentation, learning, and goals.\n",
-  "aspirations": "# Aspirations (not achievements)\n\nThese are goals. They are ASPIRATIONAL or PLANNED, not BUILT.\n\n- Become a stronger AI engineer and hardcore software developer.\n- Understand AI systems from first principles, including neural networks in NumPy and transformers from scratch.\n- Build reliable production AI systems (goal, not a claim that all current projects are production).\n- Conduct AI research.\n- Pursue graduate study, with interest in Germany and quantum computing.\n- Build AI products and technical entrepreneurship (automation, services, own products).\n- Combine engineering and research over the long term.\n\nDo not present these as completed credentials.\n"
+  "foundations": {
+    "id": "foundations",
+    "type": "foundations",
+    "name": "Programming, mathematics and machine learning foundations",
+    "status": "completed",
+    "claim_status": "UNVERIFIED",
+    "confidence": "medium",
+    "summary": "Nabil reports completing self-study in programming, mathematics, classical machine learning and deep learning. This is study, not professional experience, and no certificate is documented.\n",
+    "areas": [
+      {
+        "id": "python-programming",
+        "name": "Python programming",
+        "topics": [
+          "Variables, data types and operators",
+          "Conditions and loops",
+          "Functions and recursion",
+          "Lists, tuples, dictionaries and sets",
+          "Classes and object-oriented programming",
+          "File handling",
+          "Exceptions and debugging",
+          "Modules, packages and virtual environments",
+          "Jupyter Notebook",
+          "NumPy, Matplotlib, SciPy and Pandas"
+        ]
+      },
+      {
+        "id": "linear-algebra",
+        "name": "Linear algebra",
+        "topics": [
+          "Scalars, vectors and matrices",
+          "Vector addition and scalar multiplication",
+          "Dot products and inner products",
+          "Matrix multiplication",
+          "Transpose and inverse",
+          "Identity and diagonal matrices",
+          "Determinants",
+          "Complex numbers and complex vectors",
+          "Conjugate transpose",
+          "Eigenvalues and eigenvectors",
+          "Orthogonal and unitary matrices",
+          "Tensor products",
+          "Vector spaces and basis transformations"
+        ]
+      },
+      {
+        "id": "calculus",
+        "name": "Calculus",
+        "topics": [
+          "Functions and limits",
+          "Derivatives",
+          "Chain rule",
+          "Partial derivatives",
+          "Multivariable calculus",
+          "Gradients",
+          "Jacobians",
+          "Optimization",
+          "Gradient descent"
+        ]
+      },
+      {
+        "id": "probability-statistics",
+        "name": "Probability and statistics",
+        "topics": [
+          "Probability distributions",
+          "Conditional probability",
+          "Bayes' theorem",
+          "Expected value",
+          "Variance and standard deviation",
+          "Random variables",
+          "Sampling",
+          "Hypothesis testing",
+          "Confidence intervals",
+          "Correlation and covariance"
+        ]
+      },
+      {
+        "id": "ml-fundamentals",
+        "name": "Machine learning fundamentals",
+        "topics": [
+          "Supervised and unsupervised learning",
+          "Classification and regression",
+          "Training, validation and testing",
+          "Features and labels",
+          "Overfitting and underfitting",
+          "Bias-variance tradeoff",
+          "Feature engineering",
+          "Data preprocessing",
+          "Cross-validation"
+        ]
+      },
+      {
+        "id": "ml-algorithms",
+        "name": "Classical ML algorithms",
+        "topics": [
+          "Linear regression",
+          "Logistic regression",
+          "K-nearest neighbors",
+          "Decision trees",
+          "Random forest",
+          "Support vector machines",
+          "K-means",
+          "PCA"
+        ]
+      },
+      {
+        "id": "deep-learning",
+        "name": "Deep learning",
+        "topics": [
+          "Perceptrons",
+          "Neural network architecture",
+          "Forward propagation",
+          "Activation functions",
+          "Loss functions",
+          "Backpropagation",
+          "Gradient descent",
+          "SGD and Adam optimizers",
+          "Regularization",
+          "Batch normalization",
+          "Learning rate scheduling"
+        ]
+      },
+      {
+        "id": "pytorch-fundamentals",
+        "name": "PyTorch fundamentals",
+        "topics": [
+          "Tensors and autograd",
+          "Dataset and DataLoader",
+          "Building neural networks",
+          "Training loops",
+          "Model evaluation",
+          "Saving and loading models"
+        ]
+      }
+    ],
+    "evidence": [
+      {
+        "type": "personal_statement",
+        "source": "backend/knowledge/source-notes.md",
+        "description": "Self-study reported by Nabil, 2026-11-24"
+      }
+    ]
+  }
 }
