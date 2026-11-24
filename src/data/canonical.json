@@ -231,16 +231,17 @@
       "results": "A public demo is live. User counts and production SLAs are not documented.",
       "benchmarks": [],
       "limitations": [
-        "Not production: there are no documented users, SLAs or load tests."
+        "Not production: there are no documented users, SLAs or load tests.",
+        "LangGraph is a listed dependency, but the coach in the public repository calls LangChain with Groq directly."
       ],
       "future_improvements": "Not documented",
-      "github": null,
+      "github": "https://github.com/THENABILMAN/FITMANVER",
       "demo": "https://fitmanver.vercel.app/",
       "evidence": [
         {
-          "type": "project_repository",
-          "source": "Private repository",
-          "description": "Project repository, not public on 2026-11-25"
+          "type": "github",
+          "source": "https://github.com/THENABILMAN/FITMANVER",
+          "description": "Project repository, read 2026-11-25"
         },
         {
           "type": "resume",
@@ -253,8 +254,7 @@
           "description": "Live demo, not load-tested"
         }
       ],
-      "conflict_resolution": "Source notes say planned and older site copy said Active Production. Status is active_development. Do not call FITMAN production. Use of LangGraph and rate limiting is stated on the resume but not confirmed here. Do not cite <300ms Groq latency as a verified benchmark.",
-      "github_unverified_url": "https://github.com/THENABILMAN/FITMANVER"
+      "conflict_resolution": "Source notes say planned and older site copy said Active Production. Status is active_development. Do not call FITMAN production. Use of LangGraph and rate limiting is stated on the resume, but the public code read on 2026-11-25 does not show either in use. Do not cite <300ms Groq latency as a verified benchmark."
     },
     {
       "id": "jarvis",
@@ -869,21 +869,20 @@
         "Failures on the first 60 benchmark questions guided development, so 14/20 on the held-out set is the fairest estimate."
       ],
       "future_improvements": "Not documented",
-      "github": null,
+      "github": "https://github.com/THENABILMAN/TEXTtoSQL",
       "demo": null,
       "evidence": [
         {
-          "type": "project_repository",
-          "source": "Private repository",
-          "description": "Project repository, not public on 2026-11-25"
+          "type": "github",
+          "source": "https://github.com/THENABILMAN/TEXTtoSQL",
+          "description": "Project repository, read 2026-11-25"
         },
         {
           "type": "resume",
           "source": "public/resume.pdf",
           "description": "Project listed on resume"
         }
-      ],
-      "github_unverified_url": "https://github.com/THENABILMAN/TEXTtoSQL"
+      ]
     },
     {
       "id": "vision-ocr",

@@ -15,7 +15,7 @@
   status: BUILT
   confidence: medium
   entity_id: fitman
-  evidence: [resume, deployed_demo]
+  evidence: [github, deployed_demo]
 - id: claim-fitman-production
   claim: FITMAN is a production system with verified users and SLAs.
   status: UNVERIFIED
@@ -99,4 +99,4 @@
   status: BUILT
   confidence: high
   entity_id: texttosql
-  evidence: [resume, project_repository]
+  evidence: [github, resume]

@@ -38,13 +38,12 @@ limitations:
   area.'
 - Failures on the first 60 benchmark questions guided development, so 14/20 on the held-out set is the fairest estimate.
 future_improvements: Not documented
-github: null
+github: https://github.com/THENABILMAN/TEXTtoSQL
 demo: null
 evidence:
-- type: project_repository
-  source: Private repository
-  description: Project repository, not public on 2026-11-25
+- type: github
+  source: https://github.com/THENABILMAN/TEXTtoSQL
+  description: Project repository, read 2026-11-25
 - type: resume
   source: public/resume.pdf
   description: Project listed on resume
-github_unverified_url: https://github.com/THENABILMAN/TEXTtoSQL
