@@ -1,0 +1,54 @@
+id: medimatch-ai
+name: MediMatch AI
+type: project
+status: active_development
+claim_status: BUILT
+confidence: high
+one_line: Doctor matching and booking platform for Bangladesh.
+problem: Patients need to find a suitable verified doctor from symptoms described in their own words.
+goal: Take symptoms in English, Bangla or Banglish, show suitable doctors with live schedules, and book a time.
+nabil_contribution: Built a LangGraph assistant, vector search over doctors, transactional booking, and patient,
+  doctor and admin web portals. Emergency rules run before any model, so an alert never depends on the LLM.
+architecture: React web app → FastAPI → emergency rules → LangGraph assistant → MongoDB vector search → Supabase
+  Postgres. Postgres is the source of truth and MongoDB is only a search index.
+technologies:
+- Python
+- FastAPI
+- LangGraph
+- Ollama (Gemma)
+- MongoDB Vector Search
+- bge-m3
+- Supabase
+- PostgreSQL
+- React 19
+- TypeScript
+- Docker
+- Playwright
+data_flow: Symptoms → emergency rules → LangGraph assistant → vector search → doctors re-read from Postgres → booking
+decisions:
+- Double booking is prevented with a Postgres exclusion constraint and row locking.
+- Only approved doctors can be found or booked.
+- Every table with user data has Row-Level Security.
+challenges: Not documented
+solutions: Not documented
+results: The repository records 1,120 passing backend tests and 130 Playwright tests, 20 simultaneous booking requests
+  tested against one slot, and 48 attack attempts all blocked on the local stack. A 28-query retrieval evaluation
+  on demo data reached 96.4% Hit@3 and 38.1% Precision@3. 7,537 directory doctors were imported, with 2,846 free-text
+  specialties mapped to 28.
+benchmarks:
+- medimatch-hit3
+- medimatch-precision3
+limitations:
+- 'Not in production: the Flutter app and production deployment are still to come.'
+- Retrieval was measured on demo data with 3 specialties, where a precision near 33% is close to random choice.
+- The assistant never diagnoses or prescribes, and its output guard is not a reliable filter on unseen replies.
+future_improvements: Not documented
+github: https://github.com/THENABILMAN/MEDIMATCH-AI
+demo: null
+evidence:
+- type: github
+  source: https://github.com/THENABILMAN/MEDIMATCH-AI
+  description: Project repository, read 2026-11-25
+- type: resume
+  source: public/resume.pdf
+  description: Project listed on resume

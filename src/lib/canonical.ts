@@ -10,16 +10,24 @@ import type {
 
 type CanonicalProject = (typeof canonical.projects)[number];
 
+/** Resume order; projects not listed keep their place after these. */
+const SHOWCASE_ORDER = ["medimatch-ai", "texttosql", "fitman", "jarvis", "rag-agent"];
+const rank = (id: string) => (SHOWCASE_ORDER.indexOf(id) + 1 || SHOWCASE_ORDER.length + 1);
+
 const HIDDEN_FROM_SHOWCASE = new Set(["portfolio-digital-twin"]);
 
 const CATEGORY: Record<string, { label: string; key: ProjectCategoryKey }> = {
+  "medimatch-ai": { label: "Full-Stack & Agents", key: "fullstack" },
+  texttosql: { label: "Agentic & NLP", key: "agentic" },
+  jarvis: { label: "Voice & Real-Time", key: "voice" },
+  "livekit-vision-agent": { label: "Computer Vision", key: "vision" },
   fitman: { label: "Full-Stack & Multi-Agent", key: "fullstack" },
   "autonomous-agent-system": { label: "Agentic & RAG", key: "agentic" },
   "rag-agent": { label: "Agentic & RAG", key: "agentic" },
   "resume-analyzer": { label: "Agentic & NLP", key: "agentic" },
   "realtime-voice-agent": { label: "Voice & Real-Time", key: "voice" },
   "bangla-voice-agent": { label: "Voice & Bengali NLP", key: "voice" },
-  "livekit-mcp-assistant": { label: "Voice & Real-Time", key: "voice" },
+  "livekit-mcp-assistant": { label: "Agentic & RAG", key: "agentic" },
   "vision-ocr": { label: "Computer Vision", key: "vision" },
 };
 
@@ -76,7 +84,7 @@ function mapProject(p: CanonicalProject): Project {
     categoryKey: cat.key,
     status: st.label,
     statusType: st.type,
-    featured: p.id === "fitman",
+    featured: p.id === "medimatch-ai",
     techStack: p.technologies ?? [],
     githubUrl: optionalUrl(p.github),
     demoUrl: optionalUrl(p.demo),
@@ -96,7 +104,7 @@ function mapProject(p: CanonicalProject): Project {
       : limitations
         ? [limitations]
         : [],
-    results: asText(p.results),
+    results: asText(p.results).startsWith("Not documented") ? "" : asText(p.results),
   };
 }
 
@@ -147,7 +155,7 @@ export const experience: Experience[] = experienceRaw.map((exp) => ({
 export const projects: Project[] = canonical.projects
   .filter((p) => !HIDDEN_FROM_SHOWCASE.has(p.id))
   .map(mapProject)
-  .sort((a, b) => Number(b.featured) - Number(a.featured));
+  .sort((a, b) => rank(a.id) - rank(b.id));
 
 /** Showcase order of the project groups; an empty group is not rendered. */
 export const projectGroups = (

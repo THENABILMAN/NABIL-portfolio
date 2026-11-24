@@ -1,0 +1,50 @@
+id: texttosql
+name: TEXTtoSQL
+type: project
+status: experimental
+claim_status: BUILT
+confidence: high
+one_line: Offline AI database assistant that runs from a USB drive on a 4 GB RAM PC.
+problem: Usual text-to-SQL tools need internet, an account or powerful hardware, and often return SQL that was never
+  run.
+goal: Turn English into tested SQL with no internet, GPU or installation.
+nabil_contribution: Built the Windows app, the MariaDB sandbox, the retrieval, verification and repair loop, the
+  benchmark, and a LoRA fine-tuning experiment.
+architecture: C#/.NET WinForms app → llama.cpp running Qwen2.5-Coder 1.5B (4-bit) → private portable MariaDB.
+technologies:
+- C#
+- .NET
+- llama.cpp
+- Qwen2.5-Coder 1.5B
+- MariaDB
+- Python
+- PyTorch
+- Transformers
+- LoRA/PEFT
+data_flow: Question → schema and similar examples → model writes SQL → run in sandbox → checks → repair → SQL and
+  result
+decisions:
+- 'The rule was fixed in advance: replace the original model only if the benchmark improves.'
+challenges: Not documented
+solutions: Not documented
+results: Scored 66/80 (82.5%) on a benchmark that compares query results, including 14/20 on the held-out database.
+  The model was quantized from 3.1 GB to 986 MB. LoRA fine-tuning on 8,319 execution-checked examples lowered validation
+  loss from 0.578 to 0.123, but the benchmark tied at 66/80, so the app ships the original model.
+benchmarks:
+- texttosql-80
+- texttosql-heldout
+limitations:
+- 'Experimental project with a small model: SQL that runs can still be wrong, and complex joins are its weakest
+  area.'
+- Failures on the first 60 benchmark questions guided development, so 14/20 on the held-out set is the fairest estimate.
+future_improvements: Not documented
+github: null
+demo: null
+evidence:
+- type: project_repository
+  source: Private repository
+  description: Project repository, not public on 2026-11-25
+- type: resume
+  source: public/resume.pdf
+  description: Project listed on resume
+github_unverified_url: https://github.com/THENABILMAN/TEXTtoSQL

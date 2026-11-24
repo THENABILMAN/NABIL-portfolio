@@ -1,0 +1,34 @@
+id: livekit-vision-agent
+name: LiveKit Vision Agent
+type: project
+status: prototype
+claim_status: BUILT
+confidence: high
+one_line: Voice agent that accepts camera frames and shared images.
+problem: Voice agents cannot see what a user is talking about.
+goal: Attach the latest camera frame or an uploaded image to a spoken turn.
+nabil_contribution: Personal LiveKit agent with image upload handling, video frame buffering and speech input and
+  output.
+architecture: LiveKit room with a Groq LLM, Deepgram speech services and Silero voice activity detection.
+technologies:
+- Python
+- LiveKit Agents
+- Deepgram
+- Groq
+- Silero VAD
+data_flow: Camera or image → latest frame → chat context → LLM → spoken reply
+decisions: Not documented
+challenges: Not documented
+solutions: Not documented
+results: Not documented
+benchmarks: []
+limitations:
+- The configured model, llama-3.3-70b-versatile, is a text model, so image understanding is not evidenced.
+- No measurements are documented.
+future_improvements: Not documented
+github: https://github.com/THENABILMAN/THENABILMAN_AI_Vision_Agent
+demo: null
+evidence:
+- type: github
+  source: https://github.com/THENABILMAN/THENABILMAN_AI_Vision_Agent
+  description: Project repository, read 2026-11-25

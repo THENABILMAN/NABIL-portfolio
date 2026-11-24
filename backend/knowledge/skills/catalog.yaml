@@ -5,71 +5,71 @@ skills:
     level: Primary
     status: BUILT
     context: professional_and_personal
-    evidence: [data-island, portfolio-digital-twin, resume-analyzer, fitman]
+    evidence: [data-island, medimatch-ai, texttosql, fitman, portfolio-digital-twin]
   - id: fastapi
     name: FastAPI
     group: Backend and data
     level: Hands-on
     status: BUILT
     context: personal_and_portfolio
-    evidence: [portfolio-digital-twin, fitman, resume-analyzer]
+    evidence: [medimatch-ai, fitman, portfolio-digital-twin, autonomous-agent-system]
   - id: typescript
     name: TypeScript
     group: Languages
     level: Hands-on
     status: BUILT
     context: personal
-    evidence: [portfolio-digital-twin, fitman]
+    evidence: [medimatch-ai, fitman, portfolio-digital-twin]
   - id: react
     name: React
     group: Frontend
     level: Hands-on
     status: BUILT
     context: personal
-    evidence: [portfolio-digital-twin, fitman]
+    evidence: [medimatch-ai, fitman, portfolio-digital-twin]
   - id: nextjs
     name: Next.js
     group: Frontend
     level: Hands-on
     status: BUILT
     context: personal
-    evidence: [portfolio-digital-twin]
+    evidence: [portfolio-digital-twin, jarvis]
   - id: langchain
     name: LangChain
     group: LLM and agents
     level: Hands-on
     status: BUILT
     context: personal
-    evidence: [rag-agent, autonomous-agent-system, resume-analyzer]
+    evidence: [fitman, rag-agent, autonomous-agent-system]
   - id: langgraph
     name: LangGraph
     group: LLM and agents
     level: Hands-on
     status: BUILT
     context: personal
-    evidence: [fitman]
-    notes: Used in FITMAN per portfolio docs. This portfolio digital twin is not a LangGraph multi-agent system.
+    evidence: [medimatch-ai, autonomous-agent-system]
+    notes: Used in MediMatch AI and the AI Agent Chatbot. This portfolio digital twin is not a LangGraph multi-agent system.
   - id: rag
     name: RAG
     group: LLM and agents
     level: Strong
     status: BUILT
     context: personal
-    evidence: [portfolio-digital-twin, rag-agent]
+    evidence: [medimatch-ai, rag-agent, portfolio-digital-twin]
   - id: pinecone
     name: Pinecone
     group: Databases
     level: Hands-on
     status: BUILT
     context: personal
-    evidence: [portfolio-digital-twin, rag-agent]
+    evidence: [rag-agent, livekit-mcp-assistant]
   - id: chroma
     name: Chroma
     group: Databases
     level: Working knowledge
-    status: BUILT
+    status: UNVERIFIED
     context: personal
-    evidence: [rag-agent]
+    evidence: []
   - id: mcp
     name: MCP
     group: LLM and agents
@@ -83,36 +83,36 @@ skills:
     level: Experimental
     status: EXPERIMENTAL
     context: personal
-    evidence: [livekit-mcp-assistant]
+    evidence: [jarvis, realtime-voice-agent, livekit-vision-agent]
   - id: voice-ai
     name: Voice AI (STT/TTS)
     group: Voice
     level: Hands-on
     status: EXPERIMENTAL
     context: personal
-    evidence: [realtime-voice-agent, bangla-voice-agent, livekit-mcp-assistant]
+    evidence: [jarvis, realtime-voice-agent, bangla-voice-agent]
   - id: whisper
     name: Whisper STT
     group: Voice
     level: Hands-on
     status: BUILT
     context: personal
-    evidence: [realtime-voice-agent, bangla-voice-agent]
+    evidence: [bangla-voice-agent]
   - id: pytorch
     name: PyTorch
     group: Machine learning
     level: Working knowledge
     status: LEARNING
     context: academic_and_personal
-    evidence: [bangla-voice-agent, vision-ocr, neural-network-pytorch]
+    evidence: [texttosql, bangla-voice-agent, neural-network-pytorch]
   - id: lora
     name: LoRA / QLoRA / PEFT
     group: Training and inference
     level: Learning
     status: LEARNING
     context: personal
-    evidence: []
-    notes: Mentioned in earlier marketing copy. No fine-tuning run, dataset, or repo is evidenced here.
+    evidence: [texttosql]
+    notes: One LoRA fine-tuning experiment is documented in TEXTtoSQL. It tied on the benchmark. QLoRA is not evidenced.
   - id: sft-dpo
     name: SFT / DPO / pretraining
     group: Training and inference
@@ -149,15 +149,15 @@ skills:
     level: Experimental
     status: EXPERIMENTAL
     context: personal
-    evidence: []
-    notes: Local GGUF/Ollama experiments are documented; AWQ/bitsandbytes production serving is not.
+    evidence: [texttosql]
+    notes: TEXTtoSQL uses a 4-bit GGUF model quantized from 3.1 GB to 986 MB. AWQ/bitsandbytes production serving is not evidenced.
   - id: ollama
     name: Ollama / local LLMs
     group: LLM and agents
     level: Experimental
     status: EXPERIMENTAL
     context: personal
-    evidence: []
+    evidence: [medimatch-ai]
     notes: Local Qwen/Gemma GGUF experiments on RTX 4050 6GB.
   - id: supabase
     name: Supabase / PostgreSQL
@@ -165,7 +165,7 @@ skills:
     level: Hands-on
     status: BUILT
     context: personal
-    evidence: [fitman]
+    evidence: [medimatch-ai, fitman]
   - id: opencv
     name: OpenCV / OCR
     group: Machine learning
@@ -207,8 +207,8 @@ skills:
     level: Familiar
     status: UNVERIFIED
     context: personal
-    evidence: []
-    notes: Listed in older skill blurbs; no Docker artifacts in this repo.
+    evidence: [medimatch-ai, jarvis]
+    notes: Docker files exist in the MediMatch AI and JARVIS repositories.
   - id: crewai
     name: CrewAI / AutoGen
     group: LLM and agents
@@ -223,7 +223,7 @@ skills:
     level: Hands-on
     status: BUILT
     context: personal
-    evidence: [fitman, livekit-mcp-assistant]
+    evidence: [fitman, rag-agent, livekit-mcp-assistant]
   - id: numpy
     name: NumPy
     group: Machine learning
@@ -237,7 +237,7 @@ skills:
     level: Learning
     status: LEARNING
     context: personal
-    evidence: []
+    evidence: [resume-analyzer]
     notes: Self-study of classical ML algorithms.
   - id: pandas
     name: Pandas

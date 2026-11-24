@@ -3,57 +3,48 @@ name: FITMAN
 type: project
 status: active_development
 claim_status: BUILT
-confidence: medium
-one_line: Full-stack AI fitness and nutrition coaching platform with LangGraph agents and a FastAPI backend.
+confidence: high
+one_line: Full-stack AI fitness and nutrition coach.
 problem: Personalized workout and nutrition coaching is hard to keep consistent without structured user context.
-goal: Adaptive macros, workouts, logging, and an AI coach with persistent context.
-nabil_contribution: >
-  Portfolio materials describe Nabil as the engineer of the full-stack app (React/Vite frontend,
-  FastAPI backend, Supabase, LangGraph agent state). This repository does not contain FITMAN source,
-  so contribution claims are taken from portfolio documentation, not from a code audit.
-architecture: >
-  Client UI → FastAPI gateway → LangGraph state machine → Groq LLM → Supabase PostgreSQL.
-  Source notes also describe a CoachState TypedDict covering profile, workout, nutrition,
-  memory, and document context.
+goal: Workout generation, nutrition and progress tracking, and an AI coach with persistent memory and profile context.
+nabil_contribution: Built workout generation, nutrition and progress tracking, and an AI coach with persistent memory
+  and profile context. The API uses token authentication, Pydantic validation and Row Level Security.
+architecture: React client → FastAPI → user context from Supabase → LangChain with Groq → safety checks → Supabase
+  PostgreSQL.
 technologies:
-  - React
-  - TypeScript
-  - Vite
-  - Tailwind CSS
-  - FastAPI
-  - Python
-  - Supabase
-  - PostgreSQL
-  - LangGraph
-  - LangChain
-  - Groq
-data_flow: Not fully documented beyond the high-level architecture above.
-decisions:
-  - Stateful LangGraph agent rather than a single-turn chatbot (documented intent).
+- React
+- TypeScript
+- Vite
+- Tailwind CSS
+- FastAPI
+- Python
+- Pydantic
+- LangChain
+- Groq
+- Supabase
+- PostgreSQL
+data_flow: React client → FastAPI → user context and memories → Groq LLM → safety checks → saved memory
+decisions: Not documented
 challenges: Not documented
 solutions: Not documented
-results: A public demo URL is listed in the portfolio. User counts and production SLAs are not documented.
+results: A public demo is live. User counts and production SLAs are not documented.
 benchmarks: []
 limitations:
-  - This portfolio repo does not include FITMAN source code.
-  - Knowledge-base notes originally labeled FITMAN as a planned project; UI copy later called it production.
-  - Canonical status is active_development with a listed demo, not audited production.
+- 'Not production: there are no documented users, SLAs or load tests.'
 future_improvements: Not documented
 github: null
-github_unverified_url: https://github.com/thenabilman/fitman
-github_verified_in_this_repo: false
 demo: https://fitmanver.vercel.app/
 evidence:
-  - type: deployed_demo
-    source: https://fitmanver.vercel.app/
-    description: Demo URL listed in portfolio (not load-tested here)
-  - type: portfolio
-    source: src/components/projects/ProjectsSection.tsx
-    description: Project card and architecture bullets
-  - type: personal_statement
-    source: backend/knowledge/source-notes.md
-    description: Original notes describe FITMAN as a larger planned project
-conflict_resolution: >
-  Source notes say planned; site copy said Active Production. Without source in this repo,
-  status is active_development. Do not call FITMAN production. Do not cite <300ms Groq latency
-  as a verified benchmark.
+- type: project_repository
+  source: Private repository
+  description: Project repository, not public on 2026-11-25
+- type: resume
+  source: public/resume.pdf
+  description: Project listed on resume
+- type: deployed_demo
+  source: https://fitmanver.vercel.app/
+  description: Live demo, not load-tested
+conflict_resolution: Source notes say planned and older site copy said Active Production. Status is active_development.
+  Do not call FITMAN production. Use of LangGraph and rate limiting is stated on the resume but not confirmed here.
+  Do not cite <300ms Groq latency as a verified benchmark.
+github_unverified_url: https://github.com/THENABILMAN/FITMANVER

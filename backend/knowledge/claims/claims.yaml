@@ -11,11 +11,11 @@
   entity_id: nsu-cse
   evidence: [resume, personal_statement]
 - id: claim-fitman-built
-  claim: Nabil built FITMAN as a full-stack fitness/nutrition app using FastAPI, React, and LangGraph.
+  claim: Nabil built FITMAN as a full-stack fitness/nutrition app using FastAPI, React, and LangChain.
   status: BUILT
   confidence: medium
   entity_id: fitman
-  evidence: [portfolio, deployed_demo]
+  evidence: [resume, deployed_demo]
 - id: claim-fitman-production
   claim: FITMAN is a production system with verified users and SLAs.
   status: UNVERIFIED
@@ -29,7 +29,7 @@
   entity_id: fitman
   evidence: []
 - id: claim-portfolio-rag
-  claim: This portfolio implements dense Pinecone retrieval plus lexical overlap over canonical knowledge.
+  claim: This portfolio implements dense MongoDB Atlas retrieval plus lexical overlap over canonical knowledge.
   status: BUILT
   confidence: high
   entity_id: portfolio-digital-twin
@@ -76,3 +76,27 @@
   confidence: none
   entity_id: person-nabil
   evidence: []
+- id: claim-fitman-langgraph
+  claim: FITMAN's AI coach runs on LangGraph.
+  status: UNVERIFIED
+  confidence: low
+  entity_id: fitman
+  evidence: [resume]
+- id: claim-medimatch-built
+  claim: Nabil built MediMatch AI, a doctor matching and booking platform with FastAPI, LangGraph and React.
+  status: BUILT
+  confidence: high
+  entity_id: medimatch-ai
+  evidence: [github, resume]
+- id: claim-medimatch-production
+  claim: MediMatch AI is deployed in production with patients.
+  status: UNVERIFIED
+  confidence: none
+  entity_id: medimatch-ai
+  evidence: []
+- id: claim-texttosql-built
+  claim: Nabil built TEXTtoSQL, an offline English-to-SQL assistant that executes and checks its SQL.
+  status: BUILT
+  confidence: high
+  entity_id: texttosql
+  evidence: [resume, project_repository]

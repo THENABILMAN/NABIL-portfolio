@@ -12,3 +12,55 @@ benchmarks:
     status: EXPERIMENTAL
     reproducible: false
     notes: Not a verified accuracy or production latency benchmark.
+  - id: medimatch-hit3
+    project: medimatch-ai
+    metric: hit_at_3
+    value: 96.4
+    unit: "%"
+    input: 28 symptom queries on demo data
+    environment: See project repository
+    method: Evaluation script and report in the project repository
+    sample_count: 28
+    date: "2026"
+    status: EXPERIMENTAL
+    reproducible: true
+    notes: 3 specialties only; retrieval alone.
+  - id: medimatch-precision3
+    project: medimatch-ai
+    metric: precision_at_3
+    value: 38.1
+    unit: "%"
+    input: 28 symptom queries on demo data
+    environment: See project repository
+    method: Evaluation script and report in the project repository
+    sample_count: 28
+    date: "2026"
+    status: EXPERIMENTAL
+    reproducible: true
+    notes: About 33% is close to random choice on this data.
+  - id: texttosql-80
+    project: texttosql
+    metric: result_match
+    value: 82.5
+    unit: "%"
+    input: 80 graded questions on 5 databases
+    environment: See project repository
+    method: Evaluation script and report in the project repository
+    sample_count: 80
+    date: "2026"
+    status: EXPERIMENTAL
+    reproducible: true
+    notes: 66/80. Failures on the first 60 questions guided development.
+  - id: texttosql-heldout
+    project: texttosql
+    metric: result_match_heldout
+    value: 70
+    unit: "%"
+    input: 20 questions on the restaurant database
+    environment: See project repository
+    method: Evaluation script and report in the project repository
+    sample_count: 20
+    date: "2026"
+    status: EXPERIMENTAL
+    reproducible: true
+    notes: 14/20, the fairest estimate.

@@ -63,6 +63,17 @@ def test_fitman_not_production():
     assert "< 300" not in ans.answer and "<300" not in ans.answer
 
 
+def test_medimatch_is_not_production():
+    ans = KnowledgeStore().fast_resolve("What is MediMatch AI?")
+    assert ans.entity_id == "medimatch-ai"
+    assert "active_development" in ans.answer and "Not in production" in ans.answer
+
+
+def test_fitman_does_not_claim_langgraph():
+    fitman = KnowledgeStore().project_by_id("fitman")
+    assert "LangGraph" not in fitman["technologies"]
+
+
 def test_fastapi_skill():
     store = KnowledgeStore()
     ans = store.fast_resolve("Does Nabil use FastAPI?")

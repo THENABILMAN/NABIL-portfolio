@@ -7,18 +7,18 @@ confidence: high
 one_line: This repository's evidence-grounded RAG agent over structured portfolio knowledge.
 problem: Visitors need accurate answers about Nabil without marketing hype or hallucination.
 goal: Canonical knowledge → hybrid retrieval → claim-aware grounded generation.
-nabil_contribution: Designed and implemented the Next.js portfolio, FastAPI RAG service, Pinecone indexing, and digital-twin policy in this repository.
+nabil_contribution: Designed and implemented the Next.js portfolio, FastAPI RAG service, MongoDB vector indexing, and digital-twin policy in this repository.
 architecture: >
   Visitor → Next.js → FastAPI → query classification → entity resolution →
-  canonical knowledge + Pinecone dense retrieval + lexical overlap → merge →
+  canonical knowledge + MongoDB Atlas vector retrieval + lexical overlap → merge →
   LLM (OpenRouter) only when evidence exists → answer + confidence + sources + claims.
 technologies:
   - Next.js
   - TypeScript
   - FastAPI
   - Python
-  - Pinecone
-  - llama-text-embed-v2
+  - MongoDB Atlas Vector Search
+  - all-mpnet-base-v2
   - OpenRouter
 data_flow: Query → classify/resolve → retrieve/merge → generate
 decisions:
@@ -29,7 +29,7 @@ challenges: Duplicate marketing copy vs source notes; inflated metrics in earlie
 solutions: Claim taxonomy, provenance, honest FITMAN status, refusal when evidence is missing.
 results: Implemented in this repository. No published latency SLA.
 benchmarks: []
-limitations: Dense retrieval depends on Pinecone being indexed with current knowledge. Lexical search works locally from YAML even if Pinecone is empty.
+limitations: Dense retrieval depends on MongoDB being indexed with current knowledge. Lexical search works locally from YAML even if MongoDB is empty.
 future_improvements: Cross-encoder rerank, reproducible eval harness with live models.
 github: https://github.com/THENABILMAN/NABIL-portfolio
 demo: null

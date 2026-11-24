@@ -30,6 +30,14 @@ KNOWN_COMPANIES = (
 )
 
 PROJECT_ALIASES = {
+    "medimatch": "medimatch-ai",
+    "texttosql": "texttosql",
+    "text to sql": "texttosql",
+    "text-to-sql": "texttosql",
+    "jarvis": "jarvis",
+    "vision agent": "livekit-vision-agent",
+    "agent chatbot": "autonomous-agent-system",
+    "langchain documentation": "rag-agent",
     "fitman": "fitman",
     "resume analyzer": "resume-analyzer",
     "cv analyzer": "resume-analyzer",

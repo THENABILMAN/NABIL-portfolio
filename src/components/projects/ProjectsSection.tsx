@@ -104,6 +104,13 @@ function Featured({ project }: { project: Project }) {
         <p className="mt-8 label">Nabil&apos;s part</p>
         <p className="mt-2 max-w-[60ch] text-[14px] leading-relaxed text-ink-2">{project.contribution}</p>
 
+        {project.results && (
+              <div className="mt-8">
+                <p className="label">Results</p>
+                <p className="mt-2 max-w-[60ch] text-[14px] leading-relaxed text-ink-2">{project.results}</p>
+              </div>
+            )}
+
         <div className="mt-8">
           <Limitations items={project.limitations} />
         </div>
@@ -165,6 +172,12 @@ function Row({ project, open, onToggle }: { project: Project; open: boolean; onT
               <div>
                 <p className="label">How it works</p>
                 <p className="mt-2 text-[14px] leading-relaxed text-ink-2">{project.pipelineFlow.join(" → ")}</p>
+              </div>
+            )}
+            {project.results && (
+              <div>
+                <p className="label">Results</p>
+                <p className="mt-2 max-w-[60ch] text-[14px] leading-relaxed text-ink-2">{project.results}</p>
               </div>
             )}
             <Limitations items={project.limitations} />

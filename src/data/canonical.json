@@ -111,44 +111,44 @@
   "projects": [
     {
       "id": "autonomous-agent-system",
-      "name": "End-to-End AI Agent System",
+      "name": "End-to-End AI Agent Chatbot",
       "type": "project",
       "status": "completed",
       "claim_status": "BUILT",
-      "confidence": "medium",
-      "one_line": "Agent framework with vector memory, tool calling, and output validation.",
-      "problem": "Open-ended queries need multi-step planning, retrieval, and tool use.",
-      "goal": "Decompose tasks, retrieve context, call tools, and self-correct invalid outputs.",
-      "nabil_contribution": "Described as personal implementation in portfolio copy. Dedicated repository URL is listed but not verified from this repo.",
-      "architecture": "LangChain-style ReAct loops, vector memory, FastAPI and Streamlit UI.",
+      "confidence": "high",
+      "one_line": "LangGraph ReAct chatbot with optional web search and a choice of models.",
+      "problem": "A chat agent needs tools and a choice of model providers behind one API.",
+      "goal": "Serve a tool-using agent through an API with a simple interface.",
+      "nabil_contribution": "Personal project with a LangGraph ReAct agent, a FastAPI endpoint with a model allowlist, and a Streamlit interface.",
+      "architecture": "Streamlit → FastAPI → LangGraph ReAct agent → Groq, OpenAI or OpenRouter model, with Tavily search.",
       "technologies": [
         "Python",
         "FastAPI",
         "Streamlit",
+        "LangGraph",
         "LangChain",
-        "Pinecone",
         "Groq",
+        "Tavily",
         "Pydantic"
       ],
-      "data_flow": "Query → plan → retrieve/tools → validate → respond",
-      "decisions": "Pydantic validation with retry on schema failure",
+      "data_flow": "Message → FastAPI → ReAct agent → optional Tavily search → reply",
+      "decisions": "Not documented",
       "challenges": "Not documented",
       "solutions": "Not documented",
       "results": "Not documented",
       "benchmarks": [],
       "limitations": [
-        "No dedicated repository verified inside this portfolio repo.",
-        "Older copy called this enterprise-grade, which is not evidenced."
+        "No vector memory or output self-correction appears in the repository.",
+        "No evaluation is documented."
       ],
       "future_improvements": "Not documented",
-      "github": null,
-      "github_unverified_url": "https://github.com/thenabilman/agent-system",
+      "github": "https://github.com/THENABILMAN/THENABILMAN_End-to-End_AI_Agent-Chatbot",
       "demo": null,
       "evidence": [
         {
-          "type": "portfolio",
-          "source": "backend/knowledge/source-notes.md",
-          "description": "Project description in portfolio dataset"
+          "type": "github",
+          "source": "https://github.com/THENABILMAN/THENABILMAN_End-to-End_AI_Agent-Chatbot",
+          "description": "Project repository, read 2026-11-25"
         }
       ]
     },
@@ -162,35 +162,35 @@
       "one_line": "Bengali speech recognition and synthesis pipeline for a voice agent.",
       "problem": "Voice AI stacks are English-centric; Bangla is lower-resource.",
       "goal": "Native Bangla STT → LLM → Bangla TTS.",
-      "nabil_contribution": "Explored/built Bangla ASR, Bengali prompt constraints, and neural TTS. Related experiments used Whisper, Deepgram, and Cartesia.",
-      "architecture": "Bangla ASR → multilingual LLM with Bengali script constraints → Bangla TTS. Real-time chunks over FastAPI WebSockets (portfolio description).",
+      "nabil_contribution": "Explored a Bangla voice agent with local Whisper, Bengali prompt constraints and Silero speech synthesis. Related experiments used Deepgram and Cartesia (personal statement).",
+      "architecture": "LiveKit Agents with Whisper large-v2, DeepSeek through OpenRouter and Silero Indic TTS.",
       "technologies": [
         "Python",
         "PyTorch",
-        "FastAPI",
-        "Whisper",
-        "Bangla STT",
-        "Bangla TTS",
-        "Deepgram Nova-3",
-        "Cartesia Sonic-2"
+        "LiveKit Agents",
+        "Whisper large-v2",
+        "DeepSeek",
+        "Silero TTS"
       ],
-      "data_flow": "Bangla audio → transcript → LLM → Bangla speech",
-      "decisions": "Strict Bengali prompts to reduce script mixing",
+      "data_flow": "Bangla audio → Whisper transcript → LLM → Bangla speech",
+      "decisions": "Bengali prompts ask for short replies in Bangla.",
       "challenges": "Low-resource language performance and latency",
-      "solutions": "Not fully documented",
-      "results": "One informal Whisper timing is recorded (see benchmarks). Not a production accuracy claim.",
+      "solutions": "Not documented",
+      "results": "One informal Whisper timing is recorded. It is not an accuracy claim.",
       "benchmarks": [
         "bangla-whisper-informal"
       ],
-      "limitations": "Do not claim production accuracy or \"fine-tuned Bengali Whisper\" as verified training work. Notes say he tested Bangla Whisper; \"fine-tuned\" in older marketing copy is UNVERIFIED.\n",
+      "limitations": [
+        "No production accuracy is claimed, and fine-tuned Bengali Whisper is UNVERIFIED."
+      ],
       "future_improvements": "Not documented",
       "github": "https://github.com/THENABILMAN/THENABILMAN_End-to-End_Bangla_AI_voice-agent",
-      "demo": "https://github.com/THENABILMAN/THENABILMAN_End-to-End_Bangla_AI_voice-agent",
+      "demo": null,
       "evidence": [
         {
           "type": "github",
           "source": "https://github.com/THENABILMAN/THENABILMAN_End-to-End_Bangla_AI_voice-agent",
-          "description": "Dedicated repository URL"
+          "description": "Project repository, read 2026-11-25"
         },
         {
           "type": "personal_statement",
@@ -205,12 +205,12 @@
       "type": "project",
       "status": "active_development",
       "claim_status": "BUILT",
-      "confidence": "medium",
-      "one_line": "Full-stack AI fitness and nutrition coaching platform with LangGraph agents and a FastAPI backend.",
+      "confidence": "high",
+      "one_line": "Full-stack AI fitness and nutrition coach.",
       "problem": "Personalized workout and nutrition coaching is hard to keep consistent without structured user context.",
-      "goal": "Adaptive macros, workouts, logging, and an AI coach with persistent context.",
-      "nabil_contribution": "Portfolio materials describe Nabil as the engineer of the full-stack app (React/Vite frontend, FastAPI backend, Supabase, LangGraph agent state). This repository does not contain FITMAN source, so contribution claims are taken from portfolio documentation, not from a code audit.\n",
-      "architecture": "Client UI → FastAPI gateway → LangGraph state machine → Groq LLM → Supabase PostgreSQL. Source notes also describe a CoachState TypedDict covering profile, workout, nutrition, memory, and document context.\n",
+      "goal": "Workout generation, nutrition and progress tracking, and an AI coach with persistent memory and profile context.",
+      "nabil_contribution": "Built workout generation, nutrition and progress tracking, and an AI coach with persistent memory and profile context. The API uses token authentication, Pydantic validation and Row Level Security.",
+      "architecture": "React client → FastAPI → user context from Supabase → LangChain with Groq → safety checks → Supabase PostgreSQL.",
       "technologies": [
         "React",
         "TypeScript",
@@ -218,48 +218,92 @@
         "Tailwind CSS",
         "FastAPI",
         "Python",
-        "Supabase",
-        "PostgreSQL",
-        "LangGraph",
+        "Pydantic",
         "LangChain",
-        "Groq"
+        "Groq",
+        "Supabase",
+        "PostgreSQL"
       ],
-      "data_flow": "Not fully documented beyond the high-level architecture above.",
-      "decisions": [
-        "Stateful LangGraph agent rather than a single-turn chatbot (documented intent)."
-      ],
+      "data_flow": "React client → FastAPI → user context and memories → Groq LLM → safety checks → saved memory",
+      "decisions": "Not documented",
       "challenges": "Not documented",
       "solutions": "Not documented",
-      "results": "A public demo URL is listed in the portfolio. User counts and production SLAs are not documented.",
+      "results": "A public demo is live. User counts and production SLAs are not documented.",
       "benchmarks": [],
       "limitations": [
-        "This portfolio repo does not include FITMAN source code.",
-        "Knowledge-base notes originally labeled FITMAN as a planned project; UI copy later called it production.",
-        "Canonical status is active_development with a listed demo, not audited production."
+        "Not production: there are no documented users, SLAs or load tests."
       ],
       "future_improvements": "Not documented",
       "github": null,
-      "github_unverified_url": "https://github.com/thenabilman/fitman",
-      "github_verified_in_this_repo": false,
       "demo": "https://fitmanver.vercel.app/",
       "evidence": [
         {
+          "type": "project_repository",
+          "source": "Private repository",
+          "description": "Project repository, not public on 2026-11-25"
+        },
+        {
+          "type": "resume",
+          "source": "public/resume.pdf",
+          "description": "Project listed on resume"
+        },
+        {
           "type": "deployed_demo",
           "source": "https://fitmanver.vercel.app/",
-          "description": "Demo URL listed in portfolio (not load-tested here)"
-        },
-        {
-          "type": "portfolio",
-          "source": "src/components/projects/ProjectsSection.tsx",
-          "description": "Project card and architecture bullets"
-        },
-        {
-          "type": "personal_statement",
-          "source": "backend/knowledge/source-notes.md",
-          "description": "Original notes describe FITMAN as a larger planned project"
+          "description": "Live demo, not load-tested"
         }
       ],
-      "conflict_resolution": "Source notes say planned; site copy said Active Production. Without source in this repo, status is active_development. Do not call FITMAN production. Do not cite <300ms Groq latency as a verified benchmark.\n"
+      "conflict_resolution": "Source notes say planned and older site copy said Active Production. Status is active_development. Do not call FITMAN production. Use of LangGraph and rate limiting is stated on the resume but not confirmed here. Do not cite <300ms Groq latency as a verified benchmark.",
+      "github_unverified_url": "https://github.com/THENABILMAN/FITMANVER"
+    },
+    {
+      "id": "jarvis",
+      "name": "JARVIS Voice Assistant",
+      "type": "project",
+      "status": "prototype",
+      "claim_status": "BUILT",
+      "confidence": "high",
+      "one_line": "Real-time voice agent that controls a browser.",
+      "problem": "Browsing, searching and everyday tasks normally need hands and a keyboard.",
+      "goal": "Hold a voice conversation and carry out browser tasks by voice.",
+      "nabil_contribution": "Extended LiveKit's agent and web starters with 17 voice tools for browsing, search, memory and Spotify, plus a confirmation step for consequential browser actions and tests for agent behavior, browser and memory.",
+      "architecture": "Next.js frontend → LiveKit room → Python agent with Gemini Live → browser, Spotify, Tavily and Mem0 tools.",
+      "technologies": [
+        "Python",
+        "LiveKit Agents",
+        "Gemini Live",
+        "Playwright",
+        "Tavily",
+        "Mem0",
+        "Next.js",
+        "TypeScript",
+        "Docker"
+      ],
+      "data_flow": "Voice → LiveKit room → Gemini Live → tool call → browser, search, memory or Spotify → spoken reply",
+      "decisions": "Not documented",
+      "challenges": "Not documented",
+      "solutions": "Not documented",
+      "results": "Not documented",
+      "benchmarks": [],
+      "limitations": [
+        "Built on LiveKit starter templates.",
+        "No latency or task-success measurements are documented."
+      ],
+      "future_improvements": "Not documented",
+      "github": "https://github.com/THENABILMAN/JARVIS-VOICE-ASSISTANT-",
+      "demo": null,
+      "evidence": [
+        {
+          "type": "github",
+          "source": "https://github.com/THENABILMAN/JARVIS-VOICE-ASSISTANT-",
+          "description": "Project repository, read 2026-11-25"
+        },
+        {
+          "type": "resume",
+          "source": "public/resume.pdf",
+          "description": "Project listed on resume"
+        }
+      ]
     },
     {
       "id": "linear-regression-scratch",
@@ -301,45 +345,85 @@
       "type": "project",
       "status": "prototype",
       "claim_status": "EXPERIMENTAL",
-      "confidence": "medium",
-      "one_line": "Voice-first assistant combining LiveKit WebRTC, MCP tools, and retrieval.",
-      "problem": "Voice agents need tools and documents during a live call.",
-      "goal": "Real-time voice plus MCP tools plus vector search.",
-      "nabil_contribution": "Explored LiveKit, MCP, Streamlit, Pinecone, Hugging Face embeddings, Tavily, Groq. Notes say roughly 20 hours on the project.",
-      "architecture": "LiveKit audio → reasoning → retrieval/tools → spoken response.",
+      "confidence": "high",
+      "one_line": "Assistant for LiveKit documentation with MCP tools and web search.",
+      "problem": "Developers need answers from LiveKit documentation and current web results.",
+      "goal": "Answer LiveKit questions through MCP tools with sources.",
+      "nabil_contribution": "Built a Streamlit interface, an MCP server with documentation and web search tools, and ingestion into Pinecone. Notes say roughly 20 hours on the project.",
+      "architecture": "Streamlit → MCP server → Pinecone or Tavily search → Groq LLM.",
       "technologies": [
         "Python",
-        "LiveKit",
         "MCP",
         "Streamlit",
+        "LangChain",
         "Pinecone",
         "Hugging Face embeddings",
         "Tavily",
-        "Groq",
-        "Whisper",
-        "Cartesia"
+        "Groq"
       ],
-      "data_flow": "WebRTC audio → STT → LLM + MCP/RAG → TTS",
+      "data_flow": "Question → MCP tool → Pinecone or Tavily results → Groq LLM → answer with sources",
       "decisions": "MCP as a tool interface rather than ad-hoc function calls",
       "challenges": "Not documented",
       "solutions": "Not documented",
-      "results": "Informal prototype. Sub-200ms / sub-400ms roundtrip claims in older UI copy are UNVERIFIED.",
+      "results": "Not documented",
       "benchmarks": [],
-      "limitations": "No reproducible latency benchmark. Dedicated GitHub URL in UI is not verified from this repo.",
+      "limitations": [
+        "Text assistant: no voice pipeline appears in the repository.",
+        "Response-time figures in its README and older site copy are UNVERIFIED."
+      ],
       "future_improvements": "Not documented",
-      "github": null,
-      "github_unverified_url": "https://github.com/thenabilman/livekit-assistant",
+      "github": "https://github.com/THENABILMAN/THENABILMAN_LiveKit_MCP_Assistant",
       "demo": null,
       "evidence": [
         {
-          "type": "personal_statement",
-          "source": "backend/knowledge/source-notes.md",
-          "description": "LiveKit MCP assistant stack and ~20 hour effort note"
+          "type": "github",
+          "source": "https://github.com/THENABILMAN/THENABILMAN_LiveKit_MCP_Assistant",
+          "description": "Project repository, read 2026-11-25"
         },
         {
-          "type": "portfolio",
-          "source": "src/components/projects/ProjectsSection.tsx",
-          "description": "Prototype project card"
+          "type": "personal_statement",
+          "source": "backend/knowledge/source-notes.md",
+          "description": "Around 20 hour effort note"
+        }
+      ]
+    },
+    {
+      "id": "livekit-vision-agent",
+      "name": "LiveKit Vision Agent",
+      "type": "project",
+      "status": "prototype",
+      "claim_status": "BUILT",
+      "confidence": "high",
+      "one_line": "Voice agent that accepts camera frames and shared images.",
+      "problem": "Voice agents cannot see what a user is talking about.",
+      "goal": "Attach the latest camera frame or an uploaded image to a spoken turn.",
+      "nabil_contribution": "Personal LiveKit agent with image upload handling, video frame buffering and speech input and output.",
+      "architecture": "LiveKit room with a Groq LLM, Deepgram speech services and Silero voice activity detection.",
+      "technologies": [
+        "Python",
+        "LiveKit Agents",
+        "Deepgram",
+        "Groq",
+        "Silero VAD"
+      ],
+      "data_flow": "Camera or image → latest frame → chat context → LLM → spoken reply",
+      "decisions": "Not documented",
+      "challenges": "Not documented",
+      "solutions": "Not documented",
+      "results": "Not documented",
+      "benchmarks": [],
+      "limitations": [
+        "The configured model, llama-3.3-70b-versatile, is a text model, so image understanding is not evidenced.",
+        "No measurements are documented."
+      ],
+      "future_improvements": "Not documented",
+      "github": "https://github.com/THENABILMAN/THENABILMAN_AI_Vision_Agent",
+      "demo": null,
+      "evidence": [
+        {
+          "type": "github",
+          "source": "https://github.com/THENABILMAN/THENABILMAN_AI_Vision_Agent",
+          "description": "Project repository, read 2026-11-25"
         }
       ]
     },
@@ -374,6 +458,66 @@
           "type": "personal_statement",
           "source": "backend/knowledge/source-notes.md",
           "description": "Built during foundations study, reported by Nabil 2026-11-24"
+        }
+      ]
+    },
+    {
+      "id": "medimatch-ai",
+      "name": "MediMatch AI",
+      "type": "project",
+      "status": "active_development",
+      "claim_status": "BUILT",
+      "confidence": "high",
+      "one_line": "Doctor matching and booking platform for Bangladesh.",
+      "problem": "Patients need to find a suitable verified doctor from symptoms described in their own words.",
+      "goal": "Take symptoms in English, Bangla or Banglish, show suitable doctors with live schedules, and book a time.",
+      "nabil_contribution": "Built a LangGraph assistant, vector search over doctors, transactional booking, and patient, doctor and admin web portals. Emergency rules run before any model, so an alert never depends on the LLM.",
+      "architecture": "React web app → FastAPI → emergency rules → LangGraph assistant → MongoDB vector search → Supabase Postgres. Postgres is the source of truth and MongoDB is only a search index.",
+      "technologies": [
+        "Python",
+        "FastAPI",
+        "LangGraph",
+        "Ollama (Gemma)",
+        "MongoDB Vector Search",
+        "bge-m3",
+        "Supabase",
+        "PostgreSQL",
+        "React 19",
+        "TypeScript",
+        "Docker",
+        "Playwright"
+      ],
+      "data_flow": "Symptoms → emergency rules → LangGraph assistant → vector search → doctors re-read from Postgres → booking",
+      "decisions": [
+        "Double booking is prevented with a Postgres exclusion constraint and row locking.",
+        "Only approved doctors can be found or booked.",
+        "Every table with user data has Row-Level Security."
+      ],
+      "challenges": "Not documented",
+      "solutions": "Not documented",
+      "results": "The repository records 1,120 passing backend tests and 130 Playwright tests, 20 simultaneous booking requests tested against one slot, and 48 attack attempts all blocked on the local stack. A 28-query retrieval evaluation on demo data reached 96.4% Hit@3 and 38.1% Precision@3. 7,537 directory doctors were imported, with 2,846 free-text specialties mapped to 28.",
+      "benchmarks": [
+        "medimatch-hit3",
+        "medimatch-precision3"
+      ],
+      "limitations": [
+        "Not in production: the Flutter app and production deployment are still to come.",
+        "Retrieval was measured on demo data with 3 specialties, where a precision near 33% is close to random choice.",
+        "The assistant never diagnoses or prescribes, and its output guard is not a reliable filter on unseen replies."
+      ],
+      "future_improvements": "Not documented",
+      "github": "https://github.com/THENABILMAN/MEDIMATCH-AI",
+      "demo": null,
+      "evidence": [
+        {
+          "type": "github",
+          "source": "https://github.com/THENABILMAN/MEDIMATCH-AI",
+          "description": "Project repository, read 2026-11-25"
+        },
+        {
+          "type": "resume",
+          "source": "public/resume.pdf",
+          "description": "Project listed on resume"
         }
       ]
     },
@@ -491,15 +635,15 @@
       "one_line": "This repository's evidence-grounded RAG agent over structured portfolio knowledge.",
       "problem": "Visitors need accurate answers about Nabil without marketing hype or hallucination.",
       "goal": "Canonical knowledge → hybrid retrieval → claim-aware grounded generation.",
-      "nabil_contribution": "Designed and implemented the Next.js portfolio, FastAPI RAG service, Pinecone indexing, and digital-twin policy in this repository.",
-      "architecture": "Visitor → Next.js → FastAPI → query classification → entity resolution → canonical knowledge + Pinecone dense retrieval + lexical overlap → merge → LLM (OpenRouter) only when evidence exists → answer + confidence + sources + claims.\n",
+      "nabil_contribution": "Designed and implemented the Next.js portfolio, FastAPI RAG service, MongoDB vector indexing, and digital-twin policy in this repository.",
+      "architecture": "Visitor → Next.js → FastAPI → query classification → entity resolution → canonical knowledge + MongoDB Atlas vector retrieval + lexical overlap → merge → LLM (OpenRouter) only when evidence exists → answer + confidence + sources + claims.\n",
       "technologies": [
         "Next.js",
         "TypeScript",
         "FastAPI",
         "Python",
-        "Pinecone",
-        "llama-text-embed-v2",
+        "MongoDB Atlas Vector Search",
+        "all-mpnet-base-v2",
         "OpenRouter"
       ],
       "data_flow": "Query → classify/resolve → retrieve/merge → generate",
@@ -512,7 +656,7 @@
       "solutions": "Claim taxonomy, provenance, honest FITMAN status, refusal when evidence is missing.",
       "results": "Implemented in this repository. No published latency SLA.",
       "benchmarks": [],
-      "limitations": "Dense retrieval depends on Pinecone being indexed with current knowledge. Lexical search works locally from YAML even if Pinecone is empty.",
+      "limitations": "Dense retrieval depends on MongoDB being indexed with current knowledge. Lexical search works locally from YAML even if MongoDB is empty.",
       "future_improvements": "Cross-encoder rerank, reproducible eval harness with live models.",
       "github": "https://github.com/THENABILMAN/NABIL-portfolio",
       "demo": null,
@@ -526,52 +670,48 @@
     },
     {
       "id": "rag-agent",
-      "name": "RAG Documentation Agent",
+      "name": "LangChain Documentation RAG Agent",
       "type": "project",
       "status": "completed",
       "claim_status": "BUILT",
-      "confidence": "medium",
-      "one_line": "Document Q&A agent using embeddings and retrieved context.",
+      "confidence": "high",
+      "one_line": "Semantic search and Q&A over 45,547 LangChain documentation chunks.",
       "problem": "Technical docs are hard to query without retrieval.",
-      "goal": "Index markdown/docs and answer with citations.",
-      "nabil_contribution": "Built/worked on a LangChain documentation RAG agent (personal statement + portfolio).",
-      "architecture": "Recursive splitting, embeddings, vector store, optional web tool (Tavily).",
+      "goal": "Answer LangChain questions from retrieved documentation, with optional live web search.",
+      "nabil_contribution": "Built semantic search over 45,547 document chunks with Pinecone and Hugging Face embeddings, with optional live web search.",
+      "architecture": "Streamlit app, all-MiniLM-L6-v2 embeddings, Pinecone index, and a Llama 3.3 70B model on Groq.",
       "technologies": [
         "Python",
         "LangChain",
         "Pinecone",
-        "Chroma",
         "Hugging Face embeddings",
-        "Ollama",
-        "mxbai-embed-large",
+        "Groq",
         "Tavily",
-        "Streamlit",
-        "FastAPI"
+        "Streamlit"
       ],
-      "data_flow": "Docs → chunks → embeddings → query → context → LLM",
-      "decisions": "Not documented beyond standard RAG pattern",
+      "data_flow": "Question → embedding → Pinecone search → context and optional web results → LLM answer with sources",
+      "decisions": "Not documented",
       "challenges": "Not documented",
       "solutions": "Not documented",
       "results": "Not documented",
       "benchmarks": [],
       "limitations": [
-        "Hybrid BM25 + dense search was claimed in UI copy; this portfolio implementation historically used dense Pinecone search plus later lexical merge. Do not claim BM25/RRF/BGE rerank unless evidence exists for that specific project.",
-        "Sub-200ms vector retrieval is not a documented benchmark.",
-        "No dedicated GitHub repository listed beyond the profile URL."
+        "No retrieval quality or latency benchmark is documented.",
+        "Do not claim BM25, RRF or reranking for this project."
       ],
       "future_improvements": "Not documented",
-      "github": null,
+      "github": "https://github.com/THENABILMAN/THENABILMA_RAG_Agent_LangChain-Documentation",
       "demo": null,
       "evidence": [
         {
-          "type": "personal_statement",
-          "source": "backend/knowledge/source-notes.md",
-          "description": "LangChain documentation RAG agent notes"
+          "type": "github",
+          "source": "https://github.com/THENABILMAN/THENABILMA_RAG_Agent_LangChain-Documentation",
+          "description": "Project repository, read 2026-11-25"
         },
         {
-          "type": "portfolio",
-          "source": "backend/knowledge/source-notes.md",
-          "description": "RAG documentation agent project card"
+          "type": "resume",
+          "source": "public/resume.pdf",
+          "description": "Project listed on resume"
         }
       ]
     },
@@ -582,34 +722,37 @@
       "status": "completed",
       "claim_status": "BUILT",
       "confidence": "high",
-      "one_line": "Conversational voice loop with streaming STT, LLM, and TTS.",
+      "one_line": "Conversational voice agent with streaming speech input and output.",
       "problem": "Text chat is slower and less natural than spoken turn-taking.",
-      "goal": "Full-duplex conversational voice over streaming audio.",
-      "nabil_contribution": "Described as implementing WebSocket audio, VAD, Whisper STT, LLM, and neural TTS.",
-      "architecture": "WebSockets + VAD → Whisper STT → LLM → neural TTS playback.",
+      "goal": "Natural spoken conversation with turn detection.",
+      "nabil_contribution": "Personal LiveKit agent combining speech recognition, an LLM, speech synthesis, voice activity detection and turn detection.",
+      "architecture": "LiveKit Agents with Deepgram Nova-3, DeepSeek through OpenRouter, Cartesia Sonic-2 and Silero VAD.",
       "technologies": [
         "Python",
-        "Whisper STT",
-        "Neural TTS",
-        "WebSockets",
-        "FastAPI",
-        "Audio streaming"
+        "LiveKit Agents",
+        "Deepgram Nova-3",
+        "DeepSeek",
+        "OpenRouter",
+        "Cartesia Sonic-2",
+        "Silero VAD"
       ],
-      "data_flow": "Audio frames → VAD segments → transcript → LLM → speech",
-      "decisions": "Streaming transport rather than file-upload STT",
+      "data_flow": "Speech → Deepgram → DeepSeek → Cartesia → spoken reply",
+      "decisions": "Not documented",
       "challenges": "Not documented",
-      "solutions": "Jitter buffering mentioned in portfolio copy",
-      "results": "No reproducible latency study in this repo. \"Sub-second\" is qualitative, not a verified benchmark.",
+      "solutions": "Not documented",
+      "results": "No latency study is documented.",
       "benchmarks": [],
-      "limitations": "Latency numbers are not evidenced. Treat as experimental/built system, not a measured SLA.",
+      "limitations": [
+        "Latency numbers are not evidenced."
+      ],
       "future_improvements": "Not documented",
       "github": "https://github.com/THENABILMAN/THENABILMAN_AI_Voice_Agent",
-      "demo": "https://github.com/THENABILMAN/THENABILMAN_AI_Voice_Agent",
+      "demo": null,
       "evidence": [
         {
           "type": "github",
           "source": "https://github.com/THENABILMAN/THENABILMAN_AI_Voice_Agent",
-          "description": "Dedicated repository URL"
+          "description": "Project repository, read 2026-11-25"
         }
       ]
     },
@@ -620,40 +763,36 @@
       "status": "completed",
       "claim_status": "BUILT",
       "confidence": "high",
-      "one_line": "LLM-powered CV parsing, entity extraction, and job-match scoring.",
+      "one_line": "Compares a resume with a job description and writes a scored report.",
       "problem": "Resumes are unstructured; matching them to jobs is noisy.",
-      "goal": "Extract structured entities and score semantic fit.",
-      "nabil_contribution": "Implemented parsing, constrained JSON extraction, similarity scoring, and Streamlit UI (per GitHub-linked project description).",
-      "architecture": "PDF/DOCX parse → LLM JSON schema extraction → embedding similarity vs job text → Streamlit dashboard.",
+      "goal": "Score how well a resume fits a job description and suggest improvements.",
+      "nabil_contribution": "Personal Streamlit app with PDF text extraction, embedding similarity and an LLM report scored point by point.",
+      "architecture": "Streamlit app with pdfminer, all-mpnet-base-v2 embeddings and Llama 3.3 70B on Groq.",
       "technologies": [
         "Python",
-        "LLMs",
-        "FastAPI",
         "Streamlit",
-        "LangChain",
-        "NLP",
+        "Sentence Transformers",
+        "Scikit-learn",
+        "Groq",
         "PDF parsing"
       ],
-      "data_flow": "Resume file → text → structured entities → vector score → recommendations",
-      "decisions": "Constrained JSON schemas to reduce extraction drift",
+      "data_flow": "Resume PDF and job description → text → embedding similarity → LLM report → average score",
+      "decisions": "Not documented",
       "challenges": "Not documented",
       "solutions": "Not documented",
-      "results": "Not documented with measured accuracy",
+      "results": "Not documented",
       "benchmarks": [],
-      "limitations": "No published accuracy or ATS benchmark in this repo.",
+      "limitations": [
+        "No published accuracy or ATS benchmark in this repo."
+      ],
       "future_improvements": "Not documented",
       "github": "https://github.com/THENABILMAN/THENABILMAN_AI_Resume-Analyzer",
-      "demo": "https://github.com/THENABILMAN/THENABILMAN_AI_Resume-Analyzer",
+      "demo": null,
       "evidence": [
         {
           "type": "github",
           "source": "https://github.com/THENABILMAN/THENABILMAN_AI_Resume-Analyzer",
-          "description": "Dedicated project repository URL in portfolio"
-        },
-        {
-          "type": "portfolio",
-          "source": "backend/knowledge/source-notes.md",
-          "description": "Architecture bullets"
+          "description": "Project repository, read 2026-11-25"
         }
       ]
     },
@@ -690,6 +829,61 @@
           "description": "Built during foundations study, reported by Nabil 2026-11-24"
         }
       ]
+    },
+    {
+      "id": "texttosql",
+      "name": "TEXTtoSQL",
+      "type": "project",
+      "status": "experimental",
+      "claim_status": "BUILT",
+      "confidence": "high",
+      "one_line": "Offline AI database assistant that runs from a USB drive on a 4 GB RAM PC.",
+      "problem": "Usual text-to-SQL tools need internet, an account or powerful hardware, and often return SQL that was never run.",
+      "goal": "Turn English into tested SQL with no internet, GPU or installation.",
+      "nabil_contribution": "Built the Windows app, the MariaDB sandbox, the retrieval, verification and repair loop, the benchmark, and a LoRA fine-tuning experiment.",
+      "architecture": "C#/.NET WinForms app → llama.cpp running Qwen2.5-Coder 1.5B (4-bit) → private portable MariaDB.",
+      "technologies": [
+        "C#",
+        ".NET",
+        "llama.cpp",
+        "Qwen2.5-Coder 1.5B",
+        "MariaDB",
+        "Python",
+        "PyTorch",
+        "Transformers",
+        "LoRA/PEFT"
+      ],
+      "data_flow": "Question → schema and similar examples → model writes SQL → run in sandbox → checks → repair → SQL and result",
+      "decisions": [
+        "The rule was fixed in advance: replace the original model only if the benchmark improves."
+      ],
+      "challenges": "Not documented",
+      "solutions": "Not documented",
+      "results": "Scored 66/80 (82.5%) on a benchmark that compares query results, including 14/20 on the held-out database. The model was quantized from 3.1 GB to 986 MB. LoRA fine-tuning on 8,319 execution-checked examples lowered validation loss from 0.578 to 0.123, but the benchmark tied at 66/80, so the app ships the original model.",
+      "benchmarks": [
+        "texttosql-80",
+        "texttosql-heldout"
+      ],
+      "limitations": [
+        "Experimental project with a small model: SQL that runs can still be wrong, and complex joins are its weakest area.",
+        "Failures on the first 60 benchmark questions guided development, so 14/20 on the held-out set is the fairest estimate."
+      ],
+      "future_improvements": "Not documented",
+      "github": null,
+      "demo": null,
+      "evidence": [
+        {
+          "type": "project_repository",
+          "source": "Private repository",
+          "description": "Project repository, not public on 2026-11-25"
+        },
+        {
+          "type": "resume",
+          "source": "public/resume.pdf",
+          "description": "Project listed on resume"
+        }
+      ],
+      "github_unverified_url": "https://github.com/THENABILMAN/TEXTtoSQL"
     },
     {
       "id": "vision-ocr",
@@ -742,9 +936,10 @@
       "context": "professional_and_personal",
       "evidence": [
         "data-island",
-        "portfolio-digital-twin",
-        "resume-analyzer",
-        "fitman"
+        "medimatch-ai",
+        "texttosql",
+        "fitman",
+        "portfolio-digital-twin"
       ]
     },
     {
@@ -755,9 +950,10 @@
       "status": "BUILT",
       "context": "personal_and_portfolio",
       "evidence": [
-        "portfolio-digital-twin",
+        "medimatch-ai",
         "fitman",
-        "resume-analyzer"
+        "portfolio-digital-twin",
+        "autonomous-agent-system"
       ]
     },
     {
@@ -768,8 +964,9 @@
       "status": "BUILT",
       "context": "personal",
       "evidence": [
-        "portfolio-digital-twin",
-        "fitman"
+        "medimatch-ai",
+        "fitman",
+        "portfolio-digital-twin"
       ]
     },
     {
@@ -780,8 +977,9 @@
       "status": "BUILT",
       "context": "personal",
       "evidence": [
-        "portfolio-digital-twin",
-        "fitman"
+        "medimatch-ai",
+        "fitman",
+        "portfolio-digital-twin"
       ]
     },
     {
@@ -792,7 +990,8 @@
       "status": "BUILT",
       "context": "personal",
       "evidence": [
-        "portfolio-digital-twin"
+        "portfolio-digital-twin",
+        "jarvis"
       ]
     },
     {
@@ -803,9 +1002,9 @@
       "status": "BUILT",
       "context": "personal",
       "evidence": [
+        "fitman",
         "rag-agent",
-        "autonomous-agent-system",
-        "resume-analyzer"
+        "autonomous-agent-system"
       ]
     },
     {
@@ -816,9 +1015,10 @@
       "status": "BUILT",
       "context": "personal",
       "evidence": [
-        "fitman"
+        "medimatch-ai",
+        "autonomous-agent-system"
       ],
-      "notes": "Used in FITMAN per portfolio docs. This portfolio digital twin is not a LangGraph multi-agent system."
+      "notes": "Used in MediMatch AI and the AI Agent Chatbot. This portfolio digital twin is not a LangGraph multi-agent system."
     },
     {
       "id": "rag",
@@ -828,8 +1028,9 @@
       "status": "BUILT",
       "context": "personal",
       "evidence": [
-        "portfolio-digital-twin",
-        "rag-agent"
+        "medimatch-ai",
+        "rag-agent",
+        "portfolio-digital-twin"
       ]
     },
     {
@@ -840,8 +1041,8 @@
       "status": "BUILT",
       "context": "personal",
       "evidence": [
-        "portfolio-digital-twin",
-        "rag-agent"
+        "rag-agent",
+        "livekit-mcp-assistant"
       ]
     },
     {
@@ -849,11 +1050,9 @@
       "name": "Chroma",
       "group": "Databases",
       "level": "Working knowledge",
-      "status": "BUILT",
+      "status": "UNVERIFIED",
       "context": "personal",
-      "evidence": [
-        "rag-agent"
-      ]
+      "evidence": []
     },
     {
       "id": "mcp",
@@ -874,7 +1073,9 @@
       "status": "EXPERIMENTAL",
       "context": "personal",
       "evidence": [
-        "livekit-mcp-assistant"
+        "jarvis",
+        "realtime-voice-agent",
+        "livekit-vision-agent"
       ]
     },
     {
@@ -885,9 +1086,9 @@
       "status": "EXPERIMENTAL",
       "context": "personal",
       "evidence": [
+        "jarvis",
         "realtime-voice-agent",
-        "bangla-voice-agent",
-        "livekit-mcp-assistant"
+        "bangla-voice-agent"
       ]
     },
     {
@@ -898,7 +1099,6 @@
       "status": "BUILT",
       "context": "personal",
       "evidence": [
-        "realtime-voice-agent",
         "bangla-voice-agent"
       ]
     },
@@ -910,8 +1110,8 @@
       "status": "LEARNING",
       "context": "academic_and_personal",
       "evidence": [
+        "texttosql",
         "bangla-voice-agent",
-        "vision-ocr",
         "neural-network-pytorch"
       ]
     },
@@ -922,8 +1122,10 @@
       "level": "Learning",
       "status": "LEARNING",
       "context": "personal",
-      "evidence": [],
-      "notes": "Mentioned in earlier marketing copy. No fine-tuning run, dataset, or repo is evidenced here."
+      "evidence": [
+        "texttosql"
+      ],
+      "notes": "One LoRA fine-tuning experiment is documented in TEXTtoSQL. It tied on the benchmark. QLoRA is not evidenced."
     },
     {
       "id": "sft-dpo",
@@ -970,8 +1172,10 @@
       "level": "Experimental",
       "status": "EXPERIMENTAL",
       "context": "personal",
-      "evidence": [],
-      "notes": "Local GGUF/Ollama experiments are documented; AWQ/bitsandbytes production serving is not."
+      "evidence": [
+        "texttosql"
+      ],
+      "notes": "TEXTtoSQL uses a 4-bit GGUF model quantized from 3.1 GB to 986 MB. AWQ/bitsandbytes production serving is not evidenced."
     },
     {
       "id": "ollama",
@@ -980,7 +1184,9 @@
       "level": "Experimental",
       "status": "EXPERIMENTAL",
       "context": "personal",
-      "evidence": [],
+      "evidence": [
+        "medimatch-ai"
+      ],
       "notes": "Local Qwen/Gemma GGUF experiments on RTX 4050 6GB."
     },
     {
@@ -991,6 +1197,7 @@
       "status": "BUILT",
       "context": "personal",
       "evidence": [
+        "medimatch-ai",
         "fitman"
       ]
     },
@@ -1050,8 +1257,11 @@
       "level": "Familiar",
       "status": "UNVERIFIED",
       "context": "personal",
-      "evidence": [],
-      "notes": "Listed in older skill blurbs; no Docker artifacts in this repo."
+      "evidence": [
+        "medimatch-ai",
+        "jarvis"
+      ],
+      "notes": "Docker files exist in the MediMatch AI and JARVIS repositories."
     },
     {
       "id": "crewai",
@@ -1072,6 +1282,7 @@
       "context": "personal",
       "evidence": [
         "fitman",
+        "rag-agent",
         "livekit-mcp-assistant"
       ]
     },
@@ -1093,7 +1304,9 @@
       "level": "Learning",
       "status": "LEARNING",
       "context": "personal",
-      "evidence": [],
+      "evidence": [
+        "resume-analyzer"
+      ],
       "notes": "Self-study of classical ML algorithms."
     },
     {

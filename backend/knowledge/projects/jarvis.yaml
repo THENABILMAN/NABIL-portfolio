@@ -1,0 +1,43 @@
+id: jarvis
+name: JARVIS Voice Assistant
+type: project
+status: prototype
+claim_status: BUILT
+confidence: high
+one_line: Real-time voice agent that controls a browser.
+problem: Browsing, searching and everyday tasks normally need hands and a keyboard.
+goal: Hold a voice conversation and carry out browser tasks by voice.
+nabil_contribution: Extended LiveKit's agent and web starters with 17 voice tools for browsing, search, memory and
+  Spotify, plus a confirmation step for consequential browser actions and tests for agent behavior, browser and
+  memory.
+architecture: Next.js frontend → LiveKit room → Python agent with Gemini Live → browser, Spotify, Tavily and Mem0
+  tools.
+technologies:
+- Python
+- LiveKit Agents
+- Gemini Live
+- Playwright
+- Tavily
+- Mem0
+- Next.js
+- TypeScript
+- Docker
+data_flow: Voice → LiveKit room → Gemini Live → tool call → browser, search, memory or Spotify → spoken reply
+decisions: Not documented
+challenges: Not documented
+solutions: Not documented
+results: Not documented
+benchmarks: []
+limitations:
+- Built on LiveKit starter templates.
+- No latency or task-success measurements are documented.
+future_improvements: Not documented
+github: https://github.com/THENABILMAN/JARVIS-VOICE-ASSISTANT-
+demo: null
+evidence:
+- type: github
+  source: https://github.com/THENABILMAN/JARVIS-VOICE-ASSISTANT-
+  description: Project repository, read 2026-11-25
+- type: resume
+  source: public/resume.pdf
+  description: Project listed on resume

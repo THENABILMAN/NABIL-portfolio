@@ -345,5 +345,53 @@
     "expected_entity": "numpy",
     "grounding_required": true,
     "uncertainty_expected": false
+  },
+  {
+    "id": "qp01",
+    "question": "What is MediMatch AI?",
+    "category": "projects",
+    "expected_entity": "medimatch-ai",
+    "grounding_required": true,
+    "uncertainty_expected": false
+  },
+  {
+    "id": "qp02",
+    "question": "How does TEXTtoSQL work?",
+    "category": "projects",
+    "expected_entity": "texttosql",
+    "grounding_required": true,
+    "uncertainty_expected": false
+  },
+  {
+    "id": "qp03",
+    "question": "Tell me about his text-to-SQL project",
+    "category": "projects",
+    "expected_entity": "texttosql",
+    "grounding_required": true,
+    "uncertainty_expected": false
+  },
+  {
+    "id": "qp04",
+    "question": "What is JARVIS?",
+    "category": "projects",
+    "expected_entity": "jarvis",
+    "grounding_required": true,
+    "uncertainty_expected": false
+  },
+  {
+    "id": "qp05",
+    "question": "Tell me about the vision agent",
+    "category": "projects",
+    "expected_entity": "livekit-vision-agent",
+    "grounding_required": true,
+    "uncertainty_expected": false
+  },
+  {
+    "id": "qp06",
+    "question": "How does FITMAN work?",
+    "category": "projects",
+    "expected_entity": "fitman",
+    "grounding_required": true,
+    "uncertainty_expected": false
   }
 ]
