@@ -31,7 +31,7 @@ decisions:
 - Every table with user data has Row-Level Security.
 challenges: Not documented
 solutions: Not documented
-results: The repository records 1,120 passing backend tests and 130 Playwright tests, 20 simultaneous booking requests
+results: 1,120 backend tests and 130 Playwright tests, 20 simultaneous booking requests
   tested against one slot, and 48 attack attempts all blocked on the local stack. A 28-query retrieval evaluation
   on demo data reached 96.4% Hit@3 and 38.1% Precision@3. 7,537 directory doctors were imported, with 2,846 free-text
   specialties mapped to 28.

@@ -30,8 +30,7 @@ export default function SkillsSection() {
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-12 lg:items-end">
           <h2 className="h2 lg:col-span-7">Tools and technologies</h2>
           <p className="text-base leading-relaxed text-ink-2 lg:col-span-5">
-            Grouped by domain, from tools used in projects to ones still being learned. Ask the agent for the evidence
-            behind any of them.
+            The languages, frameworks and tools I build with, and the ones I am adding.
           </p>
         </div>
 

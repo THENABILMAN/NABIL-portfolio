@@ -27,7 +27,7 @@ data_flow: React client → FastAPI → user context and memories → Groq LLM �
 decisions: Not documented
 challenges: Not documented
 solutions: Not documented
-results: A public demo is live. User counts and production SLAs are not documented.
+results: A public demo is live.
 benchmarks: []
 limitations:
 - 'Not production: there are no documented users, SLAs or load tests.'

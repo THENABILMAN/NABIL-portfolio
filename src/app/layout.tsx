@@ -17,7 +17,7 @@ const jetbrainsMono = JetBrains_Mono({
 
 const title = "Mohammad Ali Nabil, AI engineer for RAG systems and Python backends";
 const description =
-  "Portfolio of Mohammad Ali Nabil: RAG systems, FastAPI backends, documented agents, and an evidence-grounded digital twin.";
+  "Portfolio of Mohammad Ali Nabil: RAG systems, FastAPI backends, LLM agents, and an AI agent that answers questions about the work.";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://thenabilman.vercel.app"),
@@ -46,7 +46,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Mohammad Ali Nabil | AI Engineer",
-    description: "RAG systems, FastAPI backends, and an evidence-grounded portfolio digital twin.",
+    description: "RAG systems, FastAPI backends, LLM agents and voice systems.",
   },
   robots: { index: true, follow: true },
 };

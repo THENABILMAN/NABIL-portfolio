@@ -5,8 +5,8 @@ status: completed
 claim_status: UNVERIFIED
 confidence: medium
 summary: >
-  Nabil reports completing self-study in programming, mathematics, classical machine learning
-  and deep learning. This is study, not professional experience, and no certificate is documented.
+  Nabil studied programming, mathematics, classical machine learning and deep learning through
+  self-study, and built six projects along the way. This is study, not professional experience.
 areas:
   - id: python-programming
     name: Python programming

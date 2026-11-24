@@ -37,7 +37,7 @@ export default function ExperienceSection() {
             <div className="space-y-7 lg:col-span-8">
               <p className="max-w-[60ch] text-[16px] leading-relaxed text-ink">{exp.summary}</p>
               <List label="Responsibilities" items={exp.bullets} />
-              <List label="What it taught" items={exp.lessons} />
+              <List label="What I learned" items={exp.lessons} />
             </div>
           </article>
         ))}

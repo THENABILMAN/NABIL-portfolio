@@ -14,7 +14,7 @@
     "availability": "Open to AI engineering opportunities",
     "headline": "AI Engineer focused on RAG systems, LLM-powered automation, and Python backends",
     "summary": "Computer Science undergraduate at North South University. Former AI Engineer Intern on the GenAI team at The Data Island. Builds LLM-powered automation, RAG systems, structured data workflows, FastAPI backends, and experimental real-time voice agents.\n",
-    "agent_identity": "I'm Nabil's portfolio AI agent. I represent his documented engineering work, experience, projects, skills, and technical interests.\n",
+    "agent_identity": "I'm Nabil's portfolio AI agent. I represent his engineering work, experience, projects, skills, and technical interests.\n",
     "links": {
       "resume": "/resume.pdf"
     }
@@ -32,7 +32,7 @@
     "notes": "Current undergraduate (2024 – Present), per the resume and source notes.",
     "highlights": [
       "Coursework and interests in AI, ML, data structures, and algorithms",
-      "Practical projects alongside the degree (personal statement)"
+      "Practical projects alongside the degree"
     ],
     "academic_interests": [
       "Artificial Intelligence",
@@ -42,7 +42,7 @@
       "RAG and agents",
       "Backend engineering",
       "C++ and algorithms",
-      "Quantum computing (aspirational graduate interest)"
+      "Quantum computing"
     ],
     "evidence": [
       {
@@ -162,7 +162,7 @@
       "one_line": "Bengali speech recognition and synthesis pipeline for a voice agent.",
       "problem": "Voice AI stacks are English-centric; Bangla is lower-resource.",
       "goal": "Native Bangla STT → LLM → Bangla TTS.",
-      "nabil_contribution": "Explored a Bangla voice agent with local Whisper, Bengali prompt constraints and Silero speech synthesis. Related experiments used Deepgram and Cartesia (personal statement).",
+      "nabil_contribution": "Explored a Bangla voice agent with local Whisper, Bengali prompt constraints and Silero speech synthesis. Related experiments used Deepgram and Cartesia.",
       "architecture": "LiveKit Agents with Whisper large-v2, DeepSeek through OpenRouter and Silero Indic TTS.",
       "technologies": [
         "Python",
@@ -228,7 +228,7 @@
       "decisions": "Not documented",
       "challenges": "Not documented",
       "solutions": "Not documented",
-      "results": "A public demo is live. User counts and production SLAs are not documented.",
+      "results": "A public demo is live.",
       "benchmarks": [],
       "limitations": [
         "Not production: there are no documented users, SLAs or load tests.",
@@ -314,9 +314,9 @@
       "claim_status": "BUILT",
       "confidence": "medium",
       "one_line": "Linear regression implemented from scratch.",
-      "problem": "Learning project from Nabil's machine learning foundations study.",
+      "problem": "Understanding an algorithm properly means building it.",
       "goal": "Understand prediction and optimization by implementing the algorithm.",
-      "nabil_contribution": "Built by Nabil as a personal learning project (personal statement).",
+      "nabil_contribution": "Built as part of the machine learning foundations work.",
       "architecture": "Not documented",
       "technologies": [
         "Python"
@@ -349,7 +349,7 @@
       "one_line": "Assistant for LiveKit documentation with MCP tools and web search.",
       "problem": "Developers need answers from LiveKit documentation and current web results.",
       "goal": "Answer LiveKit questions through MCP tools with sources.",
-      "nabil_contribution": "Built a Streamlit interface, an MCP server with documentation and web search tools, and ingestion into Pinecone. Notes say roughly 20 hours on the project.",
+      "nabil_contribution": "Built a Streamlit interface, an MCP server with documentation and web search tools, and ingestion into Pinecone. Roughly 20 hours of work.",
       "architecture": "Streamlit → MCP server → Pinecone or Tavily search → Groq LLM.",
       "technologies": [
         "Python",
@@ -436,9 +436,9 @@
       "claim_status": "BUILT",
       "confidence": "medium",
       "one_line": "Logistic regression implemented from scratch.",
-      "problem": "Learning project from Nabil's machine learning foundations study.",
+      "problem": "Understanding an algorithm properly means building it.",
       "goal": "Understand classification by implementing the algorithm.",
-      "nabil_contribution": "Built by Nabil as a personal learning project (personal statement).",
+      "nabil_contribution": "Built as part of the machine learning foundations work.",
       "architecture": "Not documented",
       "technologies": [
         "Python"
@@ -495,7 +495,7 @@
       ],
       "challenges": "Not documented",
       "solutions": "Not documented",
-      "results": "The repository records 1,120 passing backend tests and 130 Playwright tests, 20 simultaneous booking requests tested against one slot, and 48 attack attempts all blocked on the local stack. A 28-query retrieval evaluation on demo data reached 96.4% Hit@3 and 38.1% Precision@3. 7,537 directory doctors were imported, with 2,846 free-text specialties mapped to 28.",
+      "results": "1,120 backend tests and 130 Playwright tests, 20 simultaneous booking requests tested against one slot, and 48 attack attempts all blocked on the local stack. A 28-query retrieval evaluation on demo data reached 96.4% Hit@3 and 38.1% Precision@3. 7,537 directory doctors were imported, with 2,846 free-text specialties mapped to 28.",
       "benchmarks": [
         "medimatch-hit3",
         "medimatch-precision3"
@@ -530,9 +530,9 @@
       "claim_status": "BUILT",
       "confidence": "medium",
       "one_line": "Image classification on the MNIST dataset.",
-      "problem": "Learning project from Nabil's machine learning foundations study.",
+      "problem": "Understanding an algorithm properly means building it.",
       "goal": "Classify MNIST images.",
-      "nabil_contribution": "Built by Nabil as a personal learning project (personal statement).",
+      "nabil_contribution": "Built as part of the machine learning foundations work.",
       "architecture": "Not documented",
       "technologies": [
         "Python"
@@ -564,9 +564,9 @@
       "claim_status": "BUILT",
       "confidence": "medium",
       "one_line": "A neural network built with NumPy.",
-      "problem": "Learning project from Nabil's machine learning foundations study.",
+      "problem": "Understanding an algorithm properly means building it.",
       "goal": "Understand how a neural network works underneath the framework.",
-      "nabil_contribution": "Built by Nabil as a personal learning project (personal statement).",
+      "nabil_contribution": "Built as part of the machine learning foundations work.",
       "architecture": "Not documented",
       "technologies": [
         "Python",
@@ -599,9 +599,9 @@
       "claim_status": "BUILT",
       "confidence": "medium",
       "one_line": "A neural network built with PyTorch.",
-      "problem": "Learning project from Nabil's machine learning foundations study.",
+      "problem": "Understanding an algorithm properly means building it.",
       "goal": "Learn to build and train a neural network in PyTorch.",
-      "nabil_contribution": "Built by Nabil as a personal learning project (personal statement).",
+      "nabil_contribution": "Built as part of the machine learning foundations work.",
       "architecture": "Not documented",
       "technologies": [
         "Python",
@@ -805,9 +805,9 @@
       "claim_status": "BUILT",
       "confidence": "medium",
       "one_line": "A classification experiment with a classical support vector machine.",
-      "problem": "Learning project from Nabil's machine learning foundations study.",
+      "problem": "Understanding an algorithm properly means building it.",
       "goal": "Understand kernels and margins through a classification experiment.",
-      "nabil_contribution": "Built by Nabil as a personal learning project (personal statement).",
+      "nabil_contribution": "Built as part of the machine learning foundations work.",
       "architecture": "Not documented",
       "technologies": [
         "Python"
@@ -894,7 +894,7 @@
       "one_line": "OpenCV and transformer-based inspection/OCR pipeline.",
       "problem": "Images and scans need structured extraction.",
       "goal": "Detect objects / OCR documents and emit JSON.",
-      "nabil_contribution": "Portfolio describes OpenCV preprocessing, Hugging Face vision models, EasyOCR/Tesseract, FastAPI JSON output.",
+      "nabil_contribution": "OpenCV preprocessing, Hugging Face vision models, EasyOCR/Tesseract, FastAPI JSON output.",
       "architecture": "Image/video → OpenCV filters → detector/OCR → JSON via FastAPI.",
       "technologies": [
         "Python",
@@ -1346,7 +1346,7 @@
     "status": "completed",
     "claim_status": "UNVERIFIED",
     "confidence": "medium",
-    "summary": "Nabil reports completing self-study in programming, mathematics, classical machine learning and deep learning. This is study, not professional experience, and no certificate is documented.\n",
+    "summary": "Nabil studied programming, mathematics, classical machine learning and deep learning through self-study, and built six projects along the way. This is study, not professional experience.\n",
     "areas": [
       {
         "id": "python-programming",

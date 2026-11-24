@@ -72,6 +72,12 @@ FOUNDATION_TERMS = (
 )
 
 
+SKILL_HEADINGS = {
+    "BUILT": "Used in projects", "VERIFIED": "Used in projects", "EXPERIMENTAL": "Used in experiments",
+    "LEARNING": "Learning", "UNVERIFIED": "Familiar with",
+}
+
+
 def normalize_query(query: str) -> str:
     possessive_free = re.sub(r"['’]s\b", "", query.lower())
     return re.sub(r"[?!.,\"'`’]+", "", possessive_free).strip()
@@ -428,7 +434,7 @@ class KnowledgeStore:
 
         if re.search(r"^(hi|hello|hey|sup|yo|howdy|hola|greetings|good morning|good afternoon|good evening|hi there)$", q):
             return FastAnswer(
-                answer=person.get("agent_identity", "") + " Ask about documented projects, The Data Island internship, education, or this portfolio RAG system.",
+                answer=person.get("agent_identity", "") + " Ask about his projects, The Data Island internship, education, or this portfolio RAG system.",
                 entity_type="person",
                 entity_id="person-nabil",
                 claims=[],
@@ -523,7 +529,7 @@ class KnowledgeStore:
             f = self.foundations
             areas = "\n".join(f"• {a['name']}: {', '.join(a['topics'])}" for a in f.get("areas", []))
             return FastAnswer(
-                answer=f"{f.get('summary', '').strip()}\nClaim status: {f.get('claim_status')}.\n{areas}",
+                answer=f"{f.get('summary', '').strip()}\n{areas}",
                 entity_type="foundations",
                 entity_id="foundations",
                 claims=[],
@@ -568,13 +574,12 @@ class KnowledgeStore:
         if classification["intent"] == "projects_list":
             lines = []
             for proj in self.projects:
-                gh = proj.get("github") or "no dedicated repo verified here"
+                gh = proj.get("github")
                 lines.append(
-                    f"- {proj.get('name')} [{proj.get('status')} / {proj.get('claim_status')}]: "
-                    f"{proj.get('one_line')} ({gh})"
+                    f"- {proj.get('name')}: {proj.get('one_line')}" + (f" ({gh})" if gh else "")
                 )
             return FastAnswer(
-                answer="Documented projects (status is canonical, not marketing copy):\n" + "\n".join(lines),
+                answer="Nabil's projects:\n" + "\n".join(lines),
                 entity_type="project",
                 entity_id=None,
                 claims=[],
@@ -598,9 +603,9 @@ class KnowledgeStore:
             parts = []
             for status in ["BUILT", "EXPERIMENTAL", "LEARNING", "UNVERIFIED", "VERIFIED"]:
                 if status in groups:
-                    parts.append(f"{status}: " + "; ".join(groups[status]))
+                    parts.append(f"{SKILL_HEADINGS[status]}: " + "; ".join(groups[status]))
             return FastAnswer(
-                answer="Skill catalog with evidence-based levels (not percentage scores):\n" + "\n".join(parts),
+                answer="Nabil's skills:\n" + "\n".join(parts),
                 entity_type="skill",
                 entity_id=None,
                 claims=[],
@@ -619,12 +624,7 @@ class KnowledgeStore:
             sk = self.skill_by_id(classification["entity_id"])
             if sk:
                 return FastAnswer(
-                    answer=(
-                        f"{sk.get('name')}: proficiency '{sk.get('level')}', claim status {sk.get('status')}. "
-                        f"Context: {sk.get('context')}. "
-                        f"{sk.get('notes') or ''} "
-                        f"Related evidence entities: {', '.join(sk.get('evidence') or []) or 'none documented'}."
-                    ),
+                    answer=self._skill_answer(sk),
                     entity_type="skill",
                     entity_id=sk["id"],
                     claims=self.claims_for(sk["id"]),
@@ -676,20 +676,42 @@ class KnowledgeStore:
 
         return None
 
+    def _skill_answer(self, sk: Dict[str, Any]) -> str:
+        """Plain words for each status. The wording must never sound stronger than the status."""
+        name = sk.get("name")
+        found = [self.entities[i] for i in sk.get("evidence") or [] if i in self.entities]
+        used = [str(e.get("name") or f"{e.get('company')} internship") for e in found]
+        status = sk.get("status")
+        if status in {"BUILT", "VERIFIED"}:
+            lead = f"Yes, Nabil builds with {name} ({sk.get('level')})."
+        elif status == "EXPERIMENTAL":
+            lead = f"Nabil has used {name} in experiments."
+        elif status == "LEARNING":
+            lead = f"Nabil is learning {name}."
+        else:
+            lead = f"Nabil is familiar with {name}."
+        if used:
+            lead += f" Related work: {', '.join(used)}."
+        return f"{lead} {sk.get('notes') or ''}".strip()
+
     def _project_answer(self, proj: Dict[str, Any]) -> str:
-        techs = ", ".join(proj.get("technologies") or [])
-        gh = proj.get("github") or "Not documented as a dedicated repository in this knowledge base"
-        demo = proj.get("demo") or "Not documented"
-        return (
-            f"{proj.get('name')} — {proj.get('one_line')}\n"
-            f"Status: {proj.get('status')} (claim: {proj.get('claim_status')}, confidence: {proj.get('confidence')})\n"
-            f"Problem: {proj.get('problem')}\n"
-            f"Architecture: {proj.get('architecture')}\n"
-            f"Nabil's contribution: {proj.get('nabil_contribution')}\n"
-            f"Technologies: {techs}\n"
-            f"Limitations: {as_text(proj.get('limitations'))}\n"
-            f"GitHub: {gh}\nDemo: {demo}"
-        )
+        rows = [
+            ("Status", proj.get("status")),
+            ("Problem", proj.get("problem")),
+            ("Architecture", proj.get("architecture")),
+            ("What Nabil built", proj.get("nabil_contribution")),
+            ("Technologies", ", ".join(proj.get("technologies") or [])),
+            ("Results", proj.get("results")),
+            ("Limitations", proj.get("limitations")),
+            ("GitHub", proj.get("github")),
+            ("Demo", proj.get("demo")),
+        ]
+        lines = [f"{proj.get('name')}: {proj.get('one_line')}"]
+        for label, value in rows:
+            text = as_text(value).strip()
+            if text and not text.startswith("Not documented"):
+                lines.append(f"{label}: {text}")
+        return "\n".join(lines)
 
     def export_public_dict(self) -> Dict[str, Any]:
         """Only what the site renders: this file ships in the browser bundle."""

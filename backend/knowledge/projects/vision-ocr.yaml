@@ -7,7 +7,7 @@ confidence: medium
 one_line: OpenCV and transformer-based inspection/OCR pipeline.
 problem: Images and scans need structured extraction.
 goal: Detect objects / OCR documents and emit JSON.
-nabil_contribution: Portfolio describes OpenCV preprocessing, Hugging Face vision models, EasyOCR/Tesseract, FastAPI JSON output.
+nabil_contribution: OpenCV preprocessing, Hugging Face vision models, EasyOCR/Tesseract, FastAPI JSON output.
 architecture: Image/video → OpenCV filters → detector/OCR → JSON via FastAPI.
 technologies:
   - Python

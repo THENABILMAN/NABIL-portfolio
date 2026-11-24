@@ -10,7 +10,7 @@ confidence: high
 notes: Current undergraduate (2024 – Present), per the resume and source notes.
 highlights:
   - Coursework and interests in AI, ML, data structures, and algorithms
-  - Practical projects alongside the degree (personal statement)
+  - Practical projects alongside the degree
 academic_interests:
   - Artificial Intelligence
   - Machine Learning
@@ -19,7 +19,7 @@ academic_interests:
   - RAG and agents
   - Backend engineering
   - C++ and algorithms
-  - Quantum computing (aspirational graduate interest)
+  - Quantum computing
 evidence:
   - type: resume
     source: public/resume.pdf

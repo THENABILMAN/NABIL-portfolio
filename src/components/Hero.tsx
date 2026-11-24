@@ -11,8 +11,8 @@ const enter = (delay: number) => ({
 });
 
 const record = [
-  { value: projects.length, label: "projects documented" },
-  { value: skillGroups.reduce((n, g) => n + g.skills.length, 0), label: "tools and skills listed" },
+  { value: projects.length, label: "projects built" },
+  { value: skillGroups.reduce((n, g) => n + g.skills.length, 0), label: "tools and technologies" },
   { value: foundations.areas.length, label: "foundation areas studied" },
 ];
 

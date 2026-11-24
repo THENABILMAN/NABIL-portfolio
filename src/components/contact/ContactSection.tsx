@@ -50,7 +50,7 @@ export default function ContactSection() {
   return (
     <footer id="contact" className="border-t border-line pt-24 sm:pt-28">
       <div className="wrap">
-        <h2 className="h2">Contact Nabil</h2>
+        <h2 className="h2">Get in touch</h2>
         <p className="lede">{personalInfo.availability}. Email works best for opportunities and collaborations.</p>
 
         <a

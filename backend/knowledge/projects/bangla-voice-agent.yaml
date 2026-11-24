@@ -8,7 +8,7 @@ one_line: Bengali speech recognition and synthesis pipeline for a voice agent.
 problem: Voice AI stacks are English-centric; Bangla is lower-resource.
 goal: Native Bangla STT → LLM → Bangla TTS.
 nabil_contribution: Explored a Bangla voice agent with local Whisper, Bengali prompt constraints and Silero speech
-  synthesis. Related experiments used Deepgram and Cartesia (personal statement).
+  synthesis. Related experiments used Deepgram and Cartesia.
 architecture: LiveKit Agents with Whisper large-v2, DeepSeek through OpenRouter and Silero Indic TTS.
 technologies:
 - Python

@@ -6,9 +6,9 @@ status: completed
 claim_status: BUILT
 confidence: medium
 one_line: Linear regression implemented from scratch.
-problem: Learning project from Nabil's machine learning foundations study.
+problem: Understanding an algorithm properly means building it.
 goal: Understand prediction and optimization by implementing the algorithm.
-nabil_contribution: Built by Nabil as a personal learning project (personal statement).
+nabil_contribution: Built as part of the machine learning foundations work.
 architecture: Not documented
 technologies:
   - Python

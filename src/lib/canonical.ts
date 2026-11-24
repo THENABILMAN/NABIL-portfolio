@@ -104,7 +104,7 @@ function mapProject(p: CanonicalProject): Project {
       : limitations
         ? [limitations]
         : [],
-    results: asText(p.results).startsWith("Not documented") ? "" : asText(p.results),
+    results: /^(Not documented|No latency study)/.test(asText(p.results)) ? "" : asText(p.results),
   };
 }
 
@@ -267,8 +267,8 @@ export const cliCommands = {
   help: [
     "Available commands:",
     "  whoami         Who Nabil is",
-    "  skills         Documented skills by evidence status",
-    "  projects       Catalogued projects",
+    "  skills         Skills by area",
+    "  projects       Projects",
     "  experience     Internship and education",
     "  contact        Public contact channels",
     "  system --info  How this digital twin works",
@@ -276,10 +276,10 @@ export const cliCommands = {
     "  clear          Clear the terminal",
   ].join("\n"),
   bio: `${personalInfo.name}, ${personalInfo.headline}\n${personalInfo.location}`,
-  skills: skillCategories
-    .map((c) => `${c.title}: ${c.skills.map((s) => `${s.name} [${s.level}]`).join(", ")}`)
+  skills: skillGroups
+    .map((c) => `${c.title}: ${c.skills.map((s) => s.name).join(", ")}`)
     .join("\n"),
-  projects: projects.map((p) => `- ${p.title} [${p.status}]: ${p.description}`).join("\n"),
+  projects: projects.map((p) => `- ${p.title}: ${p.subtitle}`).join("\n"),
   experience: experience
     .map(
       (e) =>

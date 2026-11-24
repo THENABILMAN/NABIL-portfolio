@@ -8,7 +8,7 @@ one_line: Assistant for LiveKit documentation with MCP tools and web search.
 problem: Developers need answers from LiveKit documentation and current web results.
 goal: Answer LiveKit questions through MCP tools with sources.
 nabil_contribution: Built a Streamlit interface, an MCP server with documentation and web search tools, and ingestion
-  into Pinecone. Notes say roughly 20 hours on the project.
+  into Pinecone. Roughly 20 hours of work.
 architecture: Streamlit → MCP server → Pinecone or Tavily search → Groq LLM.
 technologies:
 - Python

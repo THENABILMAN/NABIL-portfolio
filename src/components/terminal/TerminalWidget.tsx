@@ -18,13 +18,13 @@ interface HistoryItem {
 const COMMANDS = [
   { cmd: "help", note: "list commands" },
   { cmd: "whoami", note: "name and role" },
-  { cmd: "projects", note: "every project and status" },
-  { cmd: "skills", note: "skills by evidence" },
+  { cmd: "projects", note: "every project" },
+  { cmd: "skills", note: "skills by area" },
   { cmd: "experience", note: "internship and degree" },
   { cmd: "run-agent", note: "how one answer is made" },
 ];
 
-const QUESTIONS = ["Is FITMAN production?", "Does Nabil use FastAPI?", "What did Nabil do at The Data Island?"];
+const QUESTIONS = ["What is MediMatch AI?", "Does Nabil use FastAPI?", "What did Nabil do at The Data Island?"];
 
 function Block({ children }: { children: React.ReactNode }) {
   return <pre className="whitespace-pre-wrap break-words font-mono text-[13px] leading-relaxed text-ink-2">{children}</pre>;
@@ -54,9 +54,8 @@ function TwinAnswer({
         {!streaming && (
           <>
             <span className={data.grounded ? "text-cyan" : "text-crimson"}>
-              {data.grounded ? "grounded" : "no evidence: refused"}
+              {data.grounded ? "sourced" : "outside what I know"}
             </span>
-            <span>confidence {data.confidence.toLowerCase()}</span>
             <span className="truncate">model {data.model}</span>
             <button
               type="button"
@@ -111,7 +110,7 @@ const systemInfo = (
   <Block>
     {`stack      Next.js frontend, FastAPI retrieval service
 knowledge  canonical YAML; MongoDB Atlas when ingested
-policy     answers come from evidence; no evidence means a refusal
+policy     answers come from Nabil's own work, with sources
 identity   a portfolio agent that speaks about Nabil, never as him`}
   </Block>
 );
@@ -272,9 +271,9 @@ export default function InteractiveCLITerminal() {
         command,
         <Block>
           {`1  classify the question against the canonical YAML
-2  answer structured facts directly, or retrieve matching evidence
-3  no evidence: refuse, and cite nothing
-4  write the answer only from the retrieved context`}
+2  answer structured facts directly, or retrieve matching passages
+3  write the answer from the retrieved context
+4  cite the sources used`}
         </Block>
       );
     }
@@ -322,10 +321,9 @@ export default function InteractiveCLITerminal() {
     <section id="agent" className="section">
       <div className="wrap">
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-12 lg:items-end">
-          <h2 className="h2 lg:col-span-7">Ask the portfolio agent about Nabil&apos;s work</h2>
+          <h2 className="h2 lg:col-span-7">Ask my AI agent about my work</h2>
           <p className="text-base leading-relaxed text-ink-2 lg:col-span-5">
-            It answers from the knowledge base behind this site and lists the sources it used. A question with no
-            evidence gets a refusal, with no sources.
+            It knows my projects, skills and experience, and answers with sources.
           </p>
         </div>
 

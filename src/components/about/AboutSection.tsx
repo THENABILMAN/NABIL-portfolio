@@ -4,7 +4,7 @@ export default function AboutSection() {
   return (
     <section id="about" className="section">
       <div className="wrap">
-        <h2 className="h2">About Nabil</h2>
+        <h2 className="h2">About me</h2>
         <div className="mt-14 grid grid-cols-1 gap-14 lg:grid-cols-12 lg:gap-8">
           <div className="lg:col-span-7">
             <p className="max-w-[58ch] text-[18px] leading-relaxed text-ink sm:text-[20px]">{personalInfo.summary}</p>

@@ -87,7 +87,7 @@ def test_deepspeed_not_expert():
     ans = store.fast_resolve("Is Nabil an expert in DeepSpeed?")
     assert ans is not None
     assert ans.entity_id == "deepspeed"
-    assert "UNVERIFIED" in ans.answer or "Familiar" in ans.answer
+    assert "familiar with" in ans.answer and "builds with" not in ans.answer
     assert "expert" not in ans.answer.lower() or "not" in ans.answer.lower()
 
 
@@ -96,13 +96,13 @@ def test_lora_learning():
     ans = store.fast_resolve("Does Nabil know LoRA?")
     assert ans is not None
     assert ans.entity_id == "lora"
-    assert "LEARNING" in ans.answer
+    assert "is learning" in ans.answer
 
 
 def test_foundations_are_study_not_experience():
     ans = KnowledgeStore().fast_resolve("Is Nabil an expert in machine learning?")
     assert ans.entity_id == "foundations" and ans.sources
-    assert "UNVERIFIED" in ans.answer and "not professional experience" in ans.answer
+    assert "self-study" in ans.answer and "not professional experience" in ans.answer
 
 
 def test_unknown_users():

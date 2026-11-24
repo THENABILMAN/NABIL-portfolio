@@ -10,7 +10,7 @@ import type { Project } from "@/types/portfolio";
 function ProjectLinks({ project }: { project: Project }) {
   const demo = project.demoUrl && project.demoUrl !== project.githubUrl ? project.demoUrl : undefined;
   if (!demo && !project.githubUrl) {
-    return <p className="font-mono text-[12px] text-muted">Source not public</p>;
+    return null;
   }
   return (
     <div className="flex flex-col gap-3 sm:flex-row">
@@ -24,23 +24,6 @@ function ProjectLinks({ project }: { project: Project }) {
           See the code on GitHub
         </a>
       )}
-    </div>
-  );
-}
-
-function Limitations({ items }: { items: string[] }) {
-  if (items.length === 0) return null;
-  return (
-    <div>
-      <p className="label">Limitations</p>
-      <ul className="mt-2 space-y-1.5">
-        {items.map((l) => (
-          <li key={l} className="flex gap-3 text-[14px] leading-relaxed text-ink-2">
-            <span className="mt-[9px] h-px w-3 shrink-0 bg-crimson" aria-hidden="true" />
-            {l}
-          </li>
-        ))}
-      </ul>
     </div>
   );
 }
@@ -101,7 +84,7 @@ function Featured({ project }: { project: Project }) {
         <p className="mt-3 max-w-[56ch] text-[17px] leading-relaxed text-ink">{project.subtitle}</p>
         {project.goal && <p className="mt-3 max-w-[56ch] text-[15px] leading-relaxed text-ink-2">{project.goal}</p>}
 
-        <p className="mt-8 label">Nabil&apos;s part</p>
+        <p className="mt-8 label">What I built</p>
         <p className="mt-2 max-w-[60ch] text-[14px] leading-relaxed text-ink-2">{project.contribution}</p>
 
         {project.results && (
@@ -111,9 +94,6 @@ function Featured({ project }: { project: Project }) {
               </div>
             )}
 
-        <div className="mt-8">
-          <Limitations items={project.limitations} />
-        </div>
 
         <p className="mt-8 font-mono text-[12px] text-muted">{project.techStack.join("  ·  ")}</p>
         <div className="mt-6">
@@ -164,7 +144,7 @@ function Row({ project, open, onToggle }: { project: Project; open: boolean; onT
             )}
             {project.contribution && (
               <div>
-                <p className="label">Nabil&apos;s part</p>
+                <p className="label">What I built</p>
                 <p className="mt-2 text-[14px] leading-relaxed text-ink-2">{project.contribution}</p>
               </div>
             )}
@@ -180,7 +160,6 @@ function Row({ project, open, onToggle }: { project: Project; open: boolean; onT
                 <p className="mt-2 max-w-[60ch] text-[14px] leading-relaxed text-ink-2">{project.results}</p>
               </div>
             )}
-            <Limitations items={project.limitations} />
           </div>
         </div>
       )}
@@ -209,10 +188,9 @@ export default function ProjectsSection() {
     <section id="projects" className="section">
       <div className="wrap">
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-12 lg:items-end">
-          <h2 className="h2 lg:col-span-7">Projects, labelled by what the evidence shows</h2>
+          <h2 className="h2 lg:col-span-7">Projects I designed and built</h2>
           <p className="text-base leading-relaxed text-ink-2 lg:col-span-5">
-            Completed, prototype, experimental or in development: each status comes from the knowledge base, with the
-            limits written down beside it.
+            AI products, agents, retrieval and voice systems, from the model to the backend and the interface.
           </p>
         </div>
 

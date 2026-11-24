@@ -8,8 +8,7 @@ export default function FoundationsSection() {
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-12 lg:items-end">
           <h2 className="h2 lg:col-span-7">Mathematics and machine learning foundations</h2>
           <p className="text-base leading-relaxed text-ink-2 lg:col-span-5">
-            Self-study, reported by Nabil and kept apart from professional experience. The projects built along the way
-            are listed under machine learning foundations.
+            The mathematics and machine learning I studied, then put into practice in six projects.
           </p>
         </div>
         <div className="mt-14 grid grid-cols-1 items-start gap-x-8 border-t border-line-strong lg:grid-cols-2">
